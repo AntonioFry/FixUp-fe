@@ -5,8 +5,7 @@ import { TextInput } from "react-native-gesture-handler";
 export default class HomeScreen extends React.Component {
   state = {
     email: "",
-    password: "",
-    displayLogin: false
+    password: ""
   };
 
   handleEmail = text => {
@@ -70,12 +69,12 @@ export default class HomeScreen extends React.Component {
           </View>
           <Button
             title="Login"
-            onPress={() => this.props.navigation.navigate("Details")}
+            onPress={() => this.props.navigation.navigate("Projects")}
           ></Button>
           <Text>or</Text>
           <Button
             title="Sign Up"
-            onPress={() => this.props.navigation.navigate("Details")}
+            onPress={() => this.props.navigation.navigate("SignUp")}
           ></Button>
         </View>
       </ImageBackground>
