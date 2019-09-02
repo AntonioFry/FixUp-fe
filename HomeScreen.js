@@ -32,7 +32,7 @@ export default class HomeScreen extends React.Component {
             flexDirection: "column",
             alignItems: "center",
             justifyContent: "flex-end",
-            marginBottom: 200
+            marginBottom: 100
           }}
         >
           <Text style={{ fontSize: 62, fontWeight: "900" }}>FixUp</Text>
