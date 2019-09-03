@@ -1,6 +1,10 @@
 import React from "react";
-import { View, StyleSheet, Image } from "react-native";
+import { View, StyleSheet, Image, TouchableOpacity, Text } from "react-native";
 import SignUpQuestion from "./SignUpQuestion";
+import PhotoUpload from "./PhotoUpload";
+import * as ImagePicker from "expo-image-picker";
+import * as Permissions from "expo-permissions";
+import Constants from "expo-constants";
 
 export default class ContractorSignUp extends React.Component {
   state = {
@@ -53,66 +57,70 @@ export default class ContractorSignUp extends React.Component {
 
   render() {
     return (
-      <View style={styles.wrapper}>
-        <View style={styles.questionsWrapper}>
-          {this.state.questionNumber === 1 && (
-            <SignUpQuestion
-              advanceQuestion={this.advanceQuestion}
-              prompt="Upload your company logo"
-              placeholder="Select image"
-              buttonText="Next"
-            />
-          )}
-          {this.state.questionNumber === 2 && (
-            <SignUpQuestion
-              advanceQuestion={this.advanceQuestion}
-              prompt="What are your specialties?"
-              placeholder="Choose specialties"
-              buttonText="Next"
-            />
-          )}
-          {this.state.questionNumber === 3 && (
-            <SignUpQuestion
-              advanceQuestion={this.advanceQuestion}
-              prompt="What's your zip code?"
-              placeholder="Enter zip code"
-              buttonText="Next"
-            />
-          )}
-          {this.state.questionNumber === 4 && (
-            <SignUpQuestion
-              advanceQuestion={this.advanceQuestion}
-              prompt="What's your phone number?"
-              placeholder="Enter phone"
-              buttonText="Next"
-            />
-          )}
-          {this.state.questionNumber === 5 && (
-            <SignUpQuestion
-              advanceQuestion={this.advanceQuestion}
-              prompt="What's your email address?"
-              placeholder="Enter email"
-              buttonText="Finish"
-            />
-          )}
-          {this.state.questionNumber === 6 && (
-            <SignUpQuestion
-              advanceQuestion={this.advanceQuestion}
-              prompt="Choose a password"
-              placeholder="Enter password"
-              buttonText="Finish"
-            />
-          )}
-          <View style={styles.dotsWrapper}>{this.displayDots()}</View>
+      <View style={styles.fullWrapper}>
+        <View style={styles.wrapper}>
+          <View style={styles.questionsWrapper}>
+            {this.state.questionNumber === 1 && (
+              <PhotoUpload
+                advanceQuestion={this.advanceQuestion}
+                prompt="Upload your company logo"
+              />
+            )}
+            {this.state.questionNumber === 2 && (
+              <SignUpQuestion
+                advanceQuestion={this.advanceQuestion}
+                prompt="What are your specialties?"
+                placeholder="Choose specialties"
+                buttonText="Next"
+              />
+            )}
+            {this.state.questionNumber === 3 && (
+              <SignUpQuestion
+                advanceQuestion={this.advanceQuestion}
+                prompt="What's your zip code?"
+                placeholder="Enter zip code"
+                buttonText="Next"
+              />
+            )}
+            {this.state.questionNumber === 4 && (
+              <SignUpQuestion
+                advanceQuestion={this.advanceQuestion}
+                prompt="What's your phone number?"
+                placeholder="Enter phone"
+                buttonText="Next"
+              />
+            )}
+            {this.state.questionNumber === 5 && (
+              <SignUpQuestion
+                advanceQuestion={this.advanceQuestion}
+                prompt="What's your email address?"
+                placeholder="Enter email"
+                buttonText="Finish"
+              />
+            )}
+            {this.state.questionNumber === 6 && (
+              <SignUpQuestion
+                advanceQuestion={this.advanceQuestion}
+                prompt="Choose a password"
+                placeholder="Enter password"
+                buttonText="Finish"
+              />
+            )}
+          </View>
         </View>
+        <View style={styles.dotsWrapper}>{this.displayDots()}</View>
       </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  wrapper: {
+  fullWrapper: {
     flex: 1,
+    justifyContent: "space-between"
+  },
+  wrapper: {
+    flex: 4,
     justifyContent: "center",
     alignItems: "center"
   },
@@ -124,8 +132,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
-    height: 40,
-    marginBottom: 30
+    height: 40
   },
   inactiveDot: {
     height: 10,
@@ -138,5 +145,19 @@ const styles = StyleSheet.create({
     width: 25,
     marginRight: 3,
     marginLeft: 3
+  },
+  photoQuestionWrapper: {
+    justifyContent: "center",
+    alignItems: "center"
+  },
+  button: {
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 4,
+    backgroundColor: "#7C9EB2",
+    width: 300,
+    height: 50,
+    marginBottom: 10
   }
 });

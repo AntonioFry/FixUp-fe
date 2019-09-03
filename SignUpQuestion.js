@@ -1,21 +1,36 @@
 import React from "react";
-import { View, Text, TextInput, TouchableOpacity, StyleSheet } from "react-native";
+import {
+  View,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  StyleSheet
+} from "react-native";
+
 
 export default class SignUpQuestion extends React.Component {
   state = {
-    field: "",
+    field: ""
   };
 
   handleChange = text => {
-    this.setState({ field: text })
-  }
+    this.setState({ field: text });
+  };
 
   render() {
     return (
-      <View style={styles.wrapper}>
+      <View style={styles.questionWrapper}>
         <Text style={styles.prompt}>{this.props.prompt}</Text>
-        <TextInput style={styles.input} value={this.state.field} onChangeText={this.handleChange} placeholder={this.props.placeholder} />
-        <TouchableOpacity onPress={field => this.props.advanceQuestion(this.state.field)} style={styles.button}>
+        <TextInput
+          style={styles.input}
+          value={this.state.field}
+          onChangeText={this.handleChange}
+          placeholder={this.props.placeholder}
+        />
+        <TouchableOpacity
+          onPress={field => this.props.advanceQuestion(this.state.field)}
+          style={styles.button}
+        >
           <Text>{this.props.buttonText}</Text>
         </TouchableOpacity>
       </View>
@@ -24,10 +39,10 @@ export default class SignUpQuestion extends React.Component {
 }
 
 const styles = StyleSheet.create({
-  wrapper: {
-    flex: 1,
+  questionWrapper: {
     justifyContent: "center",
     alignItems: "center",
+    // height: 200
   },
   prompt: {
     fontWeight: "bold",
