@@ -18,6 +18,7 @@ export default class HomeownerSignUp extends React.Component {
       if(this.state.questionNumber === i) {
         allDots.push(
           <Image
+            key={i}
             style={styles.activeDot}
             source={require("./assets/activeDot.png")}
           />
@@ -25,6 +26,7 @@ export default class HomeownerSignUp extends React.Component {
       } else {
         allDots.push(
           <Image
+            key={i}
             style={styles.inactiveDot}
             source={require("./assets/inactiveDot.png")}
           />
@@ -37,40 +39,40 @@ export default class HomeownerSignUp extends React.Component {
   render() {
     return (
       <View style={styles.wrapper}>
-        {this.state.questionNumber === 1 && (
-          <SignUpQuestion
-            advanceQuestion={this.advanceQuestion}
-            prompt="What's your zip code?"
-            placeholder="Enter zip code"
-            buttonText="Next"
-          />
-        )}
-        {this.state.questionNumber === 2 && (
-          <SignUpQuestion
-            advanceQuestion={this.advanceQuestion}
-            prompt="What's your phone number?"
-            placeholder="Enter phone"
-            buttonText="Next"
-          />
-        )}
-        {this.state.questionNumber === 3 && (
-          <SignUpQuestion
-            advanceQuestion={this.advanceQuestion}
-            prompt="What's your email address?"
-            placeholder="Enter phone"
-            buttonText="Next"
-          />
-        )}
-        {this.state.questionNumber === 4 && (
-          <SignUpQuestion
-            advanceQuestion={this.advanceQuestion}
-            prompt="Choose a password"
-            placeholder="Enter password"
-            buttonText="Finish"
-          />
-        )}
-        <View style={styles.dotsWrapper}>
-          {this.displayDots()}
+        <View style={styles.questionsWrapper}>
+          {this.state.questionNumber === 1 && (
+            <SignUpQuestion
+              advanceQuestion={this.advanceQuestion}
+              prompt="What's your zip code?"
+              placeholder="Enter zip code"
+              buttonText="Next"
+            />
+          )}
+          {this.state.questionNumber === 2 && (
+            <SignUpQuestion
+              advanceQuestion={this.advanceQuestion}
+              prompt="What's your phone number?"
+              placeholder="Enter phone"
+              buttonText="Next"
+            />
+          )}
+          {this.state.questionNumber === 3 && (
+            <SignUpQuestion
+              advanceQuestion={this.advanceQuestion}
+              prompt="What's your email address?"
+              placeholder="Enter phone"
+              buttonText="Next"
+            />
+          )}
+          {this.state.questionNumber === 4 && (
+            <SignUpQuestion
+              advanceQuestion={this.advanceQuestion}
+              prompt="Choose a password"
+              placeholder="Enter password"
+              buttonText="Finish"
+            />
+          )}
+        <View style={styles.dotsWrapper}>{this.displayDots()}</View>
         </View>
       </View>
     );
@@ -83,16 +85,26 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center"
   },
+  questionsWrapper: {
+    justifyContent: "space-around",
+    alignItems: "center"
+  },
   dotsWrapper: {
     flexDirection: "row",
-    justifyContent: "center"
+    justifyContent: "center",
+    alignItems: "center",
+    height: 40
   },
   inactiveDot: {
     height: 15,
-    width: 15
+    width: 15,
+    marginRight: 3,
+    marginLeft: 3
   },
   activeDot: {
     height: 25,
-    width: 25
+    width: 25,
+    marginRight: 3,
+    marginLeft: 3
   }
 });
