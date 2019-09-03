@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, Text, Image, TouchableOpacity } from 'react-native';
-import cards from './data';
+import cards from './mockProjects';
 import Swiper from 'react-native-deck-swiper';
 
-export default class App extends Component {
+class ProjectSwiper extends Component {
+  state = {
+    cardIndex: 0
+  }
 
   onChange(e) {
     e.preventDefault();
@@ -39,7 +42,8 @@ export default class App extends Component {
     return (
       <View style={styles.screen}>
         <Swiper
-          backgroundColor="#F7F0F5"
+          paddingBottom={100}
+          backgroundColor="#white"
           ref={swiper => {
             this.swiper = swiper
           }}
@@ -51,7 +55,7 @@ export default class App extends Component {
           onTapCard={this.swipeLeft}
           cards={cards}
           cardIndex={this.state.cardIndex}
-          cardVerticalMargin={80}
+          cardVerticalMargin={10}
           renderCard={this.renderCard}
           onSwipedAll={this.onSwipedAllCards}
           stackSize={3}
@@ -130,12 +134,6 @@ export default class App extends Component {
           animateCardOpacity
           swipeBackCard
         />
-        {/* </View> */}
-
-        <TouchableOpacity style={styles.button} onPress={() => this.swiper.swipeBack()} title='Swipe Back'>
-          <Text>Swipe Back</Text>
-        </TouchableOpacity>
-
       </View>
     );
   }
@@ -143,27 +141,17 @@ export default class App extends Component {
 
 const styles = StyleSheet.create({
   screen: {
-    justifyContent: "flex-end",
-    borderStyle: 'solid',
-    borderRadius: 10,
-    borderWidth: 1,
-    borderColor: 'black',
     width: "100%",
     height: "100%",
-    paddingBottom: 100,
   },
   card: {
-    backgroundColor: "#F7F0F5",
+    backgroundColor: "white",
     display: "flex",
     alignItems: "center",
     overflow: "hidden",
-    borderStyle: 'solid',
-    borderRadius: 10,
-    borderWidth: 1,
-    borderColor: 'black',
     width: "100%",
     margin: 'auto',
-    height: "90%",
+    height: "70%",
     paddingHorizontal: 10,
   },
   image: {
@@ -202,3 +190,5 @@ const styles = StyleSheet.create({
     marginTop: 20
   }
 });
+
+export default ProjectSwiper;
