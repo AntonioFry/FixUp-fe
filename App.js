@@ -3,6 +3,7 @@ import { createAppContainer } from "react-navigation";
 import { createStackNavigator } from "react-navigation-stack";
 import HomeScreen from "./HomeScreen";
 import SignUp from "./SignUp";
+import HomeownerSignUp from "./HomeownerSignUp";
 import ProjectScreen from "./ProjectScreen"
 import { createMaterialBottomTabNavigator } from "react-navigation-material-bottom-tabs";
 import Ionicons from "@expo/vector-icons";
@@ -11,6 +12,7 @@ const RootStack = createStackNavigator(
   {
     Home: HomeScreen,
     SignUp: SignUp,
+    HomeownerSignUp: HomeownerSignUp,
     Projects: ProjectScreen
   },
   {

@@ -39,7 +39,7 @@ export default class HomeScreen extends React.Component {
           <View>
             <TextInput
               style={{
-                width: 200,
+                width: 300,
                 height: 40,
                 borderColor: "black",
                 borderWidth: 1,
@@ -47,21 +47,19 @@ export default class HomeScreen extends React.Component {
                 padding: 5,
                 marginBottom: 10
               }}
-              name="email"
               onChangeText={this.handleEmail}
               value={this.state.email}
               placeholder="Enter email"
             />
             <TextInput
               style={{
-                width: 200,
+                width: 300,
                 height: 40,
                 borderColor: "black",
                 borderWidth: 1,
                 borderRadius: 4,
                 padding: 5,
               }}
-              name="password"
               onChangeText={this.handlePassword}
               value={this.state.password}
               placeholder="Enter password"
