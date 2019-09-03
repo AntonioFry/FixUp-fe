@@ -1,5 +1,5 @@
-node_modules/**/*
-!node_modules/react-native-deck-swiper/**
+node_modules/*
+!node_modules/react-native-deck-swiper/
 .expo/*
 npm-debug.*
 *.jks
