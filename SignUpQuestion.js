@@ -15,7 +15,7 @@ export default class SignUpQuestion extends React.Component {
       <View style={styles.wrapper}>
         <Text style={styles.prompt}>{this.props.prompt}</Text>
         <TextInput style={styles.input} value={this.state.field} onChangeText={this.handleChange} placeholder={this.props.placeholder} />
-        <TouchableOpacity onPress={this.props.advanceQuestion} style={styles.button}>
+        <TouchableOpacity onPress={field => this.props.advanceQuestion(this.state.field)} style={styles.button}>
           <Text>{this.props.buttonText}</Text>
         </TouchableOpacity>
       </View>

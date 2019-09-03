@@ -4,13 +4,28 @@ import SignUpQuestion from "./SignUpQuestion";
 
 export default class HomeownerSignUp extends React.Component {
   state = {
-    questionNumber: 1
+    questionNumber: 1,
+    data: []
   };
 
-  advanceQuestion = () => {
+  advanceQuestion = data => {
+    this.logData(data)
     const { questionNumber } = this.state;
-    this.setState({ questionNumber: questionNumber + 1 });
+    if (questionNumber < 4) {
+      this.setState({ questionNumber: questionNumber + 1 });
+    } else {
+      this.postData(this.state.data);
+    }
   };
+
+  logData = homeownerData => {
+    const newData = [ ...this.state.data, homeownerData ];
+    this.setState({ data: newData });
+  };
+
+  postData = data => {
+    // apiCall to post data object to backend
+  }
 
   displayDots = () => {
     const allDots = [];
