@@ -1,12 +1,9 @@
 import React, { Component } from 'react';
-import { StyleSheet, TextInput, View, Text, Image, Button, TouchableOpacity, } from 'react-native';
+import { StyleSheet, View, Text, Image, TouchableOpacity } from 'react-native';
 import cards from './data';
 import Swiper from 'react-native-deck-swiper';
 
 export default class App extends Component {
-  state = {
-    inputText: '',
-  }
 
   onChange(e) {
     e.preventDefault();
@@ -16,8 +13,10 @@ export default class App extends Component {
   renderCard = (card, index) => {
     return (
       <View style={styles.card}>
+        <Text style={styles.title}>{card.title}</Text>
         <Image style={styles.image} source={card.uri} />
-        <Text>{card.description}</Text>
+        <Text style={styles.tag}>#{card.specialty}</Text>
+        <Text style={styles.description}>{card.description}</Text>
       </View>
     )
   };
@@ -39,13 +38,8 @@ export default class App extends Component {
   render() {
     return (
       <View style={styles.screen}>
-        {/* <View borderStyle= 'solid' 
-      borderRadius= "10"
-      borderWidth= "1"
-      borderColor= 'black'> */}
-
         <Swiper
-          backgroundColor="#999"
+          backgroundColor="#F7F0F5"
           ref={swiper => {
             this.swiper = swiper
           }}
@@ -149,7 +143,6 @@ export default class App extends Component {
 
 const styles = StyleSheet.create({
   screen: {
-    backgroundColor: '#999',
     justifyContent: "flex-end",
     borderStyle: 'solid',
     borderRadius: 10,
@@ -157,10 +150,10 @@ const styles = StyleSheet.create({
     borderColor: 'black',
     width: "100%",
     height: "100%",
-    paddingBottom: 50,
+    paddingBottom: 100,
   },
   card: {
-    backgroundColor: "white",
+    backgroundColor: "#F7F0F5",
     display: "flex",
     alignItems: "center",
     overflow: "hidden",
@@ -168,28 +161,44 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     borderWidth: 1,
     borderColor: 'black',
-    width: "90%",
+    width: "100%",
     margin: 'auto',
-    height: "70%",
+    height: "90%",
+    paddingHorizontal: 10,
   },
   image: {
-    width: "90%",
+    width: "100%",
     height: "50%",
-    marginTop: 30,
+    marginTop: 10,
     borderRadius: 10,
     borderWidth: 0.75,
     borderColor: 'black',
+    marginBottom: 20,
   },
   button: {
+    flexDirection: "row",
     justifyContent: "center",
-    alignItems: 'center',
-    backgroundColor: "black",
-    borderStyle: "solid",
+    alignItems: "center",
     borderWidth: 0.75,
-    borderRadius: 4,
+    borderColor: 'black',
+    backgroundColor: "black",
     backgroundColor: "#7C9EB2",
     width: "100%",
     height: 50,
+  },
+  description: {
+    width: "100%",
+    textAlign: "left",
+    fontSize: 20,
+  },
+  tag: {
+    width: "100%",
+    textAlign: "left",
+    marginBottom: 20
+  },
+  title: {
+    fontWeight: "bold",
+    fontSize: 30,
+    marginTop: 20
   }
 });
-
