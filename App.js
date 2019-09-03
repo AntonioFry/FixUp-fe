@@ -28,9 +28,7 @@ const TabStack = createMaterialBottomTabNavigator(
       screen: RootStack,
       navigationOptions: {
         tabBarLabel: "Home",
-        tabBarIcon: ({ tintColor }) => (
-          <Image style={{ height: 30, width: 30 }} source={require("./assets/home.png")} />
-        )
+        tabBarIcon: <Image style={{ height: 30, width: 30 }} source={require("./assets/home.png")} />
       }
     }
   },
