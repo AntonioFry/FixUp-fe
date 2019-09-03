@@ -42,13 +42,19 @@ const TabStack = createMaterialBottomTabNavigator(
     ProjectSwiper: {
       screen: ProjectSwiper,
       navigationOptions: {
-        tabBarLabel: "Projects"
+        tabBarLabel: "Projects",
+        tabBarIcon: (
+          <Image
+            style={{ height: 30, width: 30 }}
+            source={require("./assets/hammer.png")}
+          />
+        )
       }
     }
   },
   {
     initialRouteName: "Home",
-    labeled: true,
+    labeled: false,
     activeColor: "#f0edf6",
     inactiveColor: "#3e2465",
     barStyle: { backgroundColor: "white", height: 70 }
