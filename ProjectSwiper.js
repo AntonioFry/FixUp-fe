@@ -1,16 +1,18 @@
-import React, { Component } from 'react';
-import { StyleSheet, View, Text, Image, TouchableOpacity } from 'react-native';
-import cards from './mockProjects';
-import Swiper from 'react-native-deck-swiper';
+import React, { Component } from "react";
+import { StyleSheet, View, Text, Image, TouchableOpacity } from "react-native";
+import cards from "./mockProjects";
+import Swiper from "react-native-deck-swiper";
+
 
 class ProjectSwiper extends Component {
   state = {
-    cardIndex: 0
-  }
+    cardIndex: 0,
+    swipedAllCards: false
+  };
 
   onChange(e) {
     e.preventDefault();
-    this.setState({ [e.target.value]: e.target.value })
+    this.setState({ [e.target.value]: e.target.value });
   }
 
   renderCard = (card, index) => {
@@ -21,21 +23,22 @@ class ProjectSwiper extends Component {
         <Text style={styles.tag}>#{card.specialty}</Text>
         <Text style={styles.description}>{card.description}</Text>
       </View>
-    )
+    );
   };
 
-  onSwiped = (type) => {
-    console.log(`on swiped ${type}`)
-  }
+  onSwiped = type => {
+    if (type === "left") {
+      // do nothing
+    } else {
+      // send api call to add contractor to project
+    }
+    // console.log(`on swiped ${type}`)
+  };
 
   onSwipedAllCards = () => {
     this.setState({
       swipedAllCards: true
-    })
-  };
-
-  swipeLeft = () => {
-    this.swiper.swipeLeft()
+    });
   };
 
   render() {
@@ -45,13 +48,13 @@ class ProjectSwiper extends Component {
           paddingBottom={100}
           backgroundColor="#white"
           ref={swiper => {
-            this.swiper = swiper
+            this.swiper = swiper;
           }}
-          onSwiped={() => this.onSwiped('general')}
-          onSwipedLeft={() => this.onSwiped('left')}
-          onSwipedRight={() => this.onSwiped('right')}
-          onSwipedTop={() => this.onSwiped('top')}
-          onSwipedBottom={() => this.onSwiped('bottom')}
+          onSwiped={() => this.onSwiped("general")}
+          onSwipedLeft={() => this.onSwiped("left")}
+          onSwipedRight={() => this.onSwiped("right")}
+          onSwipedTop={() => this.onSwiped("top")}
+          onSwipedBottom={() => this.onSwiped("bottom")}
           onTapCard={this.swipeLeft}
           cards={cards}
           cardIndex={this.state.cardIndex}
@@ -62,70 +65,70 @@ class ProjectSwiper extends Component {
           stackSeparation={15}
           overlayLabels={{
             bottom: {
-              title: 'NOPE',
+              title: "NOPE",
               style: {
                 label: {
-                  backgroundColor: 'black',
-                  borderColor: 'black',
-                  color: 'white',
+                  backgroundColor: "black",
+                  borderColor: "black",
+                  color: "white",
                   borderWidth: 1
                 },
                 wrapper: {
-                  flexDirection: 'column',
-                  alignItems: 'center',
-                  justifyContent: 'center'
+                  flexDirection: "column",
+                  alignItems: "center",
+                  justifyContent: "center"
                 }
               }
             },
             left: {
-              title: 'NOPE',
+              title: "NOPE",
               style: {
                 label: {
-                  backgroundColor: 'black',
-                  borderColor: 'black',
-                  color: 'white',
+                  backgroundColor: "black",
+                  borderColor: "black",
+                  color: "white",
                   borderWidth: 1
                 },
                 wrapper: {
-                  flexDirection: 'column',
-                  alignItems: 'flex-end',
-                  justifyContent: 'flex-start',
+                  flexDirection: "column",
+                  alignItems: "flex-end",
+                  justifyContent: "flex-start",
                   marginTop: 30,
                   marginLeft: -30
                 }
               }
             },
             right: {
-              title: 'LIKE',
+              title: "LIKE",
               style: {
                 label: {
-                  backgroundColor: 'black',
-                  borderColor: 'black',
-                  color: 'white',
+                  backgroundColor: "black",
+                  borderColor: "black",
+                  color: "white",
                   borderWidth: 1
                 },
                 wrapper: {
-                  flexDirection: 'column',
-                  alignItems: 'flex-start',
-                  justifyContent: 'flex-start',
+                  flexDirection: "column",
+                  alignItems: "flex-start",
+                  justifyContent: "flex-start",
                   marginTop: 30,
                   marginLeft: 30
                 }
               }
             },
             top: {
-              title: 'LIKE',
+              title: "LIKE",
               style: {
                 label: {
-                  backgroundColor: 'black',
-                  borderColor: 'black',
-                  color: 'white',
+                  backgroundColor: "black",
+                  borderColor: "black",
+                  color: "white",
                   borderWidth: 1
                 },
                 wrapper: {
-                  flexDirection: 'column',
-                  alignItems: 'center',
-                  justifyContent: 'center'
+                  flexDirection: "column",
+                  alignItems: "center",
+                  justifyContent: "center"
                 }
               }
             }
@@ -141,8 +144,9 @@ class ProjectSwiper extends Component {
 
 const styles = StyleSheet.create({
   screen: {
-    width: "100%",
-    height: "100%",
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center"
   },
   card: {
     backgroundColor: "white",
@@ -150,9 +154,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
     overflow: "hidden",
     width: "100%",
-    margin: 'auto',
+    margin: "auto",
     height: "70%",
     paddingHorizontal: 10,
+    marginTop: 80,
+    borderRadius: 20
   },
   image: {
     width: "100%",
@@ -160,24 +166,24 @@ const styles = StyleSheet.create({
     marginTop: 10,
     borderRadius: 10,
     borderWidth: 0.75,
-    borderColor: 'black',
-    marginBottom: 20,
+    borderColor: "black",
+    marginBottom: 20
   },
   button: {
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
     borderWidth: 0.75,
-    borderColor: 'black',
+    borderColor: "black",
     backgroundColor: "black",
     backgroundColor: "#7C9EB2",
     width: "100%",
-    height: 50,
+    height: 50
   },
   description: {
     width: "100%",
     textAlign: "left",
-    fontSize: 20,
+    fontSize: 20
   },
   tag: {
     width: "100%",
