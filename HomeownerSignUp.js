@@ -9,7 +9,7 @@ export default class HomeownerSignUp extends React.Component {
   };
 
   advanceQuestion = data => {
-    this.logData(data)
+    this.logData(data);
     const { questionNumber } = this.state;
     if (questionNumber < 4) {
       this.setState({ questionNumber: questionNumber + 1 });
@@ -20,18 +20,18 @@ export default class HomeownerSignUp extends React.Component {
   };
 
   logData = homeownerData => {
-    const newData = [ ...this.state.data, homeownerData ];
+    const newData = [...this.state.data, homeownerData];
     this.setState({ data: newData });
   };
 
   postData = data => {
     // apiCall to post data object to backend
-  }
+  };
 
   displayDots = () => {
     const allDots = [];
     for (let i = 1; i < 5; i++) {
-      if(this.state.questionNumber === i) {
+      if (this.state.questionNumber === i) {
         allDots.push(
           <Image
             key={i}
@@ -50,54 +50,60 @@ export default class HomeownerSignUp extends React.Component {
       }
     }
     return allDots;
-  }
+  };
 
   render() {
     return (
-      <View style={styles.wrapper}>
-        <View style={styles.questionsWrapper}>
-          {this.state.questionNumber === 1 && (
-            <SignUpQuestion
-              advanceQuestion={this.advanceQuestion}
-              prompt="What's your zip code?"
-              placeholder="Enter zip code"
-              buttonText="Next"
-            />
-          )}
-          {this.state.questionNumber === 2 && (
-            <SignUpQuestion
-              advanceQuestion={this.advanceQuestion}
-              prompt="What's your phone number?"
-              placeholder="Enter phone"
-              buttonText="Next"
-            />
-          )}
-          {this.state.questionNumber === 3 && (
-            <SignUpQuestion
-              advanceQuestion={this.advanceQuestion}
-              prompt="What's your email address?"
-              placeholder="Enter phone"
-              buttonText="Next"
-            />
-          )}
-          {this.state.questionNumber === 4 && (
-            <SignUpQuestion
-              advanceQuestion={this.advanceQuestion}
-              prompt="Choose a password"
-              placeholder="Enter password"
-              buttonText="Finish"
-            />
-          )}
-        <View style={styles.dotsWrapper}>{this.displayDots()}</View>
+      <View style={styles.fullWrapper}>
+        <View style={styles.wrapper}>
+          <View style={styles.questionsWrapper}>
+            {this.state.questionNumber === 1 && (
+              <SignUpQuestion
+                advanceQuestion={this.advanceQuestion}
+                prompt="What's your zip code?"
+                placeholder="Enter zip code"
+                buttonText="Next"
+              />
+            )}
+            {this.state.questionNumber === 2 && (
+              <SignUpQuestion
+                advanceQuestion={this.advanceQuestion}
+                prompt="What's your phone number?"
+                placeholder="Enter phone"
+                buttonText="Next"
+              />
+            )}
+            {this.state.questionNumber === 3 && (
+              <SignUpQuestion
+                advanceQuestion={this.advanceQuestion}
+                prompt="What's your email address?"
+                placeholder="Enter phone"
+                buttonText="Next"
+              />
+            )}
+            {this.state.questionNumber === 4 && (
+              <SignUpQuestion
+                advanceQuestion={this.advanceQuestion}
+                prompt="Choose a password"
+                placeholder="Enter password"
+                buttonText="Finish"
+              />
+            )}
+          </View>
         </View>
+        <View style={styles.dotsWrapper}>{this.displayDots()}</View>
       </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  wrapper: {
+  fullWrapper: {
     flex: 1,
+    justifyContent: "space-between"
+  },
+  wrapper: {
+    flex: 4,
     justifyContent: "center",
     alignItems: "center"
   },
@@ -109,8 +115,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
-    height: 40,
-    marginBottom: 30
+    height: 40
   },
   inactiveDot: {
     height: 10,

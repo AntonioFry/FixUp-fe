@@ -65,7 +65,6 @@ const styles = StyleSheet.create({
   questionWrapper: {
     justifyContent: "center",
     alignItems: "center"
-    // height: 200
   },
   prompt: {
     fontWeight: "bold",
