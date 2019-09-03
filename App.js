@@ -8,6 +8,7 @@ import ContractorSignUp from "./ContractorSignUp";
 import ProjectScreen from "./ProjectScreen"
 import { createMaterialBottomTabNavigator } from "react-navigation-material-bottom-tabs";
 import { Image } from "react-native";
+import ProjectSwiper from "./ProjectSwiper";
 
 const RootStack = createStackNavigator(
   {
@@ -15,7 +16,8 @@ const RootStack = createStackNavigator(
     SignUp: SignUp,
     HomeownerSignUp: HomeownerSignUp,
     ContractorSignUp: ContractorSignUp,
-    Projects: ProjectScreen
+    Projects: ProjectScreen,
+    ProjectSwiper: ProjectSwiper
   },
   {
     initialRouteName: "Home",
@@ -36,11 +38,17 @@ const TabStack = createMaterialBottomTabNavigator(
           />
         )
       }
+    },
+    ProjectSwiper: {
+      screen: ProjectSwiper,
+      navigationOptions: {
+        tabBarLabel: "Projects"
+      }
     }
   },
   {
     initialRouteName: "Home",
-    labeled: false,
+    labeled: true,
     activeColor: "#f0edf6",
     inactiveColor: "#3e2465",
     barStyle: { backgroundColor: "white", height: 70 }
