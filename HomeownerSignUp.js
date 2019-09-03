@@ -108,11 +108,12 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
-    height: 40
+    height: 40,
+    marginBottom: 30
   },
   inactiveDot: {
-    height: 15,
-    width: 15,
+    height: 10,
+    width: 10,
     marginRight: 3,
     marginLeft: 3
   },

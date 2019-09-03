@@ -40,7 +40,7 @@ export default class HomeScreen extends React.Component {
             <TextInput
               style={{
                 width: 300,
-                height: 40,
+                height: 50,
                 borderColor: "black",
                 borderWidth: 1,
                 borderRadius: 4,
@@ -54,7 +54,7 @@ export default class HomeScreen extends React.Component {
             <TextInput
               style={{
                 width: 300,
-                height: 40,
+                height: 50,
                 borderColor: "black",
                 borderWidth: 1,
                 borderRadius: 4,
