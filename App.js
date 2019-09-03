@@ -18,7 +18,8 @@ const RootStack = createStackNavigator(
     Projects: ProjectScreen
   },
   {
-    initialRouteName: "Home"
+    initialRouteName: "Home",
+    headerMode: "none"
   }
 );
 
@@ -28,7 +29,12 @@ const TabStack = createMaterialBottomTabNavigator(
       screen: RootStack,
       navigationOptions: {
         tabBarLabel: "Home",
-        tabBarIcon: <Image style={{ height: 30, width: 30 }} source={require("./assets/home.png")} />
+        tabBarIcon: (
+          <Image
+            style={{ height: 30, width: 30 }}
+            source={require("./assets/home.png")}
+          />
+        )
       }
     }
   },
@@ -37,7 +43,7 @@ const TabStack = createMaterialBottomTabNavigator(
     labeled: false,
     activeColor: "#f0edf6",
     inactiveColor: "#3e2465",
-    barStyle: { backgroundColor: "white" }
+    barStyle: { backgroundColor: "white", height: 70 }
   }
 );
 
