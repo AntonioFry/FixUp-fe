@@ -1,19 +1,44 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React from "react";
+import { createAppContainer } from "react-navigation";
+import { createStackNavigator } from "react-navigation-stack";
+import HomeScreen from "./HomeScreen";
+import SignUp from "./SignUp";
+import HomeownerSignUp from "./HomeownerSignUp";
+import ProjectScreen from "./ProjectScreen"
+import { createMaterialBottomTabNavigator } from "react-navigation-material-bottom-tabs";
+import Ionicons from "@expo/vector-icons";
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-    </View>
-  );
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+const RootStack = createStackNavigator(
+  {
+    Home: HomeScreen,
+    SignUp: SignUp,
+    HomeownerSignUp: HomeownerSignUp,
+    Projects: ProjectScreen
   },
-});
+  {
+    initialRouteName: "Home"
+  }
+);
+
+const TabStack = createMaterialBottomTabNavigator(
+  {
+    Home: {
+      screen: RootStack,
+    }
+  },
+  {
+    initialRouteName: "Home",
+    activeColor: "#f0edf6",
+    inactiveColor: "#3e2465",
+    barStyle: { backgroundColor: "white" }
+  }
+);
+
+
+const AppContainer = createAppContainer(TabStack);
+
+export default class App extends React.Component {
+  render() {
+    return <AppContainer />;
+  }
+}
