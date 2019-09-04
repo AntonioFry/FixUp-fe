@@ -155,9 +155,9 @@ const styles = StyleSheet.create({
     overflow: "hidden",
     width: "100%",
     margin: "auto",
-    height: "70%",
+    height: "65%",
     paddingHorizontal: 10,
-    marginTop: 80,
+    marginTop: 50,
     borderRadius: 20
   },
   image: {

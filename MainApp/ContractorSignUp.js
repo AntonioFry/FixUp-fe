@@ -19,6 +19,7 @@ export default class ContractorSignUp extends React.Component {
       this.setState({ questionNumber: questionNumber + 1 });
     } else {
       this.postData(this.state.data);
+      this.props.navigation.navigate("ContractorApp");
     }
   };
 
@@ -95,7 +96,7 @@ export default class ContractorSignUp extends React.Component {
                 advanceQuestion={this.advanceQuestion}
                 prompt="What's your email address?"
                 placeholder="Enter email"
-                buttonText="Finish"
+                buttonText="Next"
               />
             )}
             {this.state.questionNumber === 6 && (
