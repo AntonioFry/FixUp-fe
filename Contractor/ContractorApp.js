@@ -1,40 +1,20 @@
 import React from "react";
-import { createAppContainer } from "react-navigation";
-import { createStackNavigator } from "react-navigation-stack";
-import Login from "./Login";
-import SignUp from "./SignUp";
-import HomeownerSignUp from "./HomeownerSignUp";
-import ContractorSignUp from "./ContractorSignUp";
-import ProjectScreen from "./ProjectScreen"
 import { createMaterialBottomTabNavigator } from "react-navigation-material-bottom-tabs";
+import { createAppContainer } from "react-navigation";
 import { Image } from "react-native";
 import ProjectSwiper from "./ProjectSwiper";
-
-const RootStack = createStackNavigator(
-  {
-    Login: Login,
-    SignUp: SignUp,
-    HomeownerSignUp: HomeownerSignUp,
-    ContractorSignUp: ContractorSignUp,
-    Projects: ProjectScreen,
-    ProjectSwiper: ProjectSwiper
-  },
-  {
-    initialRouteName: "Login",
-    headerMode: "none"
-  }
-);
+import ContractorHome from "./ContractorHome";
 
 const TabStack = createMaterialBottomTabNavigator(
   {
-    Login: {
-      screen: RootStack,
+    Home: {
+      screen: ContractorHome,
       navigationOptions: {
-        tabBarLabel: "Login",
+        tabBarLabel: "Home",
         tabBarIcon: (
           <Image
             style={{ height: 30, width: 30 }}
-            source={require("./assets/home.png")}
+            source={require("../assets/home.png")}
           />
         )
       }
@@ -46,14 +26,14 @@ const TabStack = createMaterialBottomTabNavigator(
         tabBarIcon: (
           <Image
             style={{ height: 30, width: 30 }}
-            source={require("./assets/hammer.png")}
+            source={require("../assets/hammer.png")}
           />
         )
       }
     }
   },
   {
-    initialRouteName: "Login",
+    initialRouteName: "Home",
     labeled: false,
     activeColor: "#f0edf6",
     inactiveColor: "#3e2465",
@@ -61,10 +41,9 @@ const TabStack = createMaterialBottomTabNavigator(
   }
 );
 
-
 const AppContainer = createAppContainer(TabStack);
 
-export default class App extends React.Component {
+export default class ContractorApp extends React.Component {
   render() {
     return <AppContainer />;
   }

@@ -2,12 +2,12 @@ import React from "react";
 import {
   View,
   Text,
-  Button,
   ImageBackground,
   TouchableOpacity,
   StyleSheet
 } from "react-native";
 import { TextInput } from "react-native-gesture-handler";
+
 
 export default class Login extends React.Component {
   state = {
@@ -26,7 +26,7 @@ export default class Login extends React.Component {
   render() {
     return (
       <ImageBackground
-        source={require("./assets/tools.jpg")}
+        source={require("../assets/tools.jpg")}
         style={{
           width: "100%",
           height: "100%",
@@ -73,7 +73,7 @@ export default class Login extends React.Component {
             />
           </View>
           <TouchableOpacity
-            onPress={() => this.props.navigation.navigate("Projects")}
+            onPress={() => this.props.navigation.navigate("ContractorApp")}
             style={styles.login}
           >
             <Text style={styles.buttonText}>Login</Text>
