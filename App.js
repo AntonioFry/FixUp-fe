@@ -1,7 +1,7 @@
 import React from "react";
 import { createAppContainer } from "react-navigation";
 import { createStackNavigator } from "react-navigation-stack";
-import HomeScreen from "./HomeScreen";
+import Login from "./Login";
 import SignUp from "./SignUp";
 import HomeownerSignUp from "./HomeownerSignUp";
 import ContractorSignUp from "./ContractorSignUp";
@@ -12,7 +12,7 @@ import ProjectSwiper from "./ProjectSwiper";
 
 const RootStack = createStackNavigator(
   {
-    Home: HomeScreen,
+    Login: Login,
     SignUp: SignUp,
     HomeownerSignUp: HomeownerSignUp,
     ContractorSignUp: ContractorSignUp,
@@ -20,17 +20,17 @@ const RootStack = createStackNavigator(
     ProjectSwiper: ProjectSwiper
   },
   {
-    initialRouteName: "Home",
+    initialRouteName: "Login",
     headerMode: "none"
   }
 );
 
 const TabStack = createMaterialBottomTabNavigator(
   {
-    Home: {
+    Login: {
       screen: RootStack,
       navigationOptions: {
-        tabBarLabel: "Home",
+        tabBarLabel: "Login",
         tabBarIcon: (
           <Image
             style={{ height: 30, width: 30 }}
@@ -53,7 +53,7 @@ const TabStack = createMaterialBottomTabNavigator(
     }
   },
   {
-    initialRouteName: "Home",
+    initialRouteName: "Login",
     labeled: false,
     activeColor: "#f0edf6",
     inactiveColor: "#3e2465",
