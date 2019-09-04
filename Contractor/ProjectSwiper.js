@@ -62,6 +62,7 @@ class ProjectSwiper extends Component {
           renderCard={this.renderCard}
           onSwipedAll={this.onSwipedAllCards}
           stackSize={3}
+          infinite={true}
           stackSeparation={15}
           overlayLabels={{
             bottom: {
