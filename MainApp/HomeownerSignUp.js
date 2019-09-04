@@ -15,7 +15,7 @@ export default class HomeownerSignUp extends React.Component {
       this.setState({ questionNumber: questionNumber + 1 });
     } else {
       this.postData(this.state.data);
-      this.props.navigation.navigate("Projects");
+      this.props.navigation.navigate("HomeownerApp");
     }
   };
 
