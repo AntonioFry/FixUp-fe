@@ -17,7 +17,7 @@ export default class ActiveProjects extends Component {
   render() {
     return (
       <ScrollView>
-        
+
       </ScrollView>
     )
   }

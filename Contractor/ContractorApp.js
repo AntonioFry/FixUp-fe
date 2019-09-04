@@ -1,40 +1,20 @@
 import React from "react";
-import { createAppContainer } from "react-navigation";
-import { createStackNavigator } from "react-navigation-stack";
-import HomeScreen from "./HomeScreen";
-import SignUp from "./SignUp";
-import HomeownerSignUp from "./HomeownerSignUp";
-import ContractorSignUp from "./ContractorSignUp";
-import ProjectScreen from "./ActiveProjects"
 import { createMaterialBottomTabNavigator } from "react-navigation-material-bottom-tabs";
+import { createAppContainer } from "react-navigation";
 import { Image } from "react-native";
 import ProjectSwiper from "./ProjectSwiper";
-
-const RootStack = createStackNavigator(
-  {
-    Home: HomeScreen,
-    SignUp: SignUp,
-    HomeownerSignUp: HomeownerSignUp,
-    ContractorSignUp: ContractorSignUp,
-    Projects: ProjectScreen,
-    ProjectSwiper: ProjectSwiper
-  },
-  {
-    initialRouteName: "Home",
-    headerMode: "none"
-  }
-);
+import ContractorHome from "./ContractorHome";
 
 const TabStack = createMaterialBottomTabNavigator(
   {
     Home: {
-      screen: RootStack,
+      screen: ContractorHome,
       navigationOptions: {
         tabBarLabel: "Home",
         tabBarIcon: (
           <Image
             style={{ height: 30, width: 30 }}
-            source={require("./assets/home.png")}
+            source={require("../assets/home.png")}
           />
         )
       }
@@ -46,7 +26,7 @@ const TabStack = createMaterialBottomTabNavigator(
         tabBarIcon: (
           <Image
             style={{ height: 30, width: 30 }}
-            source={require("./assets/hammer.png")}
+            source={require("../assets/hammer.png")}
           />
         )
       }
@@ -61,10 +41,9 @@ const TabStack = createMaterialBottomTabNavigator(
   }
 );
 
-
 const AppContainer = createAppContainer(TabStack);
 
-export default class App extends React.Component {
+export default class ContractorApp extends React.Component {
   render() {
     return <AppContainer />;
   }
