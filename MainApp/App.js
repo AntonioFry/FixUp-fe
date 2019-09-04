@@ -6,6 +6,7 @@ import SignUp from "./SignUp";
 import HomeownerSignUp from "./HomeownerSignUp";
 import ContractorSignUp from "./ContractorSignUp";
 import ContractorApp from "../Contractor/ContractorApp";
+import HomeownerApp from "../Homeowner/HomeownerApp";
 
 const RootStack = createStackNavigator(
   {
@@ -13,7 +14,8 @@ const RootStack = createStackNavigator(
     SignUp: SignUp,
     HomeownerSignUp: HomeownerSignUp,
     ContractorSignUp: ContractorSignUp,
-    ContractorApp: ContractorApp
+    ContractorApp: ContractorApp,
+    HomeownerApp: HomeownerApp
   },
   {
     initialRouteName: "Login",
