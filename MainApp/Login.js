@@ -8,7 +8,6 @@ import {
 } from "react-native";
 import { TextInput } from "react-native-gesture-handler";
 
-
 export default class Login extends React.Component {
   state = {
     email: "",
@@ -83,7 +82,9 @@ export default class Login extends React.Component {
             <Text
               onPress={() => this.props.navigation.navigate("SignUp")}
               style={styles.signUp}
-            >Sign Up</Text>
+            >
+              Sign Up
+            </Text>
           </View>
         </View>
       </ImageBackground>
