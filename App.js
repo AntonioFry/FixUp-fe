@@ -5,7 +5,7 @@ import HomeScreen from "./HomeScreen";
 import SignUp from "./SignUp";
 import HomeownerSignUp from "./HomeownerSignUp";
 import ContractorSignUp from "./ContractorSignUp";
-import ProjectScreen from "./ProjectScreen"
+import ProjectScreen from "./ActiveProjects"
 import { createMaterialBottomTabNavigator } from "react-navigation-material-bottom-tabs";
 import { Image } from "react-native";
 import ProjectSwiper from "./ProjectSwiper";
