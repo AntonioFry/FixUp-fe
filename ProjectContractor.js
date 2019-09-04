@@ -9,7 +9,7 @@ export default class ProjectContractor extends Component {
     }
   }
 
-  connectWithContractor = (userId, contractorId, projectId) => {
+  connectWithContractor = () => {
     // if not connected
       // when invoked the user info will be sent to the contractor
       // a contractor_project will then also be created
@@ -21,7 +21,7 @@ export default class ProjectContractor extends Component {
     return (
       <View>
         <Text></Text>
-        <TouchableOpacity><Text>Connect</Text></TouchableOpacity>
+        <TouchableOpacity onPress={this.connectWithContractor}><Text>Connect</Text></TouchableOpacity>
       </View>
     )
   }
