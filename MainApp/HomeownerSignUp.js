@@ -36,7 +36,7 @@ export default class HomeownerSignUp extends React.Component {
           <Image
             key={i}
             style={styles.activeDot}
-            source={require("./assets/activeDot.png")}
+            source={require("../assets/activeDot.png")}
           />
         );
       } else {
@@ -44,7 +44,7 @@ export default class HomeownerSignUp extends React.Component {
           <Image
             key={i}
             style={styles.inactiveDot}
-            source={require("./assets/inactiveDot.png")}
+            source={require("../assets/inactiveDot.png")}
           />
         );
       }
