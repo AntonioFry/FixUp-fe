@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { StyleSheet, View, Text, Image, TouchableOpacity } from "react-native";
-import cards from "../mockData/mockProjects";
+import cards from "./mockData/mockProjects";
 import Swiper from "react-native-deck-swiper";
 
 
@@ -156,9 +156,9 @@ const styles = StyleSheet.create({
     overflow: "hidden",
     width: "100%",
     margin: "auto",
-    height: "65%",
+    height: "70%",
     paddingHorizontal: 10,
-    marginTop: 50,
+    marginTop: 80,
     borderRadius: 20
   },
   image: {

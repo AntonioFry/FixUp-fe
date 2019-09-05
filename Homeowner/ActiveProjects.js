@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import { Text, ScrollView, View } from 'react-native';
+import { Text, ScrollView, View, StyleSheet } from 'react-native';
+import data from '../mockData/mockHomeOwnerProjects';
+import ActiveProject from './ActiveProject';
 
 export default class ActiveProjects extends Component {
   constructor() {
@@ -15,10 +17,27 @@ export default class ActiveProjects extends Component {
   }
 
   render() {
+    const formattedProject = data.map(project => {
+      return (
+        <ActiveProject
+        id={project.id}
+        title={project.title}
+        key={project.id}
+        />
+      )
+    })
     return (
-      <ScrollView>
-        
+      <ScrollView contentContainerStyle={styles.mainContainer}>
+        {formattedProject}
       </ScrollView>
     )
   }
 }
+
+const styles = StyleSheet.create({
+  mainContainer: {
+    width: "100%",
+    alignItems: "center",
+    paddingTop: "10%"
+  }
+})
