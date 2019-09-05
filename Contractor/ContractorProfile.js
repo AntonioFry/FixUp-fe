@@ -7,7 +7,7 @@ export default class ContractorProfile extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        
+        <Text style={styles.title}>Edit Profile</Text>
       </View>
     );
   };
@@ -16,6 +16,8 @@ export default class ContractorProfile extends React.Component {
 const styles = StyleSheet.create({
   container: {
     justifyContent: "flex-start",
-
+  },
+  title: {
+    marginTop: 50
   }
 });
