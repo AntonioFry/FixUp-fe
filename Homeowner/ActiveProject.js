@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
+import data from '../mockData/mockContactors';
+import ProjectContractor from './ProjectContractor';
 
 export default class ActiveProject extends Component {
   constructor() {
@@ -15,10 +17,23 @@ export default class ActiveProject extends Component {
   }
 
   render() {
-    const { title } = this.props;
+    const { title, id } = this.props;
+    const projectContractors = data.filter(contractor => {
+      return contractor.projectId === id;
+    })
+    const formattedContractors = projectContractors.map(contractor => {
+      return (
+        <ProjectContractor
+        id={contractor.id}
+        name={contractor.name}
+        dateSwiped={contractor.dateSwiped}
+        />
+      )
+    })
     return (
       <View style={styles.container}>
         <Text style={styles.pageLabels}>{title}</Text>
+        {formattedContractors}
       </View>
     )
   }
