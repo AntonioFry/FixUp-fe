@@ -7,11 +7,6 @@ import Login from "./Login";
 import SignUp from "./SignUp";
 import HomeownerSignUp from "./HomeownerSignUp";
 import ContractorSignUp from "./ContractorSignUp";
-<<<<<<< HEAD
-import ContractorApp from "../Contractor/ContractorApp";
-import HomeownerApp from "../Homeowner/HomeownerApp";
-import HomeownerProjects from '../Homeowner/ActiveProjects';
-=======
 import ContractorHome from "../Contractor/ContractorHome";
 import ActiveProjects from "../Homeowner/ActiveProjects";
 import ProjectSwiper from "../Contractor/ProjectSwiper";
@@ -88,7 +83,6 @@ const HomeownerTabStack = createMaterialBottomTabNavigator(
     barStyle: { backgroundColor: "orange", height: 80, paddingTop: 0 }
   }
 );
->>>>>>> da2c6580666095a602c9309a0102f38fbe648bf0
 
 const RootStack = createStackNavigator(
   {
@@ -96,11 +90,6 @@ const RootStack = createStackNavigator(
     SignUp: SignUp,
     HomeownerSignUp: HomeownerSignUp,
     ContractorSignUp: ContractorSignUp,
-<<<<<<< HEAD
-    ContractorApp: ContractorApp,
-    HomeownerApp: HomeownerApp,
-    HomeownerProjects: HomeownerProjects
-=======
     ContractorApp: {
       screen: ContractorTabStack,
       navigationOptions: {
@@ -117,7 +106,6 @@ const RootStack = createStackNavigator(
         gesturesEnabled: false
       }
     }
->>>>>>> da2c6580666095a602c9309a0102f38fbe648bf0
   },
   {
     initialRouteName: "Login",
