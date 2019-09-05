@@ -29,10 +29,6 @@ export default class ContractorHome extends React.Component {
     // Clean them so new notifications display differently
   }
 
-  logout = () => {
-    // logout contractor and return to login screen
-  };
-
   displayNotifications = () => {
     // take all notifications and render each as a component
     return this.state.notifications.map((notification, index) => {
@@ -47,9 +43,6 @@ export default class ContractorHome extends React.Component {
           <Text style={styles.contractorName}>
             {this.props.contractorName}Contractor Name
           </Text>
-          <TouchableOpacity onPress={this.logout}>
-            <Text style={styles.logoutButton}>Logout</Text>
-          </TouchableOpacity>
         </View>
         <View style={styles.notificationsSection}>
           <Text style={styles.notificationsTitle}>Project Leads</Text>
@@ -70,12 +63,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     paddingTop: "5%",
-    paddingHorizontal: 15,
-    backgroundColor: "orange"
-  },
-  logoutButton: {
-    color: "#7C9EB2",
-    fontSize: 16
+    paddingHorizontal: 15
   },
   contractorName: {
     fontSize: 16,
@@ -92,6 +80,5 @@ const styles = StyleSheet.create({
     textAlign: "center"
   },
   notificationsWrapper: {
-    // padding: 10
   }
 });
