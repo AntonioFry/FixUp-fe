@@ -1,6 +1,10 @@
 import React from "react";
 import { Image } from "react-native";
-import { createAppContainer } from "react-navigation";
+import {
+  createAppContainer,
+  StackActions,
+  NavigationActions
+} from "react-navigation";
 import { createStackNavigator } from "react-navigation-stack";
 import { createMaterialBottomTabNavigator } from "react-navigation-material-bottom-tabs";
 import Login from "./Login";
@@ -78,8 +82,22 @@ const RootStack = createStackNavigator(
     SignUp: SignUp,
     HomeownerSignUp: HomeownerSignUp,
     ContractorSignUp: ContractorSignUp,
-    ContractorApp: ContractorTabStack,
-    HomeownerApp: HomeownerTabStack
+    ContractorApp: {
+      screen: ContractorTabStack,
+      navigationOptions: {
+        title: "ContractorApp",
+        headerLeft: null,
+        gesturesEnabled: false
+      }
+    },
+    HomeownerApp: {
+      screen: HomeownerTabStack,
+      navigationOptions: {
+        title: "HomeownerApp",
+        headerLeft: null,
+        gesturesEnabled: false
+      }
+    }
   },
   {
     initialRouteName: "Login",
