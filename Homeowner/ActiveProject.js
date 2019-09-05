@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, ScrollView } from 'react-native';
+import { View, Text, ScrollView, StyleSheet } from 'react-native';
 
 export default class ActiveProject extends Component {
   constructor() {
@@ -17,8 +17,17 @@ export default class ActiveProject extends Component {
   render() {
     return (
       <View>
-        <Text>Project Name</Text>
+        <Text style={styles.pageLabels}>Project Name</Text>
       </View>
     )
   }
 }
+
+const styles = StyleSheet.create({
+  pageLabels: {
+    width: "100%",
+    height: 30,
+    textAlign: "left",
+    fontSize: 20
+  }
+})
