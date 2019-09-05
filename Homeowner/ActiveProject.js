@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, ScrollView, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 
 export default class ActiveProject extends Component {
   constructor() {
@@ -15,9 +15,10 @@ export default class ActiveProject extends Component {
   }
 
   render() {
+    const { title } = this.props;
     return (
-      <View>
-        <Text style={styles.pageLabels}>Project Name</Text>
+      <View style={styles.container}>
+        <Text style={styles.pageLabels}>{title}</Text>
       </View>
     )
   }
@@ -28,6 +29,18 @@ const styles = StyleSheet.create({
     width: "100%",
     height: 30,
     textAlign: "left",
-    fontSize: 20
+    fontSize: 20,
+    fontWeight: "bold",
+    textAlign: "center",
+    color: "white"
+  },
+  container: {
+    justifyContent: "center",
+    width: "90%",
+    height: 50,
+    marginVertical: 5,
+    backgroundColor: "#7C9EB2",
+    margin: 1,
+    borderRadius: 1  
   }
 })
