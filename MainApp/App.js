@@ -73,7 +73,19 @@ const HomeownerTabStack = createMaterialBottomTabNavigator(
           />
         )
       }
-    }
+    },
+    Profile: {
+      screen: ActiveProjects,
+      navigationOptions: {
+        tabBarLabel: "Home",
+        tabBarIcon: (
+          <Image
+            style={{ height: 25, width: 25 }}
+            source={require("../assets/profile.png")}
+          />
+        )
+      }
+    },
   },
   {
     initialRouteName: "Home",
