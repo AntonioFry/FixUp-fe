@@ -21,6 +21,7 @@ export default class ActiveProject extends Component {
     const projectContractors = data.filter(contractor => {
       return contractor.projectId === id;
     })
+    console.log(projectContractors.length)
     const formattedContractors = projectContractors.map(contractor => {
       return (
         <ProjectContractor
@@ -32,30 +33,48 @@ export default class ActiveProject extends Component {
     })
     return (
       <View style={styles.container}>
-        <Text style={styles.pageLabels}>{title}</Text>
-        {formattedContractors}
+        <View style={styles.nameContainer}>
+          <Text style={styles.projectName}>{title}</Text>
+        </View>
+        <View style={styles.contractorsContainer}>
+          {formattedContractors}
+        </View>
       </View>
     )
   }
 }
 
 const styles = StyleSheet.create({
-  pageLabels: {
+  projectName: {
     width: "100%",
-    height: 30,
-    textAlign: "left",
     fontSize: 20,
     fontWeight: "bold",
     textAlign: "center",
     color: "white"
   },
   container: {
-    justifyContent: "center",
     width: "90%",
-    height: 50,
-    marginVertical: 5,
+    minHeight: 50,
+    marginVertical: 10
+  },
+  nameContainer: {
+    zIndex: 100,
+    width: "100%",
+    position: "absolute",
+    height: 40,
     backgroundColor: "#7C9EB2",
-    margin: 1,
-    borderRadius: 1  
+    justifyContent: "center",
+    borderTopLeftRadius: 5,
+    borderTopRightRadius: 5,
+    borderBottomLeftRadius: 5,
+    borderBottomRightRadius: 5,
+  },
+  contractorsContainer: {
+    marginTop: 35,
+    paddingTop: 5,
+    borderBottomLeftRadius: 5,
+    borderBottomRightRadius: 5,
+    backgroundColor: "#7C9EB2",
+    opacity: 0.8,
   }
 })
