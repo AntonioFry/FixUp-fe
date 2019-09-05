@@ -1,13 +1,94 @@
 import React from "react";
+import { Image } from "react-native";
 import { createAppContainer } from "react-navigation";
 import { createStackNavigator } from "react-navigation-stack";
+import { createMaterialBottomTabNavigator } from "react-navigation-material-bottom-tabs";
 import Login from "./Login";
 import SignUp from "./SignUp";
 import HomeownerSignUp from "./HomeownerSignUp";
 import ContractorSignUp from "./ContractorSignUp";
+<<<<<<< HEAD
 import ContractorApp from "../Contractor/ContractorApp";
 import HomeownerApp from "../Homeowner/HomeownerApp";
 import HomeownerProjects from '../Homeowner/ActiveProjects';
+=======
+import ContractorHome from "../Contractor/ContractorHome";
+import ActiveProjects from "../Homeowner/ActiveProjects";
+import ProjectSwiper from "../Contractor/ProjectSwiper";
+import ContractorProfile from "../Contractor/ContractorProfile";
+
+const ContractorTabStack = createMaterialBottomTabNavigator(
+  {
+    Home: {
+      screen: ContractorHome,
+      navigationOptions: {
+        tabBarLabel: "Home",
+        tabBarIcon: (
+          <Image
+            style={{ height: 25, width: 25 }}
+            source={require("../assets/home.png")}
+          />
+        )
+      }
+    },
+    ProjectSwiper: {
+      screen: ProjectSwiper,
+      navigationOptions: {
+        tabBarLabel: "Projects",
+        tabBarIcon: (
+          <Image
+            style={{ height: 25, width: 25 }}
+            source={require("../assets/hammer.png")}
+          />
+        )
+      }
+    },
+    Profile: {
+      screen: ContractorProfile,
+      navigationOptions: {
+        tabBarLabel: "Profile",
+        tabBarIcon: (
+          <Image
+            style={{ height: 25, width: 25 }}
+            source={require("../assets/profile.png")}
+          />
+        )
+      }
+    }
+  },
+  {
+    initialRouteName: "Home",
+    labeled: false,
+    activeColor: "#f0edf6",
+    inactiveColor: "#3e2465",
+    barStyle: { backgroundColor: "orange", height: 80, paddingTop: 0 }
+  }
+);
+
+const HomeownerTabStack = createMaterialBottomTabNavigator(
+  {
+    Home: {
+      screen: ActiveProjects,
+      navigationOptions: {
+        tabBarLabel: "Home",
+        tabBarIcon: (
+          <Image
+            style={{ height: 25, width: 25 }}
+            source={require("../assets/home.png")}
+          />
+        )
+      }
+    }
+  },
+  {
+    initialRouteName: "Home",
+    labeled: false,
+    activeColor: "#f0edf6",
+    inactiveColor: "#3e2465",
+    barStyle: { backgroundColor: "orange", height: 80, paddingTop: 0 }
+  }
+);
+>>>>>>> da2c6580666095a602c9309a0102f38fbe648bf0
 
 const RootStack = createStackNavigator(
   {
@@ -15,9 +96,28 @@ const RootStack = createStackNavigator(
     SignUp: SignUp,
     HomeownerSignUp: HomeownerSignUp,
     ContractorSignUp: ContractorSignUp,
+<<<<<<< HEAD
     ContractorApp: ContractorApp,
     HomeownerApp: HomeownerApp,
     HomeownerProjects: HomeownerProjects
+=======
+    ContractorApp: {
+      screen: ContractorTabStack,
+      navigationOptions: {
+        title: "ContractorApp",
+        headerLeft: null,
+        gesturesEnabled: false
+      }
+    },
+    HomeownerApp: {
+      screen: HomeownerTabStack,
+      navigationOptions: {
+        title: "HomeownerApp",
+        headerLeft: null,
+        gesturesEnabled: false
+      }
+    }
+>>>>>>> da2c6580666095a602c9309a0102f38fbe648bf0
   },
   {
     initialRouteName: "Login",

@@ -35,8 +35,8 @@ export default class ContractorHome extends React.Component {
 
   displayNotifications = () => {
     // take all notifications and render each as a component
-    return this.state.notifications.map(notification => {
-      return <Notification seen={notification.seen} message={notification.message} />
+    return this.state.notifications.map((notification, index) => {
+      return <Notification key={index} seen={notification.seen} message={notification.message} />
     });
   };
 
