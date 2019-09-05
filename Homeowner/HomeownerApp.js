@@ -18,18 +18,6 @@ const TabStack = createMaterialBottomTabNavigator(
         )
       }
     },
-    // ProjectSwiper: {
-    //   screen: ProjectSwiper,
-    //   navigationOptions: {
-    //     tabBarLabel: "Projects",
-    //     tabBarIcon: (
-    //       <Image
-    //         style={{ height: 25, width: 25 }}
-    //         source={require("../assets/hammer.png")}
-    //       />
-    //     )
-    //   }
-    // }
   },
   {
     initialRouteName: "Home",
