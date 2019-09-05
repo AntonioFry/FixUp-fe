@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, ScrollView, View } from 'react-native';
+import { Text, ScrollView, View, StyleSheet } from 'react-native';
 import data from '../mockData/mockHomeOwnerProjects';
 import ActiveProject from './ActiveProject';
 
@@ -27,9 +27,17 @@ export default class ActiveProjects extends Component {
       )
     })
     return (
-      <ScrollView>
+      <ScrollView contentContainerStyle={styles.mainContainer}>
         {formattedProject}
       </ScrollView>
     )
   }
 }
+
+const styles = StyleSheet.create({
+  mainContainer: {
+    width: "100%",
+    alignItems: "center",
+    paddingTop: "10%"
+  }
+})
