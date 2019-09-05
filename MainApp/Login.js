@@ -22,6 +22,13 @@ export default class Login extends React.Component {
     this.setState({ password: text });
   };
 
+  loginUser = async () => {
+    // capture response from apiCall as user
+    // if user.user_id, navigate to homeownerHome with id prop
+    // if user.contractor_id, navigate to contractorHome with id prop
+    this.props.navigation.navigate("ContractorApp");
+  }
+
   render() {
     return (
       <ImageBackground
@@ -72,7 +79,7 @@ export default class Login extends React.Component {
             />
           </View>
           <TouchableOpacity
-            onPress={() => this.props.navigation.navigate("ContractorApp")}
+            onPress={this.loginUser}
             style={styles.login}
           >
             <Text style={styles.buttonText}>Login</Text>
