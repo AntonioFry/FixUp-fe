@@ -18,18 +18,16 @@ const styles = StyleSheet.create({
   wrapper: {
     flexDirection: "row",
     justifyContent: "space-between",
-    backgroundColor: "#7C9EB2",
+    backgroundColor: "white",
     margin: 1,
     borderRadius: 1,
     padding: 14
   },
   seen: {
     fontWeight: "900",
-    color: "white"
   },
   unseen: {
     fontWeight: "100",
-    color: "white"
   },
   bell: {
     height: 15,
