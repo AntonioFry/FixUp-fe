@@ -12,6 +12,7 @@ import ActiveProjects from "../Homeowner/ActiveProjects";
 import ProjectSwiper from "../Contractor/ProjectSwiper";
 import ContractorProfile from "../Contractor/ContractorProfile";
 import HomeownerProfile from "../Homeowner/HomeownerProfile";
+import ProjectWorkshop from '../Homeowner/ProjectWorkshop';
 
 const ContractorTabStack = createMaterialBottomTabNavigator(
   {
@@ -87,6 +88,18 @@ const HomeownerTabStack = createMaterialBottomTabNavigator(
         )
       }
     },
+    ProjectWorkshop: {
+      screen: ProjectWorkshop,
+      navigationOptions: {
+        tabBarLabel: "Project workshop",
+        tabBarIcon: (
+          <Image
+            style={{ height: 25, width: 25 }}
+            source={require("../assets/hammer.png")}
+          />
+        )
+      }
+    }
   },
   {
     initialRouteName: "Home",
