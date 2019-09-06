@@ -12,7 +12,7 @@ import ActiveProjects from "../Homeowner/ActiveProjects";
 import ProjectSwiper from "../Contractor/ProjectSwiper";
 import ContractorProfile from "../Contractor/ContractorProfile";
 import HomeownerProfile from "../Homeowner/HomeownerProfile";
-import ProjectWorkshop from '../Homeowner/ProjectWorkshop';
+import ProjectForm from '../Homeowner/ProjectForm';
 
 const ContractorTabStack = createMaterialBottomTabNavigator(
   {
@@ -79,7 +79,7 @@ const HomeownerTabStack = createMaterialBottomTabNavigator(
     Profile: {
       screen: HomeownerProfile,
       navigationOptions: {
-        tabBarLabel: "Home",
+        tabBarLabel: "Profile",
         tabBarIcon: (
           <Image
             style={{ height: 25, width: 25 }}
@@ -88,10 +88,10 @@ const HomeownerTabStack = createMaterialBottomTabNavigator(
         )
       }
     },
-    ProjectWorkshop: {
-      screen: ProjectWorkshop,
+    ProjectForm: {
+      screen: ProjectForm,
       navigationOptions: {
-        tabBarLabel: "Project workshop",
+        tabBarLabel: "Project Form",
         tabBarIcon: (
           <Image
             style={{ height: 25, width: 25 }}

@@ -13,7 +13,9 @@ export default class ProjectWorkshop extends Component {
     return (
       <View style={styles.mainContainer}>
         <TouchableOpacity style={styles.button}>
-          <Text style={styles.text}>Add a New Project</Text>
+          <Text
+          onPress={() => this.props.navigation.navigate()}
+          style={styles.text}>Add a New Project</Text>
         </TouchableOpacity>
       </View>
     )

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, TextInput, Text, TouchableOpacity } from 'react-native';
+import { View, TextInput, Text, TouchableOpacity, StyleSheet, Image } from 'react-native';
 import SignUpQuestion from '../MainApp/SignUpQuestion';
 import PhotoUpload from '../MainApp/PhotoUpload';
 
@@ -15,11 +15,12 @@ export default class ProjectForm extends Component {
   advanceQuestion = data => {
     this.logData(data);
     const { questionNumber } = this.state;
-    if (questionNumber < 4) {
+    if (questionNumber < 5) {
       this.setState({ questionNumber: questionNumber + 1 });
     } else {
       this.postData(this.state.data);
-      this.props.navigation.navigate("ProjectWorkshop");
+      this.props.navigation.navigate("Home");
+      this.setState({ questionNumber: 1 })
     }
   };
 
@@ -34,7 +35,7 @@ export default class ProjectForm extends Component {
 
   displayDots = () => {
     const allDots = [];
-    for (let i = 1; i < 5; i++) {
+    for (let i = 1; i < 6; i++) {
       if (this.state.questionNumber === i) {
         allDots.push(
           <Image
@@ -88,8 +89,18 @@ export default class ProjectForm extends Component {
                 advanceQuestion={this.advanceQuestion}
                 prompt="Write description of project/problem"
                 placeholder="Enter description"
-                buttonText="Finish"
+                buttonText="Next"
               />
+            )}
+            {this.state.questionNumber === 5 && (
+              <View style={styles.mainContainer}>
+                <Text style={styles.text}>Your project has been added</Text>
+                <TouchableOpacity
+                  onPress={this.advanceQuestion}
+                  style={styles.button}>
+                  <Text style={styles.buttonText}>Home</Text>
+                </TouchableOpacity>
+              </View>
             )}
           </View>
         </View>
@@ -130,5 +141,27 @@ const styles = StyleSheet.create({
     width: 25,
     marginRight: 3,
     marginLeft: 3
+  },
+  mainContainer: {
+    width: "100%",
+    height: "100%",
+    justifyContent: "center"
+  },
+  text: {
+    fontSize: 20,
+    width: "100%",
+    textAlign: "center"
+  },
+  button: {
+    justifyContent: "center",
+    backgroundColor: "#7C9EB2",
+    height: 50,
+    marginTop: 10
+  },
+  buttonText: {
+    width: "100%",
+    textAlign: "center",
+    color: "white",
+    fontSize: 20,
   }
 });
