@@ -5,6 +5,7 @@ import PhotoUpload from "./PhotoUpload";
 import * as ImagePicker from "expo-image-picker";
 import * as Permissions from "expo-permissions";
 import Constants from "expo-constants";
+import { postContractor } from "../apiCalls";
 
 export default class ContractorSignUp extends React.Component {
   state = {
@@ -12,13 +13,13 @@ export default class ContractorSignUp extends React.Component {
     data: []
   };
 
-  advanceQuestion = data => {
+  advanceQuestion = async data => {
     this.logData(data);
     const { questionNumber } = this.state;
-    if (questionNumber < 6) {
+    if (questionNumber < 7) {
       this.setState({ questionNumber: questionNumber + 1 });
     } else {
-      this.postData(this.state.data);
+      await this.postData(this.state.data);
       this.props.navigation.navigate("ContractorApp");
     }
   };
@@ -28,13 +29,21 @@ export default class ContractorSignUp extends React.Component {
     this.setState({ data: newData });
   };
 
-  postData = data => {
-    // apiCall to post data object to backend
+  postData = async data => {
+    const newContractor = {
+      name: data[0],
+      email: data[5],
+      phone_number: data[4],
+      zip: data[3],
+      category: data[2],
+      logo: "logo.jpg",
+    };
+    await postContractor(newContractor);
   };
 
   displayDots = () => {
     const allDots = [];
-    for (let i = 1; i < 7; i++) {
+    for (let i = 1; i < 8; i++) {
       if (this.state.questionNumber === i) {
         allDots.push(
           <Image
@@ -62,12 +71,20 @@ export default class ContractorSignUp extends React.Component {
         <View style={styles.wrapper}>
           <View style={styles.questionsWrapper}>
             {this.state.questionNumber === 1 && (
+              <SignUpQuestion
+                advanceQuestion={this.advanceQuestion}
+                prompt="What's your company's name?"
+                placeholder="Enter name"
+                buttonText="Next"
+              />
+            )}
+            {this.state.questionNumber === 2 && (
               <PhotoUpload
                 advanceQuestion={this.advanceQuestion}
                 prompt="Upload your company logo"
               />
             )}
-            {this.state.questionNumber === 2 && (
+            {this.state.questionNumber === 3 && (
               <SignUpQuestion
                 advanceQuestion={this.advanceQuestion}
                 prompt="What are your specialties?"
@@ -75,7 +92,7 @@ export default class ContractorSignUp extends React.Component {
                 buttonText="Next"
               />
             )}
-            {this.state.questionNumber === 3 && (
+            {this.state.questionNumber === 4 && (
               <SignUpQuestion
                 advanceQuestion={this.advanceQuestion}
                 prompt="What's your zip code?"
@@ -83,7 +100,7 @@ export default class ContractorSignUp extends React.Component {
                 buttonText="Next"
               />
             )}
-            {this.state.questionNumber === 4 && (
+            {this.state.questionNumber === 5 && (
               <SignUpQuestion
                 advanceQuestion={this.advanceQuestion}
                 prompt="What's your phone number?"
@@ -91,7 +108,7 @@ export default class ContractorSignUp extends React.Component {
                 buttonText="Next"
               />
             )}
-            {this.state.questionNumber === 5 && (
+            {this.state.questionNumber === 6 && (
               <SignUpQuestion
                 advanceQuestion={this.advanceQuestion}
                 prompt="What's your email address?"
@@ -99,7 +116,7 @@ export default class ContractorSignUp extends React.Component {
                 buttonText="Next"
               />
             )}
-            {this.state.questionNumber === 6 && (
+            {this.state.questionNumber === 7 && (
               <SignUpQuestion
                 advanceQuestion={this.advanceQuestion}
                 prompt="Choose a password"
