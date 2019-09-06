@@ -19,5 +19,5 @@ export default class ProjectWorkshop extends Component {
 }
 
 const styles = StyleSheet.create({
-
+  
 })
