@@ -11,19 +11,20 @@ import {
 export default class ContractorProfile extends React.Component {
   state = {
     name: "Steve's Tools",
-    logo: { uri: "./iamges/dog" },
+    logo: { uri: undefined },
     email: "fake@gmail.com",
     zipCode: 80202,
     phone: 7813465555,
     specialties: [
       "plumbing",
       "Electric",
-      "Jazz",
-      "Hockey",
-      "Basketball",
-      "Soups"
     ]
   };
+
+  componentDidMount() {
+    
+
+  }
 
   logout = () => {
     // set currentUser in App state to null
@@ -58,14 +59,6 @@ export default class ContractorProfile extends React.Component {
                 source={require("../assets/whiteEdit.png")}
               />
             </View>
-          </View>
-          <View style={styles.logoWrapper}>
-            <Text style={styles.leftText}>Logo</Text>
-            <Image source={{ uri: logo.uri }} />
-            <Image
-              style={styles.editIcon}
-              source={require("../assets/whiteEdit.png")}
-            />
           </View>
           <View style={styles.infoRow}>
             <Text style={styles.leftText}>Email</Text>
@@ -103,12 +96,22 @@ export default class ContractorProfile extends React.Component {
               <View style={styles.specialtiesRightWrapper}>
                 {this.state.specialties.length > 0 && this.displaySpecialties()}
               </View>
-                <Image
-                  style={styles.editIcon}
-                  source={require("../assets/whiteEdit.png")}
-                />
+              <Image
+                style={styles.editIcon}
+                source={require("../assets/whiteEdit.png")}
+              />
             </View>
           </View>
+          {this.state.logo.uri && (
+            <View style={styles.logoWrapper}>
+              <Text style={styles.leftText}>Logo</Text>
+              <Image source={{ uri: logo.uri }} />
+              <Image
+                style={styles.editIcon}
+                source={require("../assets/whiteEdit.png")}
+              />
+            </View>
+          )}
         </View>
       </View>
     );
