@@ -11,6 +11,7 @@ import ContractorHome from "../Contractor/ContractorHome";
 import ActiveProjects from "../Homeowner/ActiveProjects";
 import ProjectSwiper from "../Contractor/ProjectSwiper";
 import ContractorProfile from "../Contractor/ContractorProfile";
+import HomeownerProfile from "../Homeowner/HomeownerProfile";
 
 const ContractorTabStack = createMaterialBottomTabNavigator(
   {
@@ -73,7 +74,19 @@ const HomeownerTabStack = createMaterialBottomTabNavigator(
           />
         )
       }
-    }
+    },
+    Profile: {
+      screen: HomeownerProfile,
+      navigationOptions: {
+        tabBarLabel: "Home",
+        tabBarIcon: (
+          <Image
+            style={{ height: 25, width: 25 }}
+            source={require("../assets/profile.png")}
+          />
+        )
+      }
+    },
   },
   {
     initialRouteName: "Home",
