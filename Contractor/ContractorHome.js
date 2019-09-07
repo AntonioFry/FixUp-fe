@@ -4,31 +4,41 @@ import Notification from "./Notification";
 
 export default class ContractorHome extends React.Component {
   state = {
-    notifications: [
+    connectedProjects: [
       {
         seen: false,
-        message: "You've been fixed up with a project!",
-        date: "9/2/2019"
+        title: "Pipe burst",
+        photo: { uri: "../assets/burstPipeGuy.jpg" },
+        description:
+          "So I walked into my basement and saw this pipe fucking SPRAYING all over the place. Help?"
       },
       {
         seen: true,
-        message: "You've been fixed up with a project!",
-        date: "9/1/2019"
+        title: "Pipe burst",
+        photo: { uri: "../assets/burstPipeGuy.jpg" },
+        description:
+          "So I walked into my basement and saw this pipe fucking SPRAYING all over the place. Help?"
       },
       {
         seen: false,
-        message: "You've been fixed up with a project!",
-        date: "9/3/2019"
+        title: "Pipe burst",
+        photo: { uri: "../assets/burstPipeGuy.jpg" },
+        description:
+          "So I walked into my basement and saw this pipe fucking SPRAYING all over the place. Help?"
       },
       {
         seen: true,
-        message: "You've been fixed up with a project!",
-        date: "9/1/2019"
+        title: "Pipe burst",
+        photo: { uri: "../assets/burstPipeGuy.jpg" },
+        description:
+          "So I walked into my basement and saw this pipe fucking SPRAYING all over the place. Help?"
       },
       {
         seen: true,
-        message: "You've been fixed up with a project!",
-        date: "9/1/2019"
+        title: "Pipe burst",
+        photo: { uri: "../assets/burstPipeGuy.jpg" },
+        description:
+          "So I walked into my basement and saw this pipe fucking SPRAYING all over the place. Help?"
       }
     ],
     suggestedProjects: [
@@ -64,14 +74,17 @@ export default class ContractorHome extends React.Component {
     // Clean them so new notifications display differently
   }
 
-  displayNotifications = () => {
+  displayConnectedProjects = () => {
     // take all notifications and render each as a component
-    return this.state.notifications.map((notification, index) => {
+    return this.state.connectedProjects.map((proj, index) => {
       return (
         <Notification
           key={index}
-          seen={notification.seen}
-          message={notification.message}
+          seen={proj.seen}
+          description={proj.description}
+          title={proj.title}
+          photo={proj.photo}
+          navigation={this.props.navigation}
         />
       );
     });
@@ -82,7 +95,10 @@ export default class ContractorHome extends React.Component {
       return (
         <View style={styles.suggestedProjectWrapper} key={index}>
           <Text style={styles.projTitle}>{proj.title}</Text>
-          <Image style={styles.projPhoto} source={require("../assets/burstPipeGuy.jpg")} />
+          <Image
+            style={styles.projPhoto}
+            source={require("../assets/burstPipeGuy.jpg")}
+          />
           <Text>{proj.description}</Text>
         </View>
       );
@@ -100,7 +116,8 @@ export default class ContractorHome extends React.Component {
         <View style={styles.notificationsSection}>
           <Text style={styles.notificationsTitle}>Project Leads</Text>
           <ScrollView style={styles.notificationsWrapper}>
-            {this.state.notifications.length > 0 && this.displayNotifications()}
+            {this.state.connectedProjects.length > 0 &&
+              this.displayConnectedProjects()}
           </ScrollView>
         </View>
         <Text style={styles.suggestionsTitle}>Suggested Projects</Text>
