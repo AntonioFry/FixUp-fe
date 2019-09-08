@@ -214,12 +214,12 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     marginBottom: 40,
-    width: "70%"
+    width: "60%"
   },
   swiperButtonOutline: {
     borderColor: "black",
     borderStyle: "solid",
-    borderWidth: 3,
+    borderWidth: 2,
     borderRadius: 48,
     padding: 10
   }
