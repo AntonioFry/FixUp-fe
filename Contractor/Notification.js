@@ -1,16 +1,23 @@
 import React from "react";
-import { View, Text, StyleSheet, Image } from "react-native";
+import { Text, StyleSheet, Image, TouchableOpacity } from "react-native";
 
 export default class Notification extends React.Component {
-  state = {}
+
+  goToProject = () => {
+    console.log(this.props)
+    const { title, description, photo, navigation } = this.props;
+    navigation.navigate("ViewProject", { title, description, photo });
+  };
 
   render() {
     return (
-      <View style={styles.wrapper}>
-        <Text style={!this.props.seen ? styles.seen : styles.unseen}>{this.props.message}</Text>
+      <TouchableOpacity onPress={this.goToProject} style={styles.wrapper}>
+        <Text style={!this.props.seen ? styles.seen : styles.unseen}>
+          {this.props.title}
+        </Text>
         <Image style={styles.bell} source={require("../assets/forward.png")} />
-      </View>
-    )
+      </TouchableOpacity>
+    );
   }
 }
 
@@ -24,10 +31,10 @@ const styles = StyleSheet.create({
     padding: 14
   },
   seen: {
-    fontWeight: "900",
+    fontWeight: "900"
   },
   unseen: {
-    fontWeight: "100",
+    fontWeight: "100"
   },
   bell: {
     height: 15,

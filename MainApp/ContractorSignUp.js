@@ -1,10 +1,7 @@
 import React from "react";
-import { View, StyleSheet, Image, TouchableOpacity, Text } from "react-native";
+import { View, StyleSheet, Image } from "react-native";
 import SignUpQuestion from "./SignUpQuestion";
 import PhotoUpload from "./PhotoUpload";
-import * as ImagePicker from "expo-image-picker";
-import * as Permissions from "expo-permissions";
-import Constants from "expo-constants";
 import { postContractor } from "../apiCalls";
 
 export default class ContractorSignUp extends React.Component {

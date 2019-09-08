@@ -13,11 +13,25 @@ import ProjectSwiper from "../Contractor/ProjectSwiper";
 import ContractorProfile from "../Contractor/ContractorProfile";
 import HomeownerProfile from "../Homeowner/HomeownerProfile";
 import ProjectForm from '../Homeowner/ProjectForm';
+import { ViewProject } from "../Contractor/ViewProject";
+import Notification from "../Contractor/Notification";
+
+const ContractorHomeStack = createStackNavigator(
+  {
+    ContractorHome: ContractorHome,
+    ViewProject: ViewProject,
+    Notification: Notification
+  },
+  {
+    initialRouteName: "ContractorHome",
+    headerMode: "none"
+  }
+);
 
 const ContractorTabStack = createMaterialBottomTabNavigator(
   {
     Home: {
-      screen: ContractorHome,
+      screen: ContractorHomeStack,
       navigationOptions: {
         tabBarLabel: "Home",
         tabBarIcon: (
