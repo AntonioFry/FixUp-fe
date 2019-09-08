@@ -11,16 +11,15 @@ import ContractorHome from "../Contractor/ContractorHome";
 import ActiveProjects from "../Homeowner/ActiveProjects";
 import ProjectSwiper from "../Contractor/ProjectSwiper";
 import ContractorProfile from "../Contractor/ContractorProfile";
-import HomeownerProfile from "../Homeowner/HomeownerProfile";
+import ViewProject from "../Contractor/ViewProject";
+import ConnectedProject from "../Contractor/ConnectedProject";
 import ProjectForm from '../Homeowner/ProjectForm';
-import { ViewProject } from "../Contractor/ViewProject";
-import Notification from "../Contractor/Notification";
 
 const ContractorHomeStack = createStackNavigator(
   {
     ContractorHome: ContractorHome,
     ViewProject: ViewProject,
-    Notification: Notification
+    ConnectedProject: ConnectedProject
   },
   {
     initialRouteName: "ContractorHome",

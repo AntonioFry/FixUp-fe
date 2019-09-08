@@ -1,8 +1,9 @@
 import React from "react";
-import { View, StyleSheet, Image } from "react-native";
+import { View, StyleSheet, Image, AppRegistry } from "react-native";
 import SignUpQuestion from "./SignUpQuestion";
 import PhotoUpload from "./PhotoUpload";
 import { postContractor } from "../apiCalls";
+const FileUpload = require("NativeModules").FileUpload;
 
 export default class ContractorSignUp extends React.Component {
   state = {

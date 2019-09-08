@@ -1,6 +1,6 @@
 import React from "react";
 import { View, Text, StyleSheet, ScrollView, Image } from "react-native";
-import Notification from "./Notification";
+import ConnectedProject from "./ConnectedProject";
 
 export default class ContractorHome extends React.Component {
   state = {
@@ -78,7 +78,7 @@ export default class ContractorHome extends React.Component {
     // take all notifications and render each as a component
     return this.state.connectedProjects.map((proj, index) => {
       return (
-        <Notification
+        <ConnectedProject
           key={index}
           seen={proj.seen}
           description={proj.description}
