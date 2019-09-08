@@ -4,7 +4,6 @@ const data = {
   phone_number: "$$$-$$$-$$$$",
   zip: "12345",
   password_digest: "?",
-
 }
 
 export default data;
