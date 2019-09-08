@@ -138,6 +138,20 @@ class ProjectSwiper extends Component {
           animateCardOpacity
           swipeBackCard
         />
+        <View style={styles.swiperButtonsWrapper}>
+          <TouchableOpacity
+            onPress={left => this.onSwiped("left")}
+            style={styles.swiperButtonOutline}
+          >
+            <Image source={require("../assets/reject.png")} />
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={right => this.onSwiped("right")}
+            style={styles.swiperButtonOutline}
+          >
+            <Image source={require("../assets/accept.png")} />
+          </TouchableOpacity>
+        </View>
       </View>
     );
   }
@@ -146,7 +160,7 @@ class ProjectSwiper extends Component {
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
-    justifyContent: "center",
+    justifyContent: "flex-end",
     alignItems: "center"
   },
   card: {
@@ -195,6 +209,20 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     fontSize: 30,
     marginTop: 20
+  },
+  swiperButtonsWrapper: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginBottom: 40,
+    width: "60%"
+  },
+  swiperButtonOutline: {
+    borderColor: "black",
+    borderStyle: "solid",
+    borderWidth: 2,
+    borderRadius: 48,
+    padding: 10,
+    opacity: .8
   }
 });
 

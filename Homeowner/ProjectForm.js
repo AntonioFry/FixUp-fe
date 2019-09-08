@@ -94,7 +94,7 @@ export default class ProjectForm extends Component {
             )}
             {this.state.questionNumber === 5 && (
               <View style={styles.mainContainer}>
-                <Text style={styles.text}>Your project has been added</Text>
+                <Text style={styles.text}>Your project has been posted</Text>
                 <TouchableOpacity
                   onPress={this.advanceQuestion}
                   style={styles.button}>
@@ -128,7 +128,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
-    height: 40
+    height: 100
   },
   inactiveDot: {
     height: 10,
@@ -145,23 +145,23 @@ const styles = StyleSheet.create({
   mainContainer: {
     width: "100%",
     height: "100%",
-    justifyContent: "center"
+    justifyContent: "center",
+    alignItems: "center"
   },
   text: {
-    fontSize: 20,
-    width: "100%",
-    textAlign: "center"
+    fontWeight: "bold",
+    fontSize: 25,
+    textAlign: "center",
+    marginBottom: 20
   },
   button: {
+    flexDirection: "row",
     justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 4,
     backgroundColor: "#7C9EB2",
+    width: 300,
     height: 50,
-    marginTop: 10
-  },
-  buttonText: {
-    width: "100%",
-    textAlign: "center",
-    color: "white",
-    fontSize: 20,
+    marginBottom: 10
   }
 });
