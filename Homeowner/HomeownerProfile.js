@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import ProfileCategory from "../Contractor/ProfileCategory";
 
 export default class HomeownerProfile extends Component {
   constructor() {
@@ -25,16 +26,12 @@ export default class HomeownerProfile extends Component {
   render() {
     const userInfo = Object.keys(this.state).map((info, index) => {
       return (
-        <View key={index} style={styles.infoRow}>
-          <Text style={styles.leftText}>{info.split("_").join(" ")}</Text>
-          <View style={styles.rightTextWrapper}>
-            <Text style={styles.rightText}>{this.state[info]}</Text>
-            <Image
-              style={styles.editIcon}
-              source={require("../assets/whiteEdit.png")}
-            />
-          </View>
-        </View>
+        <ProfileCategory
+          key={index}
+          category={info}
+          value={this.state[info]}
+          keyboardType={"default"}
+        />
       )
     })
     return  (
