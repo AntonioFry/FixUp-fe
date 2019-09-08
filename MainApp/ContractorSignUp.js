@@ -2,6 +2,7 @@ import React from "react";
 import { View, StyleSheet, Image, AppRegistry } from "react-native";
 import SignUpQuestion from "./SignUpQuestion";
 import PhotoUpload from "./PhotoUpload";
+import SpecialtyPicker from "./SpecialtyPicker";
 import { postContractor } from "../apiCalls";
 const FileUpload = require("NativeModules").FileUpload;
 
@@ -74,6 +75,7 @@ export default class ContractorSignUp extends React.Component {
                 prompt="What's your company's name?"
                 placeholder="Enter name"
                 buttonText="Next"
+                keyboardType="default"
               />
             )}
             {this.state.questionNumber === 2 && (
@@ -83,9 +85,9 @@ export default class ContractorSignUp extends React.Component {
               />
             )}
             {this.state.questionNumber === 3 && (
-              <SignUpQuestion
+              <SpecialtyPicker
                 advanceQuestion={this.advanceQuestion}
-                prompt="What are your specialties?"
+                prompt="What's your specialty?"
                 placeholder="Choose specialties"
                 buttonText="Next"
               />
@@ -96,6 +98,7 @@ export default class ContractorSignUp extends React.Component {
                 prompt="What's your zip code?"
                 placeholder="Enter zip code"
                 buttonText="Next"
+                keyboardType="numeric"
               />
             )}
             {this.state.questionNumber === 5 && (
@@ -104,6 +107,7 @@ export default class ContractorSignUp extends React.Component {
                 prompt="What's your phone number?"
                 placeholder="Enter phone"
                 buttonText="Next"
+                keyboardType="numeric"
               />
             )}
             {this.state.questionNumber === 6 && (
@@ -112,6 +116,7 @@ export default class ContractorSignUp extends React.Component {
                 prompt="What's your email address?"
                 placeholder="Enter email"
                 buttonText="Next"
+                keyboardType="email-address"
               />
             )}
             {this.state.questionNumber === 7 && (
@@ -120,6 +125,7 @@ export default class ContractorSignUp extends React.Component {
                 prompt="Choose a password"
                 placeholder="Enter password"
                 buttonText="Finish"
+                keyboardType="default"
               />
             )}
           </View>
