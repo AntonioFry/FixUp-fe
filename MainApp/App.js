@@ -11,8 +11,8 @@ import ContractorHome from "../Contractor/ContractorHome";
 import ActiveProjects from "../Homeowner/ActiveProjects";
 import ProjectSwiper from "../Contractor/ProjectSwiper";
 import ContractorProfile from "../Contractor/ContractorProfile";
-import { ViewProject } from "../Contractor/ViewProject";
-import Notification from "../Contractor/Notification";
+import ViewProject from "../Contractor/ViewProject";
+import Notification from "../Contractor/ConnectedProject";
 
 const ContractorHomeStack = createStackNavigator(
   {

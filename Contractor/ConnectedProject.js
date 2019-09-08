@@ -1,10 +1,9 @@
 import React from "react";
 import { Text, StyleSheet, Image, TouchableOpacity } from "react-native";
 
-export default class Notification extends React.Component {
+export default class ConnectedProject extends React.Component {
 
   goToProject = () => {
-    console.log(this.props)
     const { title, description, photo, navigation } = this.props;
     navigation.navigate("ViewProject", { title, description, photo });
   };
