@@ -12,13 +12,14 @@ import ActiveProjects from "../Homeowner/ActiveProjects";
 import ProjectSwiper from "../Contractor/ProjectSwiper";
 import ContractorProfile from "../Contractor/ContractorProfile";
 import ViewProject from "../Contractor/ViewProject";
-import Notification from "../Contractor/ConnectedProject";
+import ConnectedProject from "../Contractor/ConnectedProject";
+import ProjectForm from '../Homeowner/ProjectForm';
 
 const ContractorHomeStack = createStackNavigator(
   {
     ContractorHome: ContractorHome,
     ViewProject: ViewProject,
-    Notification: Notification
+    ConnectedProject: ConnectedProject
   },
   {
     initialRouteName: "ContractorHome",
@@ -87,6 +88,30 @@ const HomeownerTabStack = createMaterialBottomTabNavigator(
           />
         )
       }
+    },
+    Profile: {
+      screen: HomeownerProfile,
+      navigationOptions: {
+        tabBarLabel: "Profile",
+        tabBarIcon: (
+          <Image
+            style={{ height: 25, width: 25 }}
+            source={require("../assets/profile.png")}
+          />
+        )
+      }
+    },
+    ProjectForm: {
+      screen: ProjectForm,
+      navigationOptions: {
+        tabBarLabel: "Project Form",
+        tabBarIcon: (
+          <Image
+            style={{ height: 25, width: 25 }}
+            source={require("../assets/hammer.png")}
+          />
+        )
+      }
     }
   },
   {
@@ -94,7 +119,7 @@ const HomeownerTabStack = createMaterialBottomTabNavigator(
     labeled: false,
     activeColor: "#f0edf6",
     inactiveColor: "#3e2465",
-    barStyle: { backgroundColor: "orange", height: 80, paddingTop: 0 }
+    barStyle: { backgroundColor: "#79BAEC", height: 80, paddingTop: 0 }
   }
 );
 
