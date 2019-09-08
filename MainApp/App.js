@@ -9,6 +9,7 @@ import HomeownerSignUp from "./HomeownerSignUp";
 import ContractorSignUp from "./ContractorSignUp";
 import ContractorHome from "../Contractor/ContractorHome";
 import ActiveProjects from "../Homeowner/ActiveProjects";
+import HomeownerProfile from "../Homeowner/HomeownerProfile";
 import ProjectSwiper from "../Contractor/ProjectSwiper";
 import ContractorProfile from "../Contractor/ContractorProfile";
 import ViewProject from "../Contractor/ViewProject";
@@ -84,19 +85,7 @@ const HomeownerTabStack = createMaterialBottomTabNavigator(
         tabBarIcon: (
           <Image
             style={{ height: 25, width: 25 }}
-            source={require("../assets/home.png")}
-          />
-        )
-      }
-    },
-    Profile: {
-      screen: HomeownerProfile,
-      navigationOptions: {
-        tabBarLabel: "Profile",
-        tabBarIcon: (
-          <Image
-            style={{ height: 25, width: 25 }}
-            source={require("../assets/profile.png")}
+            source={require("../assets/whiteHome.png")}
           />
         )
       }
@@ -108,7 +97,19 @@ const HomeownerTabStack = createMaterialBottomTabNavigator(
         tabBarIcon: (
           <Image
             style={{ height: 25, width: 25 }}
-            source={require("../assets/hammer.png")}
+            source={require("../assets/whitePlus.png")}
+          />
+        )
+      }
+    },
+    Profile: {
+      screen: HomeownerProfile,
+      navigationOptions: {
+        tabBarLabel: "Profile",
+        tabBarIcon: (
+          <Image
+            style={{ height: 25, width: 25 }}
+            source={require("../assets/whiteProfile.png")}
           />
         )
       }
@@ -119,7 +120,7 @@ const HomeownerTabStack = createMaterialBottomTabNavigator(
     labeled: false,
     activeColor: "#f0edf6",
     inactiveColor: "#3e2465",
-    barStyle: { backgroundColor: "#79BAEC", height: 80, paddingTop: 0 }
+    barStyle: { backgroundColor: "#3C4F76", height: 80, paddingTop: 0 }
   }
 );
 

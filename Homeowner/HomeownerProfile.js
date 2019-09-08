@@ -23,9 +23,9 @@ export default class HomeownerProfile extends Component {
   };
 
   render() {
-    const userInfo = Object.keys(this.state).map(info => {
+    const userInfo = Object.keys(this.state).map((info, index) => {
       return (
-        <View style={styles.infoRow}>
+        <View key={index} style={styles.infoRow}>
           <Text style={styles.leftText}>{info.split("_").join(" ")}</Text>
           <View style={styles.rightTextWrapper}>
             <Text style={styles.rightText}>{this.state[info]}</Text>

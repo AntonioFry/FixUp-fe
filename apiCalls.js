@@ -1,5 +1,5 @@
 export const postContractor = async newContractor => {
-  const url = "https://fixup-backend.herokuapp.com/api/v1/Contractor/";
+  const url = "https://fixup-backend.herokuapp.com/api/v1/contractors/";
   const options = { 
     method: "POST",
     headers: {
