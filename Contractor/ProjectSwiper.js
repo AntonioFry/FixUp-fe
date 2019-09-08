@@ -221,7 +221,8 @@ const styles = StyleSheet.create({
     borderStyle: "solid",
     borderWidth: 2,
     borderRadius: 48,
-    padding: 10
+    padding: 10,
+    opacity: .8
   }
 });
 
