@@ -106,7 +106,7 @@ const HomeownerTabStack = createMaterialBottomTabNavigator(
     labeled: false,
     activeColor: "#f0edf6",
     inactiveColor: "#3e2465",
-    barStyle: { backgroundColor: "orange", height: 80, paddingTop: 0 }
+    barStyle: { backgroundColor: "#79BAEC", height: 80, paddingTop: 0 }
   }
 );
 
