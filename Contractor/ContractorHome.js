@@ -17,7 +17,6 @@ export default class ContractorHome extends React.Component {
   }
 
   displayConnectedProjects = () => {
-    // take all notifications and render each as a component
     return this.state.connectedProjects.map((proj, index) => {
       return (
         <ConnectedProject
@@ -25,7 +24,8 @@ export default class ContractorHome extends React.Component {
           seen={proj.seen}
           description={proj.description}
           title={proj.title}
-          photo={proj.photo}
+          photo={proj.user_before_picture}
+          category={proj.category}
           navigation={this.props.navigation}
         />
       );
