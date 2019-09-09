@@ -26,6 +26,7 @@ export default class SignUpQuestion extends React.Component {
           value={this.state.field}
           onChangeText={this.handleChange}
           placeholder={this.props.placeholder}
+          keyboardType={this.props.keyboardType}
         />
         <TouchableOpacity
           onPress={field => this.props.advanceQuestion(this.state.field)}
