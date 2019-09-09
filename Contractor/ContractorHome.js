@@ -5,13 +5,14 @@ import { getContractorProjects } from "../contractorApiCalls";
 
 export default class ContractorHome extends React.Component {
   state = {
-    contractorId: -1,
     connectedProjects: [],
     suggestedProjects: []
   };
 
   async componentDidMount() {
-    const connectedProjects = await getContractorProjects(this.props.screenProps);
+    const connectedProjects = await getContractorProjects(
+      this.props.navigation.getParam("contractorId")
+    );
     await this.setState({ connectedProjects });
   }
 

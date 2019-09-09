@@ -18,7 +18,10 @@ import ProjectForm from '../Homeowner/ProjectForm';
 
 const ContractorHomeStack = createStackNavigator(
   {
-    ContractorHome: () => <ContractorHome screenProps={3} />,
+    ContractorHome: {
+      screen: ContractorHome,
+      params: { contractorId: 3 }
+    },
     ViewProject: ViewProject,
     ConnectedProject: ConnectedProject
   },
