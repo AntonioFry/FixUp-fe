@@ -4,8 +4,8 @@ import { Text, StyleSheet, Image, TouchableOpacity } from "react-native";
 export default class ConnectedProject extends React.Component {
 
   goToProject = () => {
-    const { title, description, photo, navigation } = this.props;
-    navigation.navigate("ViewProject", { title, description, photo });
+    const { title, description, photo, navigation, category } = this.props;
+    navigation.navigate("ViewProject", { title, description, photo, category });
   };
 
   render() {

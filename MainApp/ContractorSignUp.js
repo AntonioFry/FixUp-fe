@@ -29,12 +29,13 @@ export default class ContractorSignUp extends React.Component {
   };
 
   postData = async data => {
+    const { name, email, phone_number, zip, category, logo } = this.state.data;
     const newContractor = {
-      name: data[0],
-      email: data[5],
-      phone_number: data[4],
-      zip: data[3],
-      category: data[2],
+      name,
+      email,
+      phone_number,
+      zip,
+      category,
       logo: "logo.jpg",
     };
     await postContractor(newContractor);
