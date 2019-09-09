@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import data from '../mockData/mockContactors';
 import ProjectContractor from './ProjectContractor';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 export default class ActiveProject extends Component {
   constructor() {
@@ -16,12 +17,16 @@ export default class ActiveProject extends Component {
     // then set the state with the contractors
   }
 
+  goToProject = () => {
+    const { title, description, photo, navigation } = this.props;
+    navigation.navigate("ViewProject", { title, description, photo });
+  };
+
   render() {
     const { title, id } = this.props;
     const projectContractors = data.filter(contractor => {
       return contractor.projectId === id;
     })
-    console.log(projectContractors.length)
     const formattedContractors = projectContractors.map(contractor => {
       return (
         <ProjectContractor
@@ -34,7 +39,9 @@ export default class ActiveProject extends Component {
     return (
       <View style={styles.container}>
         <View style={styles.nameContainer}>
-          <Text style={styles.projectName}>{title}</Text>
+          <TouchableOpacity onPress={this.goToProject}>
+            <Text style={styles.projectName}>{title}</Text>
+          </TouchableOpacity>
         </View>
         <View style={styles.contractorsContainer}>
           {formattedContractors}

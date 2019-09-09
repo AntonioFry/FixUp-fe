@@ -28,7 +28,7 @@ export default class HomeownerProfile extends Component {
       return (
         <ProfileCategory
           key={index}
-          category={info}
+          category={info.split("_").join(" ")}
           value={this.state[info]}
           keyboardType={"default"}
         />
