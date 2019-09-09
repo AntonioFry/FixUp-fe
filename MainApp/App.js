@@ -76,10 +76,21 @@ const ContractorTabStack = createMaterialBottomTabNavigator(
   }
 );
 
+const HomeownerHomeStack = createStackNavigator(
+  {
+    ActiveProjects: ActiveProjects,
+    ViewProject: ViewProject,
+  },
+  {
+    initialRouteName: "ActiveProjects",
+    headerMode: "none"
+  }
+);
+
 const HomeownerTabStack = createMaterialBottomTabNavigator(
   {
     Home: {
-      screen: ActiveProjects,
+      screen: HomeownerHomeStack,
       navigationOptions: {
         tabBarLabel: "Home",
         tabBarIcon: (

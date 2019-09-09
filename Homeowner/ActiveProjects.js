@@ -7,7 +7,32 @@ export default class ActiveProjects extends Component {
   constructor() {
     super();
     this.state = {
-      homeownerProjects: []
+      homeownerProjects: [
+        {
+          id: 1,
+          seen: false,
+          title: "Pipe burst",
+          photo: { uri: "../assets/burstPipeGuy.jpg" },
+          description:
+            "So I walked into my basement and saw this pipe fucking SPRAYING all over the place. Help?"
+        },
+        {
+          id: 2,
+          seen: true,
+          title: "Pipe burst",
+          photo: { uri: "../assets/burstPipeGuy.jpg" },
+          description:
+            "So I walked into my basement and saw this pipe fucking SPRAYING all over the place. Help?"
+        },
+        {
+          id: 3,
+          seen: false,
+          title: "Pipe burst",
+          photo: { uri: "../../assets/burstPipeGuy.jpg" },
+          description:
+            "So I walked into my basement and saw this pipe fucking SPRAYING all over the place. Help?"
+        }
+      ]
     }
   }
 
@@ -17,12 +42,15 @@ export default class ActiveProjects extends Component {
   }
 
   render() {
-    const formattedProject = data.map(project => {
+    const formattedProject = this.state.homeownerProjects.map(project => {
       return (
         <ActiveProject
         id={project.id}
         title={project.title}
+        photo={project.photo}
+        description={project.description}
         key={project.id}
+        navigation={this.props.navigation}
         />
       )
     })
