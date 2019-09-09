@@ -1,77 +1,18 @@
 import React from "react";
 import { View, Text, StyleSheet, ScrollView, Image } from "react-native";
 import ConnectedProject from "./ConnectedProject";
+import { getContractorProjects } from "../contractorApiCalls";
 
 export default class ContractorHome extends React.Component {
   state = {
-    connectedProjects: [
-      {
-        seen: false,
-        title: "Pipe burst",
-        photo: { uri: "../assets/burstPipeGuy.jpg" },
-        description:
-          "So I walked into my basement and saw this pipe fucking SPRAYING all over the place. Help?"
-      },
-      {
-        seen: true,
-        title: "Pipe burst",
-        photo: { uri: "../assets/burstPipeGuy.jpg" },
-        description:
-          "So I walked into my basement and saw this pipe fucking SPRAYING all over the place. Help?"
-      },
-      {
-        seen: false,
-        title: "Pipe burst",
-        photo: { uri: "../assets/burstPipeGuy.jpg" },
-        description:
-          "So I walked into my basement and saw this pipe fucking SPRAYING all over the place. Help?"
-      },
-      {
-        seen: true,
-        title: "Pipe burst",
-        photo: { uri: "../assets/burstPipeGuy.jpg" },
-        description:
-          "So I walked into my basement and saw this pipe fucking SPRAYING all over the place. Help?"
-      },
-      {
-        seen: true,
-        title: "Pipe burst",
-        photo: { uri: "../assets/burstPipeGuy.jpg" },
-        description:
-          "So I walked into my basement and saw this pipe fucking SPRAYING all over the place. Help?"
-      }
-    ],
-    suggestedProjects: [
-      {
-        title: "Pipe burst",
-        photo: "../assets/burstPipeGuy.jpg",
-        description:
-          "So I walked into my basement and saw this pipe fucking SPRAYING all over the place. Help?"
-      },
-      {
-        title: "Pipe burst",
-        photo: "../assets/burstPipeGuy.jpg",
-        description:
-          "So I walked into my basement and saw this pipe fucking SPRAYING all over the place. Help?"
-      },
-      {
-        title: "Pipe burst",
-        photo: "../assets/burstPipeGuy.jpg",
-        description:
-          "So I walked into my basement and saw this pipe fucking SPRAYING all over the place. Help?"
-      },
-      {
-        title: "Pipe burst",
-        photo: "../assets/burstPipeGuy.jpg",
-        description:
-          "So I walked into my basement and saw this pipe fucking SPRAYING all over the place. Help?"
-      }
-    ]
+    contractorId: -1,
+    connectedProjects: [],
+    suggestedProjects: []
   };
 
-  componentDidMount() {
-    // fetch all notifications from API
-    // Clean them so new notifications display differently
+  async componentDidMount() {
+    const connectedProjects = await getContractorProjects(this.props.screenProps);
+    await this.setState({ connectedProjects });
   }
 
   displayConnectedProjects = () => {
