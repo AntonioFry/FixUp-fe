@@ -29,7 +29,7 @@ export default class SignUpQuestion extends React.Component {
           keyboardType={this.props.keyboardType}
         />
         <TouchableOpacity
-          onPress={field => this.props.advanceQuestion(this.state.field)}
+          onPress={field => this.props.advanceQuestion(this.props.data, this.state.field)}
           style={styles.button}
         >
           <Text>{this.props.buttonText}</Text>
@@ -43,7 +43,6 @@ const styles = StyleSheet.create({
   questionWrapper: {
     justifyContent: "center",
     alignItems: "center",
-    // height: 200
   },
   prompt: {
     fontWeight: "bold",

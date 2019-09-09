@@ -5,11 +5,11 @@ import SignUpQuestion from "./SignUpQuestion";
 export default class HomeownerSignUp extends React.Component {
   state = {
     questionNumber: 1,
-    data: []
+    data: {}
   };
 
-  advanceQuestion = data => {
-    this.logData(data);
+  advanceQuestion = (key, value) => {
+    this.logData(key, value);
     const { questionNumber } = this.state;
     if (questionNumber < 4) {
       this.setState({ questionNumber: questionNumber + 1 });
@@ -19,8 +19,8 @@ export default class HomeownerSignUp extends React.Component {
     }
   };
 
-  logData = homeownerData => {
-    const newData = [...this.state.data, homeownerData];
+  logData = (key, value) => {
+    const newData = { ...this.state.data, [this.state.data[key]]: value };
     this.setState({ data: newData });
   };
 
@@ -63,6 +63,7 @@ export default class HomeownerSignUp extends React.Component {
                 prompt="What's your zip code?"
                 placeholder="Enter zip code"
                 buttonText="Next"
+                data="zip"
               />
             )}
             {this.state.questionNumber === 2 && (
@@ -71,14 +72,16 @@ export default class HomeownerSignUp extends React.Component {
                 prompt="What's your phone number?"
                 placeholder="Enter phone"
                 buttonText="Next"
+                data="phone_number"
               />
             )}
             {this.state.questionNumber === 3 && (
               <SignUpQuestion
                 advanceQuestion={this.advanceQuestion}
                 prompt="What's your email address?"
-                placeholder="Enter phone"
+                placeholder="Enter email"
                 buttonText="Next"
+                data="email"
               />
             )}
             {this.state.questionNumber === 4 && (
@@ -87,6 +90,7 @@ export default class HomeownerSignUp extends React.Component {
                 prompt="Choose a password"
                 placeholder="Enter password"
                 buttonText="Finish"
+                data="password"
               />
             )}
           </View>

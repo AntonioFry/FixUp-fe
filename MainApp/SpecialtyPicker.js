@@ -24,7 +24,7 @@ export default class SpecialtyPicker extends React.Component {
           <Picker.Item color="orange" label="Carpentry" value="carpentry" />
         </Picker>
         <TouchableOpacity
-          onPress={specialty => this.props.advanceQuestion(this.state.specialty)}
+          onPress={() => this.props.advanceQuestion(this.props.data, this.state.specialty)}
           style={styles.button}
         >
           <Text>{this.props.buttonText}</Text>
