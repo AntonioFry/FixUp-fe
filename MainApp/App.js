@@ -20,7 +20,7 @@ const ContractorHomeStack = createStackNavigator(
   {
     ContractorHome: {
       screen: ContractorHome,
-      params: { contractorId: 3 }
+      params: { contractorId: 1 }
     },
     ViewProject: ViewProject,
     ConnectedProject: ConnectedProject
@@ -47,6 +47,7 @@ const ContractorTabStack = createMaterialBottomTabNavigator(
     },
     ProjectSwiper: {
       screen: ProjectSwiper,
+      params: { contractorId: 1 },
       navigationOptions: {
         tabBarLabel: "Projects",
         tabBarIcon: (
