@@ -2,43 +2,25 @@ import React, { Component } from 'react';
 import { Text, ScrollView, View, StyleSheet } from 'react-native';
 import data from '../mockData/mockHomeOwnerProjects';
 import ActiveProject from './ActiveProject';
+import { getHomeownerProjects } from './apicalls';
 
 export default class ActiveProjects extends Component {
   constructor() {
     super();
     this.state = {
-      homeownerProjects: [
-        {
-          id: 1,
-          seen: false,
-          title: "Pipe burst",
-          photo: { uri: "../assets/burstPipeGuy.jpg" },
-          description:
-            "So I walked into my basement and saw this pipe fucking SPRAYING all over the place. Help?"
-        },
-        {
-          id: 2,
-          seen: true,
-          title: "Pipe burst",
-          photo: { uri: "../assets/burstPipeGuy.jpg" },
-          description:
-            "So I walked into my basement and saw this pipe fucking SPRAYING all over the place. Help?"
-        },
-        {
-          id: 3,
-          seen: false,
-          title: "Pipe burst",
-          photo: { uri: "../../assets/burstPipeGuy.jpg" },
-          description:
-            "So I walked into my basement and saw this pipe fucking SPRAYING all over the place. Help?"
-        }
-      ]
+      homeownerProjects: [],
+      userId: null,
     }
   }
 
-  componentDidMount = () => {
-    // should fetch all projects that share the same user_id with the current user
-    // and then the the projects to state
+  componentDidMount = async () => {
+    try {
+      await this.setState({ userId: this.props.screenProps })
+      const projects = await getHomeownerProjects(this.state.userId);
+      await this.setState({ homeownerProjects: projects });
+    } catch (error) {
+      return new Error(error)
+    }
   }
 
   render() {
@@ -56,7 +38,7 @@ export default class ActiveProjects extends Component {
     })
     return (
       <ScrollView contentContainerStyle={styles.mainContainer}>
-        {formattedProject}
+        {this.state.homeownerProjects.length > 0 && formattedProject}
       </ScrollView>
     )
   }
