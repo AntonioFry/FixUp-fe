@@ -78,7 +78,10 @@ const ContractorTabStack = createMaterialBottomTabNavigator(
 
 const HomeownerHomeStack = createStackNavigator(
   {
-    ActiveProjects: () => <ActiveProjects screenProps={1} />,
+    ActiveProjects: {
+      screen: ActiveProjects,
+      params: { homeownerId: 1 }
+    },
     ViewProject: ViewProject,
   },
   {

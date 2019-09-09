@@ -14,8 +14,10 @@ export default class ActiveProjects extends Component {
   }
 
   componentDidMount = async () => {
+    console.log(this.props)
+    const userId = this.props.navigation.getParam("homeownerId")
     try {
-      await this.setState({ userId: this.props.screenProps })
+      await this.setState({ userId: userId })
       const projects = await getHomeownerProjects(this.state.userId);
       await this.setState({ homeownerProjects: projects });
     } catch (error) {
