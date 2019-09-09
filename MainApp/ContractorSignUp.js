@@ -9,11 +9,11 @@ const FileUpload = require("NativeModules").FileUpload;
 export default class ContractorSignUp extends React.Component {
   state = {
     questionNumber: 1,
-    data: []
+    data: {}
   };
 
-  advanceQuestion = async data => {
-    this.logData(data);
+  advanceQuestion = async (key, value) => {
+    this.logData(key, value);
     const { questionNumber } = this.state;
     if (questionNumber < 7) {
       this.setState({ questionNumber: questionNumber + 1 });
@@ -23,8 +23,8 @@ export default class ContractorSignUp extends React.Component {
     }
   };
 
-  logData = contractorData => {
-    const newData = [...this.state.data, contractorData];
+  logData = (key, value) => {
+    const newData = { ...this.state.data, [this.state.data[key]]: value };
     this.setState({ data: newData });
   };
 
@@ -76,12 +76,14 @@ export default class ContractorSignUp extends React.Component {
                 placeholder="Enter name"
                 buttonText="Next"
                 keyboardType="default"
+                data="name"
               />
             )}
             {this.state.questionNumber === 2 && (
               <PhotoUpload
                 advanceQuestion={this.advanceQuestion}
                 prompt="Upload your company logo"
+                data="logo"
               />
             )}
             {this.state.questionNumber === 3 && (
@@ -90,6 +92,7 @@ export default class ContractorSignUp extends React.Component {
                 prompt="What's your specialty?"
                 placeholder="Choose specialties"
                 buttonText="Next"
+                data="category"
               />
             )}
             {this.state.questionNumber === 4 && (
@@ -99,6 +102,7 @@ export default class ContractorSignUp extends React.Component {
                 placeholder="Enter zip code"
                 buttonText="Next"
                 keyboardType="numeric"
+                data="zip"
               />
             )}
             {this.state.questionNumber === 5 && (
@@ -108,6 +112,7 @@ export default class ContractorSignUp extends React.Component {
                 placeholder="Enter phone"
                 buttonText="Next"
                 keyboardType="numeric"
+                data="phone_number"
               />
             )}
             {this.state.questionNumber === 6 && (
@@ -117,6 +122,7 @@ export default class ContractorSignUp extends React.Component {
                 placeholder="Enter email"
                 buttonText="Next"
                 keyboardType="email-address"
+                data="email"
               />
             )}
             {this.state.questionNumber === 7 && (
@@ -126,6 +132,7 @@ export default class ContractorSignUp extends React.Component {
                 placeholder="Enter password"
                 buttonText="Finish"
                 keyboardType="default"
+                data="password"
               />
             )}
           </View>

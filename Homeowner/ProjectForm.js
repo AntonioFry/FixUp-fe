@@ -8,12 +8,12 @@ export default class ProjectForm extends Component {
     super();
     this.state = {
       questionNumber: 1,
-      data: []
+      data: {}
     }
   }
 
-  advanceQuestion = data => {
-    this.logData(data);
+  advanceQuestion = (key, value) => {
+    this.logData(key, value);
     const { questionNumber } = this.state;
     if (questionNumber < 5) {
       this.setState({ questionNumber: questionNumber + 1 });
@@ -24,8 +24,8 @@ export default class ProjectForm extends Component {
     }
   };
 
-  logData = homeownerData => {
-    const newData = [...this.state.data, homeownerData];
+  logData = (key, value) => {
+    const newData = { ...this.state.data, [this.state.data[key]]: value };
     this.setState({ data: newData });
   };
 
@@ -66,6 +66,7 @@ export default class ProjectForm extends Component {
               <PhotoUpload
                 advanceQuestion={this.advanceQuestion}
                 prompt="Upload image of project"
+                data="user_before_picture"
               />
             )}
             {this.state.questionNumber === 2 && (
@@ -74,6 +75,7 @@ export default class ProjectForm extends Component {
                 prompt="Name your project"
                 placeholder="Project name"
                 buttonText="Next"
+                data="title"
               />
             )}
             {this.state.questionNumber === 3 && (
@@ -82,6 +84,7 @@ export default class ProjectForm extends Component {
                 prompt="Tag this project"
                 placeholder="Project tag"
                 buttonText="Next"
+                data="category"
               />
             )}
             {this.state.questionNumber === 4 && (
@@ -90,6 +93,7 @@ export default class ProjectForm extends Component {
                 prompt="Write description of project/problem"
                 placeholder="Enter description"
                 buttonText="Next"
+                data="description"
               />
             )}
             {this.state.questionNumber === 5 && (

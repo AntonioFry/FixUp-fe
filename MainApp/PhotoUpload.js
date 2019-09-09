@@ -51,7 +51,7 @@ export default class PhotoUpload extends React.Component {
           />
         )}
         <TouchableOpacity
-          onPress={field => this.props.advanceQuestion(this.state.photo)}
+          onPress={() => this.props.advanceQuestion(this.props.data, this.state.photo)}
           style={styles.button}
         >
           <Text>Next</Text>
