@@ -18,7 +18,10 @@ import ProjectForm from '../Homeowner/ProjectForm';
 
 const ContractorHomeStack = createStackNavigator(
   {
-    ContractorHome: ContractorHome,
+    ContractorHome: {
+      screen: ContractorHome,
+      params: { contractorId: 1 }
+    },
     ViewProject: ViewProject,
     ConnectedProject: ConnectedProject
   },
@@ -44,6 +47,7 @@ const ContractorTabStack = createMaterialBottomTabNavigator(
     },
     ProjectSwiper: {
       screen: ProjectSwiper,
+      params: { contractorId: 1 },
       navigationOptions: {
         tabBarLabel: "Projects",
         tabBarIcon: (

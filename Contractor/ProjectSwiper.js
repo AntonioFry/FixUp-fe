@@ -1,14 +1,23 @@
 import React, { Component } from "react";
 import { StyleSheet, View, Text, Image, TouchableOpacity } from "react-native";
-import cards from "../mockData/mockProjects";
+// import cards from "../mockData/mockProjects";
 import Swiper from "react-native-deck-swiper";
+import { getProjectBatch } from "../contractorApiCalls";
 
 
 class ProjectSwiper extends Component {
   state = {
+    cards: [],
     cardIndex: 0,
     swipedAllCards: false
   };
+
+  async componentDidMount() {
+    const cards = await getProjectBatch(
+      this.props.navigation.getParam("contractorId")
+    );
+    await this.setState({ cards });
+  }
 
   onChange(e) {
     e.preventDefault();
@@ -27,12 +36,12 @@ class ProjectSwiper extends Component {
   };
 
   onSwiped = (type, index) => {
-    console.log(index)
+    console.log(index);
     if (type === "left") {
-      console.log(type)
+      console.log(type);
       // do nothing
     } else {
-      console.log(type)
+      console.log(type);
       // send api call to add contractor to project
     }
     // console.log(`on swiped ${type}`)
@@ -47,19 +56,19 @@ class ProjectSwiper extends Component {
   render() {
     return (
       <View style={styles.screen}>
-        <Swiper
+        {this.state.cards.length > 0 && <Swiper
           paddingBottom={100}
           backgroundColor="#white"
           ref={swiper => {
             this.swiper = swiper;
           }}
-          onSwiped={(index) => this.onSwiped("general", index)}
-          onSwipedLeft={(index) => this.onSwiped("left", index)}
-          onSwipedRight={(index) => this.onSwiped("right", index)}
-          onSwipedTop={(index) => this.onSwiped("top", index)}
-          onSwipedBottom={(index) => this.onSwiped("bottom", index)}
+          onSwiped={index => this.onSwiped("general", index)}
+          onSwipedLeft={index => this.onSwiped("left", index)}
+          onSwipedRight={index => this.onSwiped("right", index)}
+          onSwipedTop={index => this.onSwiped("top", index)}
+          onSwipedBottom={index => this.onSwiped("bottom", index)}
           onTapCard={this.swipeLeft}
-          cards={cards}
+          cards={this.state.cards}
           cardIndex={this.state.cardIndex}
           cardVerticalMargin={10}
           renderCard={this.renderCard}
@@ -140,7 +149,7 @@ class ProjectSwiper extends Component {
           animateOverlayLabelsOpacity
           animateCardOpacity
           swipeBackCard
-        />
+        />}
         <View style={styles.swiperButtonsWrapper}>
           <TouchableOpacity
             onPress={left => this.onSwiped("left")}
