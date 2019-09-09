@@ -26,10 +26,13 @@ class ProjectSwiper extends Component {
     );
   };
 
-  onSwiped = type => {
+  onSwiped = (type, index) => {
+    console.log(index)
     if (type === "left") {
+      console.log(type)
       // do nothing
     } else {
+      console.log(type)
       // send api call to add contractor to project
     }
     // console.log(`on swiped ${type}`)
@@ -50,11 +53,11 @@ class ProjectSwiper extends Component {
           ref={swiper => {
             this.swiper = swiper;
           }}
-          onSwiped={() => this.onSwiped("general")}
-          onSwipedLeft={() => this.onSwiped("left")}
-          onSwipedRight={() => this.onSwiped("right")}
-          onSwipedTop={() => this.onSwiped("top")}
-          onSwipedBottom={() => this.onSwiped("bottom")}
+          onSwiped={(index) => this.onSwiped("general", index)}
+          onSwipedLeft={(index) => this.onSwiped("left", index)}
+          onSwipedRight={(index) => this.onSwiped("right", index)}
+          onSwipedTop={(index) => this.onSwiped("top", index)}
+          onSwipedBottom={(index) => this.onSwiped("bottom", index)}
           onTapCard={this.swipeLeft}
           cards={cards}
           cardIndex={this.state.cardIndex}
