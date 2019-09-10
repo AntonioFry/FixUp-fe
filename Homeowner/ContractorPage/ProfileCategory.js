@@ -1,7 +1,8 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 
-export const ProfileCategory = ({ category, value }) => {
+export default ProfileCategory = ({ category, value }) => {
+  console.log(value)
   return (
     <View>
       <Text>{category}</Text>

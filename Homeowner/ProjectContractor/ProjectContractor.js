@@ -19,16 +19,16 @@ export default class ProjectContractor extends Component {
 
   goToContractorPage = () => {
     const { name, zip, phone_number, email, category } = this.props.contractor;
-    navigation.navigate("ViewProject", { title, description, photo, userType: "homeowner" });
+    this.props.navigation.navigate("ContractorPage", { name, email, zip, phone_number, category });
   }
 
   render() {
     const { name } = this.props.contractor;
     return (
       <View style={styles.container}>
-        <View style={styles.textContainer}>
+        <TouchableOpacity onPress={this.goToContractorPage} style={styles.textContainer}>
           <Text style={styles.name}>{name}</Text>
-        </View>
+        </TouchableOpacity>
         <TouchableOpacity style={styles.button} onPress={this.connectWithContractor}>
           <Text style={styles.buttonText}>connect</Text>
         </TouchableOpacity>

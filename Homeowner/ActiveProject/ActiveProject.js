@@ -19,7 +19,6 @@ export default class ActiveProject extends Component {
       contractors.forEach( async (contractor) => {
         const contractorObj = await getContractor(contractor.contractor_id)
         await this.setState({ projectContractors: [...this.state.projectContractors, contractorObj] });
-        console.log(this.state.projectContractors)
       });
     } catch (error) {
       
@@ -34,13 +33,14 @@ export default class ActiveProject extends Component {
   };
 
   render() {
-    const { title } = this.props;
+    const { title, navigation } = this.props;
     const formattedContractors = this.state.projectContractors.map((contractor, index) => {
       return (
         <ProjectContractor
           id={index + 1}
           contractor={contractor}
           key={index + 1}
+          navigation={navigation}
         />
       )
     })
