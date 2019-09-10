@@ -19,6 +19,7 @@ export default class ActiveProject extends Component {
       contractors.forEach( async (contractor) => {
         const contractorObj = await getContractor(contractor.contractor_id)
         await this.setState({ projectContractors: [...this.state.projectContractors, contractorObj] });
+        console.log(this.state.projectContractors)
       });
     } catch (error) {
       
@@ -38,7 +39,7 @@ export default class ActiveProject extends Component {
       return (
         <ProjectContractor
           id={index + 1}
-          name={contractor.name}
+          contractor={contractor}
           key={index + 1}
         />
       )

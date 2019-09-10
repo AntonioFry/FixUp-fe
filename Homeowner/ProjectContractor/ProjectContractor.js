@@ -17,8 +17,13 @@ export default class ProjectContractor extends Component {
       // user will unconnect from that specific contractor deleting the contractor project
   }
 
+  goToContractorPage = () => {
+    const { name, zip, phone_number, email, category } = this.props.contractor;
+    navigation.navigate("ViewProject", { title, description, photo, userType: "homeowner" });
+  }
+
   render() {
-    const { name, dateSwiped } = this.props;
+    const { name } = this.props.contractor;
     return (
       <View style={styles.container}>
         <View style={styles.textContainer}>
