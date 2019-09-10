@@ -29,7 +29,7 @@ export default class ActiveProject extends Component {
 
   goToProject = () => {
     const { title, description, photo, navigation } = this.props;
-    navigation.navigate("ViewProject", { title, description, photo });
+    navigation.navigate("ViewProject", { title, description, photo, userType: "homeowner" });
   };
 
   render() {
