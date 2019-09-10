@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
-import ProfileCategory from "../Contractor/ProfileCategory";
+import ProfileCategory from "../../Contractor/ProfileCategory";
 
 export default class HomeownerProfile extends Component {
   constructor() {

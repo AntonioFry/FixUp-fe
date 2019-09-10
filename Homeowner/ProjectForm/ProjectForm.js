@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, TextInput, Text, TouchableOpacity, StyleSheet, Image } from 'react-native';
-import SignUpQuestion from '../MainApp/SignUpQuestion';
-import PhotoUpload from '../MainApp/PhotoUpload';
+import SignUpQuestion from '../../MainApp/SignUpQuestion';
+import PhotoUpload from '../../MainApp/PhotoUpload';
 
 export default class ProjectForm extends Component {
   constructor() {
@@ -41,7 +41,7 @@ export default class ProjectForm extends Component {
           <Image
             key={i}
             style={styles.activeDot}
-            source={require("../assets/activeDot.png")}
+            source={require("../../assets/activeDot.png")}
           />
         );
       } else {
@@ -49,7 +49,7 @@ export default class ProjectForm extends Component {
           <Image
             key={i}
             style={styles.inactiveDot}
-            source={require("../assets/inactiveDot.png")}
+            source={require("../../assets/inactiveDot.png")}
           />
         );
       }

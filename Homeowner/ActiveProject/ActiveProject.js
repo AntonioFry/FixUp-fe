@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import data from '../mockData/mockContactors';
-import ProjectContractor from './ProjectContractor';
+import data from '../../mockData/mockContactors';
+import ProjectContractor from '../ProjectContractor/ProjectContractor';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import { getContractor } from '../contractorApiCalls';
+import { getContractor } from '../../contractorApiCalls';
 
 export default class ActiveProject extends Component {
   constructor() {

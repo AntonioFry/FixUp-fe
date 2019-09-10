@@ -8,13 +8,13 @@ import SignUp from "./SignUp";
 import HomeownerSignUp from "./HomeownerSignUp";
 import ContractorSignUp from "./ContractorSignUp";
 import ContractorHome from "../Contractor/ContractorHome";
-import ActiveProjects from "../Homeowner/ActiveProjects";
-import HomeownerProfile from "../Homeowner/HomeownerProfile";
+import ActiveProjects from "../Homeowner/ActiveProjects/ActiveProjects";
+import HomeownerProfile from "../Homeowner/HomeownerProfile/HomeownerProfile";
 import ProjectSwiper from "../Contractor/ProjectSwiper";
 import ContractorProfile from "../Contractor/ContractorProfile";
 import ViewProject from "../Contractor/ViewProject";
 import ConnectedProject from "../Contractor/ConnectedProject";
-import ProjectForm from '../Homeowner/ProjectForm';
+import ProjectForm from '../Homeowner/ProjectForm/ProjectForm';
 
 const ContractorHomeStack = createStackNavigator(
   {

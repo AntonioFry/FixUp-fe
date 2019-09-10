@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Text, ScrollView, View, StyleSheet } from 'react-native';
-import data from '../mockData/mockHomeOwnerProjects';
-import ActiveProject from './ActiveProject';
-import { getHomeownerProjects } from './apicalls';
+import data from '../../mockData/mockHomeOwnerProjects';
+import ActiveProject from '../ActiveProject/ActiveProject';
+import { getHomeownerProjects } from '../apicalls';
 
 export default class ActiveProjects extends Component {
   constructor() {
