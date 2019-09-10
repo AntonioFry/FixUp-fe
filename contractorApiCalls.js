@@ -27,6 +27,17 @@ export const getContractorProjects = async id => {
   }
 };
 
+export const getSuggestedProjects = async id => {
+  const url = `https://fixup-backend.herokuapp.com/api/v1/contractors/${id}/suggestedProjects`;
+  try {
+    const response = await fetch(url);
+    const contractorProjects = response.json();
+    return contractorProjects;
+  } catch (error) {
+    return new Error(error);
+  }
+};
+
 export const getProjectBatch = async id => {
   const url = `https://fixup-backend.herokuapp.com/api/v1/projects?contractor_id=${id}`;
   try {
