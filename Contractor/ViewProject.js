@@ -12,12 +12,13 @@ export default class ViewProject extends React.Component {
       userEmail,
       userPhone
     } = this.props.navigation.state.params;
+    const base64image = `data:image/png;base64,${photo.uri}`;
     return (
       <View style={styles.projectWrapper}>
         <Text style={styles.title}>{title}</Text>
         <Image
           style={styles.photo}
-          source={require("../assets/burstPipeGuy.jpg")}
+          source={{ uri: base64image }}
         />
         <View style={styles.infoBox}>
           <Text style={styles.category}>#{category}</Text>

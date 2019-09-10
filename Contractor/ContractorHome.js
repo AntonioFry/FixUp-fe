@@ -2,6 +2,7 @@ import React from "react";
 import { View, Text, StyleSheet, ScrollView, Image } from "react-native";
 import ConnectedProject from "./ConnectedProject";
 import { getContractorProjects } from "../contractorApiCalls";
+import SuggestedProject from "./SuggestedProject";
 
 export default class ContractorHome extends React.Component {
   state = {
@@ -17,14 +18,15 @@ export default class ContractorHome extends React.Component {
 
   displayConnectedProjects = () => {
     return this.state.connectedProjects.map((proj, index) => {
+      const { project, seen } = proj;
       return (
         <ConnectedProject
           key={index}
-          seen={proj.seen}
+          seen={seen}
           description={proj.description}
-          title={proj.title}
-          photo={proj.user_before_picture}
-          category={proj.category}
+          title={project.title}
+          photo={project.user_before_picture}
+          category={project.category}
           navigation={this.props.navigation}
         />
       );
@@ -33,15 +35,15 @@ export default class ContractorHome extends React.Component {
 
   displaySuggestedProjects = () => {
     return this.state.suggestedProjects.map((proj, index) => {
+      const { project } = proj;
       return (
-        <View style={styles.suggestedProjectWrapper} key={index}>
-          <Text style={styles.projTitle}>{proj.title}</Text>
-          <Image
-            style={styles.projPhoto}
-            source={require("../assets/burstPipeGuy.jpg")}
-          />
-          <Text>{proj.description}</Text>
-        </View>
+        <SuggestedProject
+          key={index}
+          title={project.title}
+          image={project.user_before_picture}
+          category={project.category}
+          description={project.description}
+        />
       );
     });
   };
@@ -106,32 +108,32 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
     alignItems: "flex-start"
   },
-  suggestedProjectWrapper: {
-    padding: 5,
-    borderRadius: 8,
-    width: 250,
-    height: 300,
-    margin: 10,
-    justifyContent: "space-around",
-    alignItems: "center",
-    shadowColor: "#000",
-    backgroundColor: "white",
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 1
-    },
-    shadowOpacity: 0.17,
-    shadowRadius: 8,
-    elevation: 2
-  },
-  projPhoto: {
-    height: 180,
-    width: 230
-  },
-  projTitle: {
-    fontWeight: "700"
-  },
+  // suggestedProjectWrapper: {
+  //   padding: 5,
+  //   borderRadius: 8,
+  //   width: 250,
+  //   height: 300,
+  //   margin: 10,
+  //   justifyContent: "space-around",
+  //   alignItems: "center",
+  //   shadowColor: "#000",
+  //   backgroundColor: "white",
+  //   shadowColor: "#000",
+  //   shadowOffset: {
+  //     width: 0,
+  //     height: 1
+  //   },
+  //   shadowOpacity: 0.17,
+  //   shadowRadius: 8,
+  //   elevation: 2
+  // },
+  // projPhoto: {
+  //   height: 180,
+  //   width: 230
+  // },
+  // projTitle: {
+  //   fontWeight: "700"
+  // },
   suggestionsTitle: {
     fontSize: 16,
     fontWeight: "200",

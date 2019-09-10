@@ -22,10 +22,11 @@ class ProjectSwiper extends Component {
   }
 
   renderCard = (card, index) => {
+    const base64image = `data:image/png;base64,${card.user_before_picture}`;
     return (
       <View style={styles.card}>
         <Text style={styles.title}>{card.title}</Text>
-        <Image style={styles.image} source={card.photo} />
+        <Image style={styles.image} source={{ uri: base64image }} />
         <Text style={styles.tag}>#{card.category}</Text>
         <Text style={styles.description}>{card.description}</Text>
       </View>
@@ -37,11 +38,9 @@ class ProjectSwiper extends Component {
     const projectId = this.state.cards[index].id;
     if (type === "left" || type === "bottom") {
       const res = await patchContractorProject(contractorId, projectId, 1);
-      console.log(res)
     }
     if (type === "right" || type === "top") {
       const res = await patchContractorProject(contractorId, projectId, 2);
-      console.log(res);
     }
   };
 
