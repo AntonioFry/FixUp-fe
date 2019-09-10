@@ -13,7 +13,8 @@ export default class ContractorHome extends React.Component {
   async componentDidMount() {
     const contractorId = this.props.navigation.getParam("contractorId");
     const connectedProjects = await getContractorProjects(contractorId);
-    await this.setState({ connectedProjects });
+    // const suggestedProjects = await getSuggestedProjects(contractorId);
+    this.setState({ connectedProjects });
   }
 
   displayConnectedProjects = () => {
@@ -34,6 +35,7 @@ export default class ContractorHome extends React.Component {
   };
 
   displaySuggestedProjects = () => {
+    const contractorId = this.props.navigation.getParam("contractorId");
     return this.state.suggestedProjects.map((proj, index) => {
       const { project } = proj;
       return (
@@ -43,6 +45,8 @@ export default class ContractorHome extends React.Component {
           image={project.user_before_picture}
           category={project.category}
           description={project.description}
+          projectId={project.id}
+          contractorId={contractorId}
         />
       );
     });
