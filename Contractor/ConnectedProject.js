@@ -5,7 +5,7 @@ export default class ConnectedProject extends React.Component {
 
   goToProject = () => {
     const { title, description, photo, navigation, category } = this.props;
-    navigation.navigate("ViewProject", { title, description, photo, category, userEmail: "fake@gmail.com", userPhone: 5555555555 });
+    navigation.navigate("ViewProject", { title, description, photo, category, userEmail: "fake@gmail.com", userPhone: 5555555555, userType: "contractor" });
   };
 
   render() {

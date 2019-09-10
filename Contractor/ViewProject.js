@@ -23,13 +23,15 @@ export default class ViewProject extends React.Component {
           <Text style={styles.category}>#{category}</Text>
           <Text style={styles.description}>{description}</Text>
         </View>
-        <View style={styles.contactWrapper}>
-          <Text style={styles.contactMessage}>
-            This homeowner has shared their contact info with you!
-          </Text>
-          <Text style={styles.email}>{userEmail}</Text>
-          <Text style={styles.phone}>{userPhone}</Text>
-        </View>
+        {this.props.navigation.state.params.userType === "contractor" && (
+          <View style={styles.contactWrapper}>
+            <Text style={styles.contactMessage}>
+              This homeowner has shared their contact info with you!
+            </Text>
+            <Text style={styles.email}>{userEmail}</Text>
+            <Text style={styles.phone}>{userPhone}</Text>
+          </View>
+        )}
       </View>
     );
   }
