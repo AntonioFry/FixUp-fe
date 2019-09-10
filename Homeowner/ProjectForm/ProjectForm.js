@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { View, TextInput, Text, TouchableOpacity, StyleSheet, Image } from 'react-native';
 import SignUpQuestion from '../../MainApp/SignUpQuestion';
 import PhotoUpload from '../../MainApp/PhotoUpload';
+import { postProject } from '../apicalls';
+import * as ImageManipulator from "expo-image-manipulator";
 
 export default class ProjectForm extends Component {
   constructor() {
@@ -18,7 +20,7 @@ export default class ProjectForm extends Component {
     if (questionNumber < 5) {
       this.setState({ questionNumber: questionNumber + 1 });
     } else {
-      this.postData(this.state.data);
+      this.postData();
       this.props.navigation.navigate("Home");
       this.setState({ questionNumber: 1 })
     }
@@ -29,8 +31,19 @@ export default class ProjectForm extends Component {
     this.setState({ data: newData });
   };
 
-  postData = data => {
-    // apiCall to post data object to backend
+  postData = async () => {
+    const { title, category, description, user_before_picture } = this.state.data;
+    console.log(this.state.data)
+    const base64Image = await ImageManipulator.manipulateAsync(user_before_picture.uri, [], {
+      base64: true, compress: .5
+    });
+    const newProject = {
+      title,
+      category,
+      description,
+      user_before_picture: base64Image
+    };
+    await postProject(newProject);
   };
 
   displayDots = () => {
