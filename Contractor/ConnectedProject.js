@@ -5,7 +5,7 @@ export default class ConnectedProject extends React.Component {
 
   goToProject = async () => {
     const { title, description, photo, navigation, category, contractorId, projectId } = this.props;
-    await patchContractorProjectSeen(contractorId, projectId);
+    // await patchContractorProjectSeen(contractorId, projectId);
     navigation.navigate("ViewProject", { title, description, photo, category, userEmail: "fake@gmail.com", userPhone: 5555555555, userType: "contractor" });
   };
 

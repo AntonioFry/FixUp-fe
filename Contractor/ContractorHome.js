@@ -13,7 +13,7 @@ export default class ContractorHome extends React.Component {
   async componentDidMount() {
     const contractorId = this.props.navigation.getParam("contractorId");
     const connectedProjects = await getContractorProjects(contractorId);
-    const connectedProjects = await getSuggestedProjects(contractorId);
+    // const suggestedProjects = await getSuggestedProjects(contractorId);
     this.setState({ connectedProjects });
   }
 
