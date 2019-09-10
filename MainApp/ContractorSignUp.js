@@ -18,20 +18,20 @@ export default class ContractorSignUp extends React.Component {
     if (questionNumber < 7) {
       this.setState({ questionNumber: questionNumber + 1 });
     } else {
-      await this.postData(this.state.data);
+      await this.postData();
       this.props.navigation.navigate("ContractorApp");
     }
   };
 
   logData = (key, value) => {
-    const newData = { ...this.state.data, [this.state.data[key]]: value };
+    const newData = { ...this.state.data, [key]: value };
     this.setState({ data: newData });
   };
 
-  postData = async data => {
+  postData = async () => {
     const { name, email, phone_number, zip, category, logo } = this.state.data;
     const base64Image = await ImageManipulator.manipulateAsync(logo.uri, [], {
-      base64: true
+      base64: true, compress: .5
     });
     const newContractor = {
       name,
