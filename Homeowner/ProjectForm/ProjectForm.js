@@ -33,7 +33,6 @@ export default class ProjectForm extends Component {
 
   postData = async () => {
     const { title, category, description, user_before_picture } = this.state.data;
-    console.log(this.state.data)
     const base64Image = await ImageManipulator.manipulateAsync(user_before_picture.uri, [], {
       base64: true, compress: .5
     });
@@ -41,8 +40,9 @@ export default class ProjectForm extends Component {
       title,
       category,
       description,
-      user_before_picture: base64Image
+      user_before_picture: "logo.png"
     };
+    console.log(newProject);
     await postProject(newProject);
   };
 
