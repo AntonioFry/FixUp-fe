@@ -2,17 +2,32 @@ import React from "react";
 import { Text, StyleSheet, Image, TouchableOpacity } from "react-native";
 
 export default class ConnectedProject extends React.Component {
-
   goToProject = async () => {
-    const { title, description, photo, navigation, category, contractorId, projectId } = this.props;
+    const {
+      title,
+      description,
+      photo,
+      navigation,
+      category,
+      contractorId,
+      projectId
+    } = this.props;
     // await patchContractorProjectSeen(contractorId, projectId);
-    navigation.navigate("ViewProject", { title, description, photo, category, userEmail: "fake@gmail.com", userPhone: 5555555555, userType: "contractor" });
+    navigation.navigate("ViewProject", {
+      title,
+      description,
+      photo,
+      category,
+      userEmail: "fake@gmail.com",
+      userPhone: 5555555555,
+      userType: "contractor"
+    });
   };
 
   render() {
     return (
       <TouchableOpacity onPress={this.goToProject} style={styles.wrapper}>
-        <Text style={!this.props.seen ? styles.seen : styles.unseen}>
+        <Text style={this.props.seen ? styles.seen : styles.unseen}>
           {this.props.title}
         </Text>
         <Image style={styles.bell} source={require("../assets/forward.png")} />
