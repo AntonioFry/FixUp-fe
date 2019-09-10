@@ -64,8 +64,8 @@ export const patchContractor = async (updatedContractor, id) => {
   }
 };
 
-const getContractor = async (id) => {
-  const url = `https://fixup-backend.herokuapp.com/api/v1/contractors/${}`;
+export const getContractor = async (id) => {
+  const url = `https://fixup-backend.herokuapp.com/api/v1/contractors/${id}`;
   try {
     const response = await fetch(url);
     const contractor = await response.json();

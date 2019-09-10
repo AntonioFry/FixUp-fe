@@ -3,6 +3,7 @@ import { View, Text, StyleSheet } from 'react-native';
 import data from '../mockData/mockContactors';
 import ProjectContractor from './ProjectContractor';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import { getContractor } from '../contractorApiCalls';
 
 export default class ActiveProject extends Component {
   constructor() {
@@ -12,7 +13,16 @@ export default class ActiveProject extends Component {
     }
   }
 
-  componentDidMount() {
+  componentDidMount = async () => {
+    const { contractors } = this.props;
+    try {
+      contractors.forEach( async (contractor) => {
+        const contractorObj = await getContractor(contractor.contractor_id)
+        await this.setState({ projectContractors: [...this.state.projectContractors, contractorObj] });
+      });
+    } catch (error) {
+      
+    }
     // when component mounts fetch all contractors for this project
     // then set the state with the contractors
   }
@@ -23,16 +33,13 @@ export default class ActiveProject extends Component {
   };
 
   render() {
-    const { title, id } = this.props;
-    const projectContractors = data.filter(contractor => {
-      return contractor.projectId === id;
-    })
-    const formattedContractors = projectContractors.map(contractor => {
+    const { title } = this.props;
+    const formattedContractors = this.state.projectContractors.map((contractor, index) => {
       return (
         <ProjectContractor
-        id={contractor.id}
-        name={contractor.name}
-        dateSwiped={contractor.dateSwiped}
+          id={index + 1}
+          name={contractor.name}
+          key={index + 1}
         />
       )
     })

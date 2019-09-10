@@ -14,7 +14,6 @@ export default class ActiveProjects extends Component {
   }
 
   componentDidMount = async () => {
-    console.log(this.props)
     const userId = this.props.navigation.getParam("homeownerId")
     try {
       await this.setState({ userId: userId })
@@ -29,6 +28,7 @@ export default class ActiveProjects extends Component {
     const formattedProject = this.state.homeownerProjects.map(project => {
       return (
         <ActiveProject
+        contractors={project.contractors}
         id={project.id}
         title={project.title}
         photo={project.photo}
