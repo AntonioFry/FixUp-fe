@@ -76,3 +76,14 @@ export const patchContractorProject = async (
     return new Error(error);
   }
 };
+
+export const getContractor = async (id) => {
+  const url = `https://fixup-backend.herokuapp.com/api/v1/contractors/${id}`;
+  try {
+    const response = await fetch(url);
+    const contractor = await response.json();
+    return contractor;
+  } catch (error) {
+    return new Error(error);
+  }
+}
