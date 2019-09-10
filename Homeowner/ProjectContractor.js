@@ -23,7 +23,6 @@ export default class ProjectContractor extends Component {
       <View style={styles.container}>
         <View style={styles.textContainer}>
           <Text style={styles.name}>{name}</Text>
-          <Text style={styles.date}>{dateSwiped}</Text>
         </View>
         <TouchableOpacity style={styles.button} onPress={this.connectWithContractor}>
           <Text style={styles.buttonText}>connect</Text>
