@@ -25,8 +25,8 @@ class ProjectSwiper extends Component {
     return (
       <View style={styles.card}>
         <Text style={styles.title}>{card.title}</Text>
-        <Image style={styles.image} source={card.uri} />
-        <Text style={styles.tag}>#{card.specialty}</Text>
+        <Image style={styles.image} source={card.photo} />
+        <Text style={styles.tag}>#{card.category}</Text>
         <Text style={styles.description}>{card.description}</Text>
       </View>
     );
@@ -190,9 +190,6 @@ const styles = StyleSheet.create({
     width: "100%",
     height: "50%",
     marginTop: 10,
-    borderRadius: 10,
-    borderWidth: 0.75,
-    borderColor: "black",
     marginBottom: 20
   },
   button: {
