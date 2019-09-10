@@ -61,12 +61,13 @@ export const patchContractorProject = async (
   projectId,
   choice
 ) => {
-  const url = `https://fixup-backend.herokuapp.com/api/v1/contractors/${contractorId}/projects/${projectId}?contractor_choice=${choice}`;
+  const url = `https://fixup-backend.herokuapp.com/api/v1/contractors/${contractorId}/projects/${projectId}`;
   const options = {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json"
-    }
+    },
+    body: JSON.stringify({ contractor_choice: choice })
   };
   try {
     const response = await fetch(url, options);

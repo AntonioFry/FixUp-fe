@@ -4,13 +4,32 @@ import { View, Text, Image, StyleSheet } from "react-native";
 
 export default class ViewProject extends React.Component {
   render() {
-    const { title, category, photo, description } = this.props.navigation.state.params;
+    const {
+      title,
+      category,
+      photo,
+      description,
+      userEmail,
+      userPhone
+    } = this.props.navigation.state.params;
     return (
       <View style={styles.projectWrapper}>
-        <Text>{title}</Text>
-        {/* <Image source={{ uri: photo.uri }} /> */}
-        <Text>{category}</Text>
-        <Text>{description}</Text>
+        <Text style={styles.title}>{title}</Text>
+        <Image
+          style={styles.photo}
+          source={require("../assets/burstPipeGuy.jpg")}
+        />
+        <View style={styles.infoBox}>
+          <Text style={styles.category}>#{category}</Text>
+          <Text style={styles.description}>{description}</Text>
+        </View>
+        <View style={styles.contactWrapper}>
+          <Text style={styles.contactMessage}>
+            This homeowner has shared their contact info with you!
+          </Text>
+          <Text style={styles.email}>{userEmail}</Text>
+          <Text style={styles.phone}>{userPhone}</Text>
+        </View>
       </View>
     );
   }
@@ -20,6 +39,50 @@ const styles = StyleSheet.create({
   projectWrapper: {
     height: "100%",
     justifyContent: "flex-start",
+    alignItems: "center",
     marginTop: 70
+  },
+  title: {
+    fontSize: 22,
+    marginBottom: 10
+  },
+  photo: {
+    height: 300,
+    width: "95%",
+    borderRadius: 4
+  },
+  infoBox: {
+    alignItems: "flex-start",
+    width: "95%",
+    height: "25%"
+  },
+  category: {
+    marginTop: 10,
+    fontSize: 16
+  },
+  description: {
+    marginTop: 30,
+    fontSize: 16
+  },
+  contactWrapper: {
+    width: "95%",
+    height: "25%",
+    alignItems: "center"
+  },
+  contactMessage: {
+    fontSize: 14,
+    fontWeight: "100",
+    color: "#7C9EB2",
+    margin: 10,
+    textAlign: "center"
+  },
+  email: {
+    fontSize: 14,
+    marginBottom: 5,
+    fontWeight: "700"
+  },
+  phone: {
+    fontSize: 14,
+    fontWeight: "700"
   }
 });
