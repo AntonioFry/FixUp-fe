@@ -30,10 +30,10 @@ const styles = StyleSheet.create({
     padding: 14
   },
   seen: {
-    fontWeight: "900"
+    fontWeight: "100"
   },
   unseen: {
-    fontWeight: "100"
+    fontWeight: "900"
   },
   bell: {
     height: 15,
