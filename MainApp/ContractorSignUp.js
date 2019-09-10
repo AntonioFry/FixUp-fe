@@ -4,7 +4,7 @@ import SignUpQuestion from "./SignUpQuestion";
 import PhotoUpload from "./PhotoUpload";
 import SpecialtyPicker from "./SpecialtyPicker";
 import { postContractor } from "../contractorApiCalls";
-const FileUpload = require("NativeModules").FileUpload;
+import * as ImageManipulator from "expo-image-manipulator";
 
 export default class ContractorSignUp extends React.Component {
   state = {
@@ -18,25 +18,28 @@ export default class ContractorSignUp extends React.Component {
     if (questionNumber < 7) {
       this.setState({ questionNumber: questionNumber + 1 });
     } else {
-      await this.postData(this.state.data);
+      await this.postData();
       this.props.navigation.navigate("ContractorApp");
     }
   };
 
   logData = (key, value) => {
-    const newData = { ...this.state.data, [this.state.data[key]]: value };
+    const newData = { ...this.state.data, [key]: value };
     this.setState({ data: newData });
   };
 
-  postData = async data => {
+  postData = async () => {
     const { name, email, phone_number, zip, category, logo } = this.state.data;
+    const base64Image = await ImageManipulator.manipulateAsync(logo.uri, [], {
+      base64: true, compress: .5
+    });
     const newContractor = {
       name,
       email,
       phone_number,
       zip,
       category,
-      logo: "logo.jpg",
+      logo: base64Image
     };
     await postContractor(newContractor);
   };

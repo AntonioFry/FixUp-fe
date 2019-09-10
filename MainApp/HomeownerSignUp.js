@@ -20,7 +20,7 @@ export default class HomeownerSignUp extends React.Component {
   };
 
   logData = (key, value) => {
-    const newData = { ...this.state.data, [this.state.data[key]]: value };
+    const newData = { ...this.state.data, [key]: value };
     this.setState({ data: newData });
   };
 
