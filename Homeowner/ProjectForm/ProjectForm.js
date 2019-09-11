@@ -36,7 +36,6 @@ export default class ProjectForm extends Component {
     const base64Image = await ImageManipulator.manipulateAsync(user_before_picture.uri, [], {
       base64: true, compress: .5
     });
-    console.log(base64Image.base64)
     const newProject = {
       title,
       category,
