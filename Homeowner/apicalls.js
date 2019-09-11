@@ -62,3 +62,23 @@ export const patchHomeowner = async (updatedHomeowner, id) => {
     return new Error(error)
   }
 };
+
+export const patchUserChoice = async (projectId, contractorId) => {
+  const url = `https://fixup-backend.herokuapp.com/api/v1/projects/${projectId}/contractors/${contractorId}?user_choice=True`;
+  const option = {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: {
+      "user_choice": "True"
+    }
+  }
+  try {
+    const response = await fetch(url, option);
+    const result = await response.json()
+    return result
+  } catch (error) {
+    return new Error(error)
+  }
+}
