@@ -20,7 +20,7 @@ describe('ContractorPage', () => {
         }
       }
     }
-      wrapper = Shallow(<ContractorPage props={props} />)
+      wrapper = shallow(<ContractorPage props={props} />)
   })
 
   it('should match the snapshot', () => {

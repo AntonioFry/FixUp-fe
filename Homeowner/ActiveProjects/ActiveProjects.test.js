@@ -1,5 +1,5 @@
 import React from 'react';
-import { Shallow } from 'enzyme';
+import { shallow } from 'enzyme';
 import ActiveProjects from './ActiveProjects';
 
 describe('ActiveProjects', () => {
@@ -13,7 +13,7 @@ describe('ActiveProjects', () => {
         getParam: jest.fn()
       },
     }
-    wrapper = Shallow(<ActiveProjects props={props}/>) 
+    wrapper = shallow(<ActiveProjects props={props}/>) 
   })
 
   it('should match the snapshot', () => {
