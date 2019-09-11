@@ -1,4 +1,4 @@
-import { patchHomeowner, postProject, postUser, getHomeownerProjects } from './apicalls';
+import { patchUserChoice, patchHomeowner, postProject, postUser, getHomeownerProjects } from './apicalls';
 
 describe('apicalls', () => {
 
@@ -196,4 +196,67 @@ describe('apicalls', () => {
     })
     
   });
+
+  describe('patchUserChoice', () => {
+    let mockResponse;
+    let projectId;
+    let contractorId;
+
+    beforeEach(() => {
+      projectId = 1
+      contractorId = 1
+      mockResponse = {
+        message: "You've been Fixed Up!",
+        contractor: {
+          name: "Plumbing Person",
+          email: "plumbing@gmail.com",
+          phone_number: "7205555555",
+          zip: "80555",
+          category: "plumbing",
+          logo: "plumbinglogo.png"
+        },
+        project: {
+          title: "Broken Pipe",
+          description: "A pipe in my bathroom is leaky",
+          category: "plumbing",
+          user_before_picture: "brokenpipe.png",
+          user_after_picture: null
+        },
+        user: {
+          full_name: "Mario Mario",
+          email: "jumpman@gmail.com",
+          phone_number: "3035555555",
+          zip: "80555"
+        }
+      }
+
+      global.fetch = jest.fn().mockImplementation(() => {
+        return Promise.resolve({
+          ok: true,
+          json: () => Promise.resolve(mockResponse)
+        })
+      })
+    })
+
+    it('should fetch given the correct url', () => {
+      const url = `https://fixup-backend.herokuapp.com/api/v1/projects/${projectId}/contractors/${contractorId}`;
+      const options = {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          user_choice: "True"
+        })
+      };
+      patchUserChoice(projectId, contractorId)
+      expect(global.fetch).toHaveBeenCalledWith(url, options)
+    })
+
+    it('should return a parsed response if status is ok', () => {
+      expect(patchUserChoice(projectId, contractorId)).resolves.toEqual(mockResponse);
+    })
+    
+  })
+
 })
