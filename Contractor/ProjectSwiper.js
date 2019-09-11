@@ -12,8 +12,8 @@ class ProjectSwiper extends Component {
 
   async componentDidMount() {
     const contractorId = this.props.navigation.getParam("contractorId");
-    const cards = await getProjectBatch(contractorId);
-    console.log(cards)
+    const response = await getProjectBatch(contractorId);
+    const cards = response.slice(0, 5);
     this.setState({ cards });
   }
 
@@ -23,7 +23,6 @@ class ProjectSwiper extends Component {
   }
 
   renderCard = (card, index) => {
-    console.log(card.user_before_picture)
     const base64image = `data:image/jpg;base64,${card.user_before_picture}`;
     return (
       <View style={styles.card}>
@@ -39,10 +38,10 @@ class ProjectSwiper extends Component {
     const contractorId = this.props.navigation.getParam("contractorId");
     const projectId = this.state.cards[index].id;
     if (type === "left" || type === "bottom") {
-      const res = await patchContractorProject(contractorId, projectId, 1);
+      await patchContractorProject(contractorId, projectId, 1);
     }
     if (type === "right" || type === "top") {
-      const res = await patchContractorProject(contractorId, projectId, 2);
+      await patchContractorProject(contractorId, projectId, 2);
     }
   };
 
@@ -73,7 +72,7 @@ class ProjectSwiper extends Component {
             renderCard={this.renderCard}
             onSwipedAll={this.onSwipedAllCards}
             stackSize={3}
-            infinite={true}
+            infinite={false}
             stackSeparation={15}
             overlayLabels={{
               bottom: {
