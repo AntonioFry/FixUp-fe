@@ -42,7 +42,6 @@ export default class ProjectForm extends Component {
       description,
       user_before_picture: base64Image
     };
-    console.log(newProject);
     await postProject(newProject);
   };
 
