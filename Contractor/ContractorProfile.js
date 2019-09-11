@@ -65,7 +65,7 @@ export default class ContractorProfile extends React.Component {
         {this.state.logo && (
           <View style={styles.logoWrapper}>
             <Text style={styles.leftText}>Logo</Text>
-            <Image source={{ uri: this.state.logo }} />
+            <Image style={styles.logo} source={{ uri: this.state.logo }} />
             <Image
               style={styles.editIcon}
               source={require("../assets/whiteEdit.png")}
@@ -94,8 +94,7 @@ export default class ContractorProfile extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    justifyContent: "flex-start",
-    width: "100%"
+    height: "100%"
   },
   header: {
     height: 100,
@@ -118,7 +117,13 @@ const styles = StyleSheet.create({
   },
   logoWrapper: {
     alignItems: "center",
+    height: 300,
+    width: "100%",
+    paddingVertical: 10
+  },
+  logo: {
     height: 200,
-    paddingHorizontal: 15
+    width: "90%",
+    borderRadius: 4
   }
 });

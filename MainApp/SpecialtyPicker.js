@@ -3,7 +3,7 @@ import { Picker, View, Text, StyleSheet, TouchableOpacity } from "react-native";
 
 export default class SpecialtyPicker extends React.Component {
   state = {
-    specialty: "electrical"
+    specialty: "Electrical"
   };
 
   render() {
@@ -17,11 +17,11 @@ export default class SpecialtyPicker extends React.Component {
             this.setState({ specialty: itemValue })
           }
         >
-          <Picker.Item color="orange" label="Electrical" value="electrical" />
-          <Picker.Item color="orange" label="Plumbing" value="plumbing" />
-          <Picker.Item color="orange" label="Landscaping" value="landscaping" />
-          <Picker.Item color="orange" label="Drywall" value="drywall" />
-          <Picker.Item color="orange" label="Carpentry" value="carpentry" />
+          <Picker.Item color="orange" label="Electrical" value="Electrical" />
+          <Picker.Item color="orange" label="Plumbing" value="Plumbing" />
+          <Picker.Item color="orange" label="Landscaping" value="Landscaping" />
+          <Picker.Item color="orange" label="Drywall" value="Drywall" />
+          <Picker.Item color="orange" label="Carpentry" value="Carpentry" />
         </Picker>
         <TouchableOpacity
           onPress={() => this.props.advanceQuestion(this.props.data, this.state.specialty)}
