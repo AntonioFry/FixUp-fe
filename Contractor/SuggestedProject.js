@@ -4,12 +4,13 @@ import { View, Text, TouchableOpacity, Image, StyleSheet } from "react-native";
 export default class SuggestedProject extends React.Component {
   render() {
     const { title, description, image, category, index } = this.props;
+    const base64image = `data:image/jpg;base64,${image}`;
     return (
       <View style={styles.suggestedProjectWrapper} key={index}>
         <Text style={styles.projTitle}>{title}</Text>
         <Image
           style={styles.projPhoto}
-          source={{ uri: image }}
+          source={{ uri: base64image }}
         />
         <Text>{description}</Text>
       </View>

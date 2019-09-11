@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Text, ScrollView, View, StyleSheet } from 'react-native';
-import data from '../../mockData/mockHomeOwnerProjects';
 import ActiveProject from '../ActiveProject/ActiveProject';
 import { getHomeownerProjects } from '../apicalls';
 

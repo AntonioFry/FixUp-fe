@@ -23,7 +23,8 @@ class ProjectSwiper extends Component {
   }
 
   renderCard = (card, index) => {
-    const base64image = `data:image/png;base64,${card.user_before_picture}`;
+    console.log(card.user_before_picture)
+    const base64image = `data:image/jpg;base64,${card.user_before_picture}`;
     return (
       <View style={styles.card}>
         <Text style={styles.title}>{card.title}</Text>
