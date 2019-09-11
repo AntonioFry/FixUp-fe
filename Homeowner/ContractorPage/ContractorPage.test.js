@@ -18,9 +18,9 @@ describe('ContractorPage', () => {
             category: ""
           }
         }
-      },
-      wrapper = Shallow(<ContractorPage props={props} />)
+      }
     }
+      wrapper = Shallow(<ContractorPage props={props} />)
   })
 
   it('should match the snapshot', () => {

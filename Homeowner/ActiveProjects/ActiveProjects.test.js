@@ -12,8 +12,8 @@ describe('ActiveProjects', () => {
         navigate: jest.fn(),
         getParam: jest.fn()
       },
-      wrapper = Shallow(<ActiveProjects props={props}/>) 
     }
+    wrapper = Shallow(<ActiveProjects props={props}/>) 
   })
 
   it('should match the snapshot', () => {

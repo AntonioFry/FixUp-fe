@@ -11,7 +11,7 @@ describe('ProfileCategory', () => {
       category: "",
       value: ""
     }
-      wrapper = Shallow(<ProfileCategory props={props} />)
+    wrapper = Shallow(<ProfileCategory props={props} />)
   })
 
   it('should match the snapshot', () => {
