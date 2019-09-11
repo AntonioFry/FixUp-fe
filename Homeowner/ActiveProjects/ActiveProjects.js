@@ -3,17 +3,17 @@ import { Text, ScrollView, View, StyleSheet } from 'react-native';
 import data from '../../mockData/mockHomeOwnerProjects';
 import ActiveProject from '../ActiveProject/ActiveProject';
 import { getHomeownerProjects } from '../apicalls';
+import {NavigationEvents} from "react-navigation"
 
 export default class ActiveProjects extends Component {
   constructor() {
     super();
     this.state = {
       homeownerProjects: [],
-      userId: null,
     }
   }
 
-  componentDidMount = async () => {
+  onRender = async () => {
     const userId = this.props.navigation.getParam("homeownerId")
     try {
       const projects = await getHomeownerProjects(userId);
@@ -34,6 +34,7 @@ export default class ActiveProjects extends Component {
           description={project.description}
           key={project.id}
           navigation={this.props.navigation}
+          category={project.category}
         />
       );
     });
@@ -42,6 +43,7 @@ export default class ActiveProjects extends Component {
   render() {
     return (
       <ScrollView contentContainerStyle={styles.mainContainer}>
+        <NavigationEvents onDidFocus={() => this.onRender()} />
         {this.state.homeownerProjects.length > 0 && this.displayProjects()}
       </ScrollView>
     )

@@ -14,13 +14,13 @@ export default class ProjectForm extends Component {
     }
   }
 
-  advanceQuestion = (key, value) => {
+  advanceQuestion = async (key, value) => {
     this.logData(key, value);
     const { questionNumber } = this.state;
     if (questionNumber < 5) {
       this.setState({ questionNumber: questionNumber + 1 });
     } else {
-      this.postData();
+      await this.postData();
       this.props.navigation.navigate("Home");
       this.setState({ questionNumber: 1 })
     }
