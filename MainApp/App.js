@@ -125,6 +125,7 @@ const HomeownerTabStack = createMaterialBottomTabNavigator(
     },
     Profile: {
       screen: HomeownerProfile,
+      params: { homeownerId: 1 },
       navigationOptions: {
         tabBarLabel: "Profile",
         tabBarIcon: (
