@@ -1,27 +1,29 @@
-import React, { Component } from 'react';
-import { Text, ScrollView, View, StyleSheet } from 'react-native';
-import ActiveProject from '../ActiveProject/ActiveProject';
-import { getHomeownerProjects } from '../apicalls';
-import {NavigationEvents} from "react-navigation"
+import React, { Component } from "react";
+import { Text, ScrollView, View, StyleSheet, Image } from "react-native";
+import ActiveProject from "../ActiveProject/ActiveProject";
+import { getHomeownerProjects } from "../apicalls";
+import { NavigationEvents } from "react-navigation";
 
 export default class ActiveProjects extends Component {
   constructor() {
     super();
     this.state = {
       homeownerProjects: [],
-    }
+      loading: false
+    };
   }
 
   onRender = async () => {
-    const userId = this.props.navigation.getParam("homeownerId")
+    this.setState({ loading: true });
+    const userId = this.props.navigation.getParam("homeownerId");
     try {
       const projects = await getHomeownerProjects(userId);
-      this.setState({ homeownerProjects: projects });
+      this.setState({ homeownerProjects: projects, loading: false });
     } catch (error) {
-      return new Error(error)
+      return new Error(error);
     }
-  }
-  
+  };
+
   displayProjects = () => {
     return this.state.homeownerProjects.map(project => {
       return (
@@ -37,22 +39,36 @@ export default class ActiveProjects extends Component {
         />
       );
     });
-  }
+  };
 
   render() {
     return (
-      <ScrollView contentContainerStyle={styles.mainContainer}>
-        <NavigationEvents onDidFocus={() => this.onRender()} />
-        {this.state.homeownerProjects.length > 0 && this.displayProjects()}
-      </ScrollView>
-    )
+      <View>
+        {this.state.loading && (
+          <View style={styles.gifWrapper}>
+            <Image source={require("../../assets/gears.gif")} />
+          </View>
+        )}
+        {!this.state.loading && (
+          <ScrollView contentContainerStyle={styles.mainContainer}>
+            <NavigationEvents onDidFocus={() => this.onRender()} />
+            {this.state.homeownerProjects.length > 0 && this.displayProjects()}
+          </ScrollView>
+        )}
+      </View>
+    );
   }
 }
 
 const styles = StyleSheet.create({
+  gifWrapper: {
+    alignItems: "center",
+    justifyContent: "center",
+    height: "100%"
+  },
   mainContainer: {
     width: "100%",
     alignItems: "center",
     paddingTop: "10%"
   }
-})
+});
