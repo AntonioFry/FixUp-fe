@@ -47,11 +47,12 @@ export default class ContractorHome extends React.Component {
         <SuggestedProject
           key={index}
           title={project.title}
-          image={project.user_before_picture}
+          photo={project.user_before_picture}
           category={project.category}
           description={project.description}
           projectId={project.id}
           contractorId={contractorId}
+          navigation={this.props.navigation}
         />
       );
     });

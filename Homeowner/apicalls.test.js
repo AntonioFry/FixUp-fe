@@ -256,7 +256,15 @@ describe('apicalls', () => {
     it('should return a parsed response if status is ok', () => {
       expect(patchUserChoice(projectId, contractorId)).resolves.toEqual(mockResponse);
     })
-    
+
+    it('should throw an error if response is not ok', () => {
+      global.fetch = jest.fn().mockImplementation(() => {
+        return Promise.resolve({
+          ok: false
+        });
+      });
+      expect(patchUserChoice()).resolves.toBe(String);
+    })
   })
 
 })
