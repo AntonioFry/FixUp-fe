@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
-import {  }
+import { patchUserChoice } from '../apicalls';
 
 export default class ProjectContractor extends Component {
   constructor() {
@@ -11,6 +11,7 @@ export default class ProjectContractor extends Component {
   }
 
   connectWithContractor = () => {
+    patchUserChoice
     // if not connected
       // when invoked the user info will be sent to the contractor
       // a contractor_project will then also be created
