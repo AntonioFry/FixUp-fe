@@ -1,7 +1,6 @@
 import React from "react";
 import { View, Text, Image, StyleSheet } from "react-native";
 
-
 export default class ViewProject extends React.Component {
   render() {
     const {
@@ -12,7 +11,7 @@ export default class ViewProject extends React.Component {
       userEmail,
       userPhone
     } = this.props.navigation.state.params;
-    const base64image = `data:image/png;base64,${photo.uri}`;
+    const base64image = `data:image/jpg;base64,${photo}`;
     return (
       <View style={styles.projectWrapper}>
         <Text style={styles.title}>{title}</Text>
