@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
   },
   photo: {
     height: 300,
-    width: 200,
+    width: "95%",
     borderRadius: 4
   },
   infoBox: {
