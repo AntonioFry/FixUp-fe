@@ -1,16 +1,17 @@
-import React, { Component } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import data from '../../mockData/mockContactors';
-import ProjectContractor from '../ProjectContractor/ProjectContractor';
-import { TouchableOpacity } from 'react-native-gesture-handler';
-import { getContractor } from '../../contractorApiCalls';
+import React, { Component } from "react";
+import { View, Text, StyleSheet, Image } from "react-native";
+import data from "../../mockData/mockContactors";
+import ProjectContractor from "../ProjectContractor/ProjectContractor";
+import { TouchableOpacity } from "react-native-gesture-handler";
+import { getContractor } from "../../contractorApiCalls";
 
 export default class ActiveProject extends Component {
   constructor() {
     super();
     this.state = {
-      projectContractors: []
-    }
+      projectContractors: [],
+      showContractors: false
+    };
   }
 
   componentDidMount = async () => {
@@ -29,12 +30,18 @@ export default class ActiveProject extends Component {
 
   goToProject = () => {
     const { title, description, photo, navigation, category } = this.props;
-    navigation.navigate("ViewProject", { title, description, photo, category, userType: "homeowner" });
+    navigation.navigate("ViewProject", {
+      title,
+      description,
+      photo,
+      category,
+      userType: "homeowner"
+    });
   };
 
-  render() {
-    const { title, navigation, id } = this.props;
-    const formattedContractors = this.state.projectContractors.map((contractor) => {
+  displayContractors = () => {
+    const { navigation } = this.props;
+    return this.state.projectContractors.map((contractor, index) => {
       return (
         <ProjectContractor
           projectId={id}
@@ -48,54 +55,92 @@ export default class ActiveProject extends Component {
           key={contractor.id}
           navigation={navigation}
         />
-      )
-    })
+      );
+    });
+  };
+
+  toggleContractors = () => {
+    this.setState({ showContractors: !this.state.showContractors });
+  };
+
+  render() {
+    const { title } = this.props;
     return (
       <View style={styles.container}>
         <View style={styles.nameContainer}>
-          <TouchableOpacity onPress={this.goToProject}>
+          <TouchableOpacity style={styles.projectButton} onPress={this.goToProject}>
             <Text style={styles.projectName}>{title}</Text>
           </TouchableOpacity>
+          {this.state.projectContractors.length > 0 && (
+            <TouchableOpacity style={styles.expandButton} onPress={this.toggleContractors}>
+              <Text style={styles.plusText}>Contractors</Text>
+              <Image style={styles.plus} source={require("../../assets/plus.png")} />
+            </TouchableOpacity>
+          )}
         </View>
-        <View style={styles.contractorsContainer}>
-          {formattedContractors}
-        </View>
+        {this.state.showContractors && (
+          <View style={styles.contractorsContainer}>
+            {this.displayContractors()}
+          </View>
+        )}
       </View>
-    )
+    );
   }
 }
 
 const styles = StyleSheet.create({
-  projectName: {
-    width: "100%",
-    fontSize: 20,
-    fontWeight: "bold",
-    textAlign: "center",
-    color: "white"
-  },
   container: {
-    width: "90%",
+    width: "100%",
     minHeight: 50,
-    marginVertical: 10
+    justifyContent: "center",
+    backgroundColor: "#DEE9EF",
+    opacity: 0.9,
+    marginTop: 1
   },
   nameContainer: {
-    zIndex: 100,
+    flexDirection: "row",
     width: "100%",
-    position: "absolute",
-    height: 40,
-    backgroundColor: "#7C9EB2",
+    justifyContent: "space-between",
+    alignItems: "center",
+    borderTopLeftRadius: 4,
+    borderTopRightRadius: 4,
+    paddingLeft: 5,
+    height: 50
+  },
+  projectButton: {
     justifyContent: "center",
-    borderTopLeftRadius: 5,
-    borderTopRightRadius: 5,
-    borderBottomLeftRadius: 5,
-    borderBottomRightRadius: 5,
+    alignItems: "center",
+    height: 35,
+    marginRight: 10,
+    borderRadius: 4,
+    borderColor: "black",
+    borderWidth: 2
+  },
+  projectName: {
+    width: "100%",
+    fontWeight: "600",
+    textAlign: "center",
+    fontSize: 14,
+    paddingHorizontal: 5
   },
   contractorsContainer: {
-    marginTop: 35,
-    paddingTop: 5,
-    borderBottomLeftRadius: 5,
-    borderBottomRightRadius: 5,
-    backgroundColor: "#7C9EB2",
-    opacity: 0.8,
+    borderBottomLeftRadius: 4,
+    borderBottomRightRadius: 4,
+    width: "100%"
+  },
+  expandButton: {
+    flexDirection: "row",
+    justifyContent: "space-around",
+    alignItems: "center",
+    marginRight: 15
+  },
+  plus: {
+    height: 20,
+    width: 20
+  },
+  plusText: {
+    fontSize: 11,
+    fontWeight: "100",
+    marginRight: 5
   }
-})
+});

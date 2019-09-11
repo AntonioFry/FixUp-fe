@@ -46,53 +46,37 @@ export default class ProjectContractor extends Component {
 }
 
 const styles = StyleSheet.create({
-  trueConnected: {
-    flexDirection: 'row',
-    justifyContent: "space-between",
-    alignItems: "center",
-    minHeight: 70,
-    backgroundColor: 'orange',
-    width: "100%",
-    borderBottomLeftRadius: 5,
-    borderBottomRightRadius: 5
-  },
-  falseConnected: {
-    flexDirection: 'row',
+  container: {
+    flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
     minHeight: 70,
     backgroundColor: 'transparent',
     width: "100%",
-    borderBottomLeftRadius: 5,
-    borderBottomRightRadius: 5
+    borderBottomLeftRadius: 4,
+    borderBottomRightRadius: 4
   },
   name: {
-    color: "white",
-    fontSize: 25
-  },
-  date: {
-    color: "white",
-    fontSize: 20
+    fontSize: 14,
+    fontWeight: "100"
   },
   textContainer: {
     justifyContent: "space-evenly",
     paddingLeft: 5
   },
   button: {
-    justifyContent: 'center',
+    justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#F5D547",
-    height: 60,
-    marginRight: 5,
-    borderTopLeftRadius: 5,
-    borderTopRightRadius: 5,
-    borderBottomLeftRadius: 5,
-    borderBottomRightRadius: 5
+    height: 35,
+    marginRight: 10,
+    borderRadius: 4,
+    borderColor: "black",
+    borderWidth: 2
   },
   buttonText: {
-    color: "black",
-    fontSize: 16,
-    fontWeight: "bold",
-    paddingHorizontal: 5,
+    // color: "#3C4F76",
+    fontSize: 14,
+    fontWeight: "400",
+    paddingHorizontal: 5
   }
-})
+});
