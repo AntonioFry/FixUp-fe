@@ -12,8 +12,8 @@ class ProjectSwiper extends Component {
 
   async componentDidMount() {
     const contractorId = this.props.navigation.getParam("contractorId");
-    const response = await getProjectBatch(contractorId);
-    const cards = response.slice(0, 5);
+    const cards = await getProjectBatch(contractorId);
+    // const cards = response.slice(0, 5);
     this.setState({ cards });
   }
 

@@ -85,7 +85,6 @@ export const patchContractorProject = async (
 
 export const getContractor = async id => {
   const url = `https://fixup-backend.herokuapp.com/api/v1/contractors/${id}`;
-  console.log(url)
   try {
     const response = await fetch(url);
     const contractor = await response.json();

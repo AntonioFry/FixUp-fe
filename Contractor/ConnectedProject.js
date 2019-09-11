@@ -13,7 +13,7 @@ export default class ConnectedProject extends React.Component {
       contractorId,
       projectId
     } = this.props;
-    console.log(await patchContractorProjectSeen(contractorId, projectId))
+    await patchContractorProjectSeen(contractorId, projectId)
     navigation.navigate("ViewProject", {
       title,
       description,

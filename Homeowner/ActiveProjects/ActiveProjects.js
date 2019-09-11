@@ -43,17 +43,21 @@ export default class ActiveProjects extends Component {
 
   render() {
     return (
-      <View>
+      <View style={styles.screenWrapper}>
         {this.state.loading && (
           <View style={styles.gifWrapper}>
             <Image source={require("../../assets/gears.gif")} />
           </View>
         )}
         {!this.state.loading && (
-          <ScrollView contentContainerStyle={styles.mainContainer}>
-            <NavigationEvents onDidFocus={() => this.onRender()} />
-            {this.state.homeownerProjects.length > 0 && this.displayProjects()}
-          </ScrollView>
+          <View style={styles.scrollWrapper}>
+            <Text style={styles.screenTitle}>Your Active Projects</Text>
+            <ScrollView contentContainerStyle={styles.scrollView}>
+              <NavigationEvents onDidFocus={() => this.onRender()} />
+              {this.state.homeownerProjects.length > 0 &&
+                this.displayProjects()}
+            </ScrollView>
+          </View>
         )}
       </View>
     );
@@ -61,14 +65,28 @@ export default class ActiveProjects extends Component {
 }
 
 const styles = StyleSheet.create({
+  screenWrapper: {
+    alignItems: "center"
+  },
+  screenTitle: {
+    fontSize: 18,
+    color: "orange",
+    fontWeight: "700",
+    textAlign: "center",
+    margin: 15
+  },
   gifWrapper: {
     alignItems: "center",
     justifyContent: "center",
     height: "100%"
   },
-  mainContainer: {
+  scrollWrapper: {
+    marginTop: 30,
+    width: "100%"
+  },
+  scrollView: {
     width: "100%",
     alignItems: "center",
-    paddingTop: "10%"
+    paddingHorizontal: 2,
   }
 });

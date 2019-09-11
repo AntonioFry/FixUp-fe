@@ -2,7 +2,6 @@ import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
 export default ProfileCategory = ({ category, value }) => {
-  console.log(value)
   return (
     <View style={styles.categoryWrapper}>
       <Text style={styles.leftText}>{category}</Text>

@@ -43,7 +43,6 @@ export default class ContractorHome extends React.Component {
   displaySuggestedProjects = () => {
     const contractorId = this.props.navigation.getParam("contractorId");
     return this.state.suggestedProjects.map((project, index) => {
-      console.log(project.user_before_picture);
       return (
         <SuggestedProject
           key={index}
