@@ -82,3 +82,14 @@ export const patchUserChoice = async (projectId, contractorId) => {
     return new Error(error);
   }
 };
+
+export const getHomeowner = async id => {
+  const url = `https://fixup-backend.herokuapp.com/api/v1/users/${id}`;
+  try {
+    const response = await fetch(url);
+    const homeowner = await response.json();
+    return homeowner;
+  } catch (error) {
+    return new Error(error);
+  }
+};

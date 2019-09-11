@@ -1,11 +1,5 @@
 import React from "react";
-import {
-  View,
-  Text,
-  Image,
-  StyleSheet,
-  TouchableOpacity
-} from "react-native";
+import { View, Text, Image, StyleSheet, TouchableOpacity } from "react-native";
 import ProfileCategory from "./ProfileCategory";
 import { getContractor } from "../contractorApiCalls";
 import { NavigationEvents } from "react-navigation";
@@ -27,8 +21,16 @@ export default class ContractorProfile extends React.Component {
     const contractor = await getContractor(contractorId);
     const { name, email, zip, phone_number, category, logo } = contractor;
     const base64image = `data:image/jpg;base64,${logo}`;
-    this.setState({ name, email, zip, phone_number, logo: base64image, category, loading: false });
-  }
+    this.setState({
+      name,
+      email,
+      zip,
+      phone_number,
+      logo: base64image,
+      category,
+      loading: false
+    });
+  };
 
   logout = () => {
     this.props.navigation.navigate("Login");
@@ -74,7 +76,7 @@ export default class ContractorProfile extends React.Component {
         )}
       </View>
     );
-  }
+  };
 
   render() {
     return (
