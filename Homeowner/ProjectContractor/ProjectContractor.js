@@ -11,14 +11,14 @@ export default class ProjectContractor extends Component {
   }
 
   componentDidMount = () => {
-    this.setState({ connected: this.props.user_choice })
+    this.setState({ connected: this.props.user_choice });
   }
 
   connectWithContractor = async () => {
     const { projectId, contractorId } = this.props;
     try {
       await patchUserChoice(projectId, contractorId);
-      this.setState({ user_choice: true });
+      this.setState({ connected: true });
     } catch (error) {
       return new Error(error);
     }
@@ -31,17 +31,59 @@ export default class ProjectContractor extends Component {
 
   render() {
     const { name } = this.props;
-    let connectedStyle = styles[`${this.state.connected}Connected`];
     return (
-      <View style={connectedStyle}>
-        <TouchableOpacity onPress={this.goToContractorPage} style={styles.textContainer}>
-          <Text style={styles.name}>{name}</Text>
+      <View
+        style={{
+          flexDirection: "row",
+          justifyContent: "space-between",
+          alignItems: "center",
+          minHeight: 70,
+          backgroundColor: this.state.connected ? "orange" : "transparent",
+          width: "100%",
+          borderBottomLeftRadius: 4,
+          borderBottomRightRadius: 4
+        }}
+      >
+        <TouchableOpacity
+          onPress={this.goToContractorPage}
+          style={styles.textContainer}
+        >
+          <Text
+            style={{
+              fontSize: 14,
+              fontWeight: this.state.connected ? "700" : "300",
+              color: this.state.connected ? "white" : "black"
+            }}
+          >
+            {name}
+          </Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.button} onPress={this.connectWithContractor}>
-          <Text style={styles.buttonText}>connect</Text>
+        <TouchableOpacity
+          style={{
+            justifyContent: "center",
+            alignItems: "center",
+            height: 35,
+            marginRight: 10,
+            borderRadius: 4,
+            borderColor: this.state.connected ? "white" : "orange",
+            borderWidth: 2,
+            width: 90
+          }}
+          onPress={this.connectWithContractor}
+        >
+          <Text
+            style={{
+              color: this.state.connected ? "white" : "orange",
+              fontSize: 14,
+              fontWeight: "400",
+              paddingHorizontal: 5
+            }}
+          >
+            Connect
+          </Text>
         </TouchableOpacity>
       </View>
-    )
+    );
   }
 }
 
@@ -58,7 +100,7 @@ const styles = StyleSheet.create({
   },
   name: {
     fontSize: 14,
-    fontWeight: "100"
+    fontWeight: "100",
   },
   textContainer: {
     justifyContent: "space-evenly",
@@ -70,11 +112,12 @@ const styles = StyleSheet.create({
     height: 35,
     marginRight: 10,
     borderRadius: 4,
-    borderColor: "black",
-    borderWidth: 2
+    borderColor: "orange",
+    borderWidth: 2,
+    width: 90
   },
   buttonText: {
-    // color: "#3C4F76",
+    color: "orange",
     fontSize: 14,
     fontWeight: "400",
     paddingHorizontal: 5
