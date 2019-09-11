@@ -143,4 +143,57 @@ describe('apicalls', () => {
 
   })
 
+  describe('postUser', () => {
+    let mockResponse;
+    let newHomeowner;
+
+    beforeEach(() => {
+      newHomeowner = {
+        full_name: "Princess",
+        email: "another_castle@mail.com",
+        phone_number: "3035555555",
+        zip: "80555"
+      }
+      mockResponse = {
+        id: 1,
+        full_name: "Princess",
+        email: "another_castle@mail.com",
+        phone_number: "3035555555",
+        zip: "80555"
+      } 
+      global.fetch = jest.fn().mockImplementation(() => {
+        return Promise.resolve({
+          ok: true,
+          json: () => Promise.resolve(mockResponse)
+        })
+      })
+    })
+
+    it('should fetch given the correct url', async () => {
+      const options = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(newHomeowner)
+      };
+      const url = "https://fixup-backend.herokuapp.com/api/v1/users/";
+      await postUser(newHomeowner);
+      expect(global.fetch).toHaveBeenCalledWith(url, options)
+    })
+    
+    it('should return a parsed response if status is ok', () => {
+      expect(postUser(newHomeowner)).resolves.toEqual(mockResponse)
+    });
+
+    it('should throw an error if response is not ok', () => {
+      global.fetch = jest.fn().mockImplementation(() => {
+        return Promise.resolve({
+          ok: false
+        });
+      });
+      expect(postUser()).resolves.toBe(String);
+    })
+    
+  });
 })
