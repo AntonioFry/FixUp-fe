@@ -17,14 +17,16 @@ export default class ActiveProject extends Component {
   componentDidMount = async () => {
     const { contractors } = this.props;
     try {
-      contractors.forEach(async contractor => {
-        const contractorObj = await getContractor(contractor.contractor_id);
-        await this.setState({
-          projectContractors: [...this.state.projectContractors, contractorObj]
-        });
+      contractors.forEach( async (contractor) => {
+        const gottenContractor = await getContractor(contractor.contractor_id)
+        const { user_choice } = contractor;
+        const contractorObj = { user_choice, ...gottenContractor };
+        await this.setState({ projectContractors: [...this.state.projectContractors, contractorObj ] });
       });
-    } catch (error) {}
-  };
+    } catch (error) {
+      return new Error(error);
+    }
+  }
 
   goToProject = () => {
     const { title, description, photo, navigation, category } = this.props;
@@ -42,9 +44,15 @@ export default class ActiveProject extends Component {
     return this.state.projectContractors.map((contractor, index) => {
       return (
         <ProjectContractor
-          id={index + 1}
-          contractor={contractor}
-          key={index + 1}
+          projectId={id}
+          contractorId={contractor.id}
+          name={contractor.name}
+          email={contractor.email}
+          phone_number={contractor.phone_number}
+          zip={contractor.zip}
+          category={contractor.zip}
+          user_choice={contractor.user_choice}
+          key={contractor.id}
           navigation={navigation}
         />
       );

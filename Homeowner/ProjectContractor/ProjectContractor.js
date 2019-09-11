@@ -1,31 +1,39 @@
 import React, { Component } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { patchUserChoice } from '../apicalls';
 
 export default class ProjectContractor extends Component {
   constructor() {
     super();
     this.state = {
-      connected: false
+      connected: null
     }
   }
 
-  connectWithContractor = () => {
-    // if not connected
-      // when invoked the user info will be sent to the contractor
-      // a contractor_project will then also be created
-    // otherwise
-      // user will unconnect from that specific contractor deleting the contractor project
+  componentDidMount = () => {
+    this.setState({ connected: this.props.user_choice })
+  }
+
+  connectWithContractor = async () => {
+    const { projectId, contractorId } = this.props;
+    try {
+      await patchUserChoice(projectId, contractorId);
+      this.setState({ user_choice: true });
+    } catch (error) {
+      return new Error(error);
+    }
   }
 
   goToContractorPage = () => {
-    const { name, zip, phone_number, email, category } = this.props.contractor;
+    const { name, zip, phone_number, email, category } = this.props;
     this.props.navigation.navigate("ContractorPage", { name, email, zip, phone_number, category });
   }
 
   render() {
-    const { name } = this.props.contractor;
+    const { name } = this.props;
+    let connectedStyle = styles[`${this.state.connected}Connected`];
     return (
-      <View style={styles.container}>
+      <View style={connectedStyle}>
         <TouchableOpacity onPress={this.goToContractorPage} style={styles.textContainer}>
           <Text style={styles.name}>{name}</Text>
         </TouchableOpacity>
@@ -43,6 +51,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     minHeight: 70,
+    backgroundColor: 'transparent',
     width: "100%",
     borderBottomLeftRadius: 4,
     borderBottomRightRadius: 4
