@@ -33,13 +33,14 @@ export default class ActiveProject extends Component {
   };
 
   render() {
-    const { title } = this.props;
+    const { title, navigation } = this.props;
     const formattedContractors = this.state.projectContractors.map((contractor, index) => {
       return (
         <ProjectContractor
           id={index + 1}
-          name={contractor.name}
+          contractor={contractor}
           key={index + 1}
+          navigation={navigation}
         />
       )
     })

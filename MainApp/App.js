@@ -15,6 +15,7 @@ import ContractorProfile from "../Contractor/ContractorProfile";
 import ViewProject from "../Contractor/ViewProject";
 import ConnectedProject from "../Contractor/ConnectedProject";
 import ProjectForm from '../Homeowner/ProjectForm/ProjectForm';
+import ContractorPage from '../Homeowner/ContractorPage/ContractorPage';
 
 const ContractorHomeStack = createStackNavigator(
   {
@@ -87,6 +88,7 @@ const HomeownerHomeStack = createStackNavigator(
       params: { homeownerId: 1 }
     },
     ViewProject: ViewProject,
+    ContractorPage: ContractorPage,
   },
   {
     initialRouteName: "ActiveProjects",
