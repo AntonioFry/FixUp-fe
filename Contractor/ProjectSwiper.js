@@ -13,7 +13,8 @@ class ProjectSwiper extends Component {
   async componentDidMount() {
     const contractorId = this.props.navigation.getParam("contractorId");
     const cards = await getProjectBatch(contractorId);
-    await this.setState({ cards });
+    console.log(cards)
+    this.setState({ cards });
   }
 
   onChange(e) {

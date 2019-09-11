@@ -28,7 +28,12 @@ export const getContractorProjects = async id => {
 };
 
 export const getProjectBatch = async (id, suggestedQuery) => {
-  const url = `https://fixup-backend.herokuapp.com/api/v1/projects?contractor_id=${id}${suggestedQuery}`;
+  let url;
+  if (suggestedQuery) {
+    url = `https://fixup-backend.herokuapp.com/api/v1/projects?contractor_id=${id}${suggestedQuery}`;
+  } else {
+    url = `https://fixup-backend.herokuapp.com/api/v1/projects?contractor_id=${id}`;
+  }
   try {
     const response = await fetch(url);
     const swiperProjects = response.json();
