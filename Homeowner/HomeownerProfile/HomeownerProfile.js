@@ -1,57 +1,86 @@
-import React, { Component } from 'react';
-import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import React, { Component } from "react";
+import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
 import ProfileCategory from "../../Contractor/ProfileCategory";
+import { getHomeowner } from "../apicalls";
+import { NavigationEvents } from "react-navigation";
 
 export default class HomeownerProfile extends Component {
   constructor() {
     super();
     this.state = {
-      full_name: "Jamie",
-      email: "JamieD@gmail.com",
-      phone_number: "$$$-$$$-$$$$",
-      zip: "12345"
-    }
+      full_name: "",
+      email: "",
+      phone_number: null,
+      zip: null,
+      loading: false
+    };
   }
 
-  componentDidMount() {
-
-
-  }
+  onRender = async () => {
+    this.setState({ loading: true });
+    const userId = this.props.navigation.getParam("homeownerId");
+    const homeowner = await getHomeowner(userId);
+    const { full_name, email, zip, phone_number } = homeowner;
+    this.setState({
+      full_name,
+      email,
+      zip,
+      phone_number,
+      loading: false
+    });
+  };
 
   logout = () => {
-    // set currentUser in App state to null
     this.props.navigation.navigate("Login");
   };
 
-  render() {
-    const userInfo = Object.keys(this.state).map((info, index) => {
-      return (
+  displayCategories = () => {
+    return (
+      <View style={styles.infoWrapper}>
         <ProfileCategory
-          key={index}
-          category={info.split("_").join(" ")}
-          value={this.state[info]}
+          category={"Name"}
+          value={this.state.full_name}
           keyboardType={"default"}
         />
-      )
-    })
-    return  (
+        <ProfileCategory
+          category={"Email"}
+          value={this.state.email}
+          keyboardType={"email-address"}
+        />
+        <ProfileCategory
+          category={"Zip Code"}
+          value={this.state.zip}
+          keyboardType={"numeric"}
+        />
+        <ProfileCategory
+          category={"Phone Number"}
+          value={this.state.phone_number}
+          keyboardType={"numeric"}
+        />
+      </View>
+    );
+  };
+
+  render() {
+    return (
       <View style={styles.mainContainer}>
+        <NavigationEvents onDidFocus={() => this.onRender()} />
         <View style={styles.header}>
           <Text style={styles.title}>Edit Profile</Text>
           <TouchableOpacity onPress={this.logout}>
             <Text style={styles.logoutButton}>Logout</Text>
           </TouchableOpacity>
         </View>
-        {userInfo}
+        {!this.state.loading && this.displayCategories()}
       </View>
-    )
+    );
   }
 }
 
 const styles = StyleSheet.create({
   infoContainer: {
     justifyContent: "center",
-    borderStyle: 'solid',
+    borderStyle: "solid",
     borderWidth: 1,
     borderColor: "#CBC5C9",
     width: "100%",
@@ -109,5 +138,8 @@ const styles = StyleSheet.create({
     marginBottom: 5,
     fontSize: 20,
     fontWeight: "bold"
+  },
+  infoWrapper: {
+    width: "100%"
   }
-})
+});
