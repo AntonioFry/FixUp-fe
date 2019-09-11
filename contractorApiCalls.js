@@ -20,7 +20,7 @@ export const getContractorProjects = async id => {
   const url = `https://fixup-backend.herokuapp.com/api/v1/contractors/${id}/projects`;
   try {
     const response = await fetch(url);
-    const contractorProjects = response.json();
+    const contractorProjects = await response.json();
     return contractorProjects;
   } catch (error) {
     return new Error(error);
@@ -104,7 +104,7 @@ export const patchContractorProjectSeen = async (
     headers: {
       "Content-Type": "application/json"
     },
-    body: JSON.stringify({ seen: true })
+    body: JSON.stringify({ seen: "True" })
   };
   try {
     const response = await fetch(url, options);

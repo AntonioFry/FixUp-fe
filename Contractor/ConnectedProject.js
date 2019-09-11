@@ -1,5 +1,6 @@
 import React from "react";
 import { Text, StyleSheet, Image, TouchableOpacity } from "react-native";
+import { patchContractorProjectSeen } from "../contractorApiCalls";
 
 export default class ConnectedProject extends React.Component {
   goToProject = async () => {
@@ -12,7 +13,7 @@ export default class ConnectedProject extends React.Component {
       contractorId,
       projectId
     } = this.props;
-    // await patchContractorProjectSeen(contractorId, projectId);
+    console.log(await patchContractorProjectSeen(contractorId, projectId))
     navigation.navigate("ViewProject", {
       title,
       description,

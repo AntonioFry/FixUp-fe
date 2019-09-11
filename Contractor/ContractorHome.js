@@ -18,6 +18,7 @@ export default class ContractorHome extends React.Component {
   }
 
   displayConnectedProjects = () => {
+    const contractorId = this.props.navigation.getParam("contractorId");
     return this.state.connectedProjects.map((proj, index) => {
       const { project, seen } = proj;
       return (
@@ -29,6 +30,8 @@ export default class ContractorHome extends React.Component {
           photo={project.user_before_picture}
           category={project.category}
           navigation={this.props.navigation}
+          projectId={project.id}
+          contractorId={contractorId}
         />
       );
     });
