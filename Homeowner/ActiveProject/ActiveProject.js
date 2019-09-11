@@ -17,11 +17,13 @@ export default class ActiveProject extends Component {
     const { contractors } = this.props;
     try {
       contractors.forEach( async (contractor) => {
-        const contractorObj = await getContractor(contractor.contractor_id)
-        await this.setState({ projectContractors: [...this.state.projectContractors, contractorObj] });
+        const gottenContractor = await getContractor(contractor.contractor_id)
+        const { user_choice } = contractor;
+        const contractorObj = { user_choice, gottenContractor };
+        await this.setState({ projectContractors: [...this.state.projectContractors, contractorObj ] });
       });
     } catch (error) {
-      return new Error(console);
+      return new Error(error);
     }
   }
 

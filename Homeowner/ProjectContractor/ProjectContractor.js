@@ -6,17 +6,18 @@ export default class ProjectContractor extends Component {
   constructor() {
     super();
     this.state = {
-      connected: false
+      connected: this.props.contractor.user_choice
     }
   }
 
-  connectWithContractor = () => {
-    patchUserChoice
-    // if not connected
-      // when invoked the user info will be sent to the contractor
-      // a contractor_project will then also be created
-    // otherwise
-      // user will unconnect from that specific contractor deleting the contractor project
+  connectWithContractor = async () => {
+    const { projectId, contractorId } = this.props;
+    try {
+      await patchUserChoice(projectId, contractorId);
+      this.setState({ user_choice: true });
+    } catch (error) {
+      return new Error(error);
+    }
   }
 
   goToContractorPage = () => {
@@ -26,6 +27,7 @@ export default class ProjectContractor extends Component {
 
   render() {
     const { name } = this.props.contractor;
+    const connectedStyle = `${this.state.connected}Connected`;
     return (
       <View style={styles.container}>
         <TouchableOpacity onPress={this.goToContractorPage} style={styles.textContainer}>
@@ -40,11 +42,22 @@ export default class ProjectContractor extends Component {
 }
 
 const styles = StyleSheet.create({
-  container: {
+  trueConnected: {
     flexDirection: 'row',
     justifyContent: "space-between",
     alignItems: "center",
     minHeight: 70,
+    backgroundColor: 'orange',
+    width: "100%",
+    borderBottomLeftRadius: 5,
+    borderBottomRightRadius: 5
+  },
+  falseConnected: {
+    flexDirection: 'row',
+    justifyContent: "space-between",
+    alignItems: "center",
+    minHeight: 70,
+    backgroundColor: 'transparent',
     width: "100%",
     borderBottomLeftRadius: 5,
     borderBottomRightRadius: 5
