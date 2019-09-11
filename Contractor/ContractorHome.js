@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text, StyleSheet, ScrollView, Image } from "react-native";
 import ConnectedProject from "./ConnectedProject";
-import { getContractorProjects } from "../contractorApiCalls";
+import { getContractorProjects, getProjectBatch } from "../contractorApiCalls";
 import SuggestedProject from "./SuggestedProject";
 
 export default class ContractorHome extends React.Component {
@@ -13,8 +13,8 @@ export default class ContractorHome extends React.Component {
   async componentDidMount() {
     const contractorId = this.props.navigation.getParam("contractorId");
     const connectedProjects = await getContractorProjects(contractorId);
-    // const suggestedProjects = await getSuggestedProjects(contractorId);
-    this.setState({ connectedProjects });
+    const suggestedProjects = await getProjectBatch(contractorId, "&limit=5");
+    this.setState({ connectedProjects, suggestedProjects });
   }
 
   displayConnectedProjects = () => {
@@ -36,8 +36,7 @@ export default class ContractorHome extends React.Component {
 
   displaySuggestedProjects = () => {
     const contractorId = this.props.navigation.getParam("contractorId");
-    return this.state.suggestedProjects.map((proj, index) => {
-      const { project } = proj;
+    return this.state.suggestedProjects.map((project, index) => {
       return (
         <SuggestedProject
           key={index}
