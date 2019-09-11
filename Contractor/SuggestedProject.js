@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
   projPhoto: {
     height: 180,
     width: 230,
-    resizeMode: "contain"
+    borderRadius: 4
   },
   projTitle: {
     fontWeight: "700"

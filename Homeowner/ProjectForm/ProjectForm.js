@@ -4,6 +4,7 @@ import SignUpQuestion from '../../MainApp/SignUpQuestion';
 import PhotoUpload from '../../MainApp/PhotoUpload';
 import { postProject } from '../apicalls';
 import * as ImageManipulator from "expo-image-manipulator";
+import SpecialtyPicker from '../../MainApp/SpecialtyPicker';
 
 export default class ProjectForm extends Component {
   constructor() {
@@ -34,7 +35,7 @@ export default class ProjectForm extends Component {
   postData = async () => {
     const { title, category, description, user_before_picture } = this.state.data;
     const base64Image = await ImageManipulator.manipulateAsync(user_before_picture.uri, [], {
-      base64: true, compress: .5
+      base64: true
     });
     const newProject = {
       title,
@@ -91,10 +92,10 @@ export default class ProjectForm extends Component {
               />
             )}
             {this.state.questionNumber === 3 && (
-              <SignUpQuestion
+              <SpecialtyPicker
                 advanceQuestion={this.advanceQuestion}
-                prompt="Tag this project"
-                placeholder="Project tag"
+                prompt="Pick a specialty for this project"
+                placeholder="Choose specialties"
                 buttonText="Next"
                 data="category"
               />
@@ -113,7 +114,8 @@ export default class ProjectForm extends Component {
                 <Text style={styles.text}>Your project has been posted</Text>
                 <TouchableOpacity
                   onPress={this.advanceQuestion}
-                  style={styles.button}>
+                  style={styles.button}
+                >
                   <Text style={styles.buttonText}>Home</Text>
                 </TouchableOpacity>
               </View>
