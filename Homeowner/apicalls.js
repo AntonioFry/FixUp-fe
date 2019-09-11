@@ -39,20 +39,13 @@ export const getHomeownerProjects = async (id) => {
   try {
     const response = await fetch(url);
     const userProjects = await response.json();
-    return userProjects
+    return userProjects;
   } catch (error) {
     return new Error(error)
   }
 }
 
 export const patchHomeowner = async (updatedHomeowner, id) => {
-  //body should look like:
-  // "name":
-  // "email":
-  // "phone_number":
-  // "zip":
-  // "category":
-  // "logo":
   const url = `https://fixup-backend.herokuapp.com/api/v1/contractors/${id}`;
   const options = {
     method: "PATCH",
