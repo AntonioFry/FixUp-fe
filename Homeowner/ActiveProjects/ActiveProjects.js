@@ -16,31 +16,33 @@ export default class ActiveProjects extends Component {
   componentDidMount = async () => {
     const userId = this.props.navigation.getParam("homeownerId")
     try {
-      this.setState({ userId: userId })
-      const projects = await getHomeownerProjects(this.state.userId);
+      const projects = await getHomeownerProjects(userId);
       this.setState({ homeownerProjects: projects });
     } catch (error) {
       return new Error(error)
     }
   }
-
-  render() {
-    const formattedProject = this.state.homeownerProjects.map(project => {
+  
+  displayProjects = () => {
+    return this.state.homeownerProjects.map(project => {
       return (
         <ActiveProject
-        contractors={project.contractors}
-        id={project.id}
-        title={project.title}
-        photo={project.user_before_picture}
-        description={project.description}
-        key={project.id}
-        navigation={this.props.navigation}
+          contractors={project.contractors}
+          id={project.id}
+          title={project.title}
+          photo={project.user_before_picture}
+          description={project.description}
+          key={project.id}
+          navigation={this.props.navigation}
         />
-      )
-    })
+      );
+    });
+  }
+
+  render() {
     return (
       <ScrollView contentContainerStyle={styles.mainContainer}>
-        {this.state.homeownerProjects.length > 0 && formattedProject}
+        {this.state.homeownerProjects.length > 0 && this.displayProjects()}
       </ScrollView>
     )
   }
