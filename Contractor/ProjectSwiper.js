@@ -12,8 +12,8 @@ class ProjectSwiper extends Component {
 
   async componentDidMount() {
     const contractorId = this.props.navigation.getParam("contractorId");
-    const cards = await getProjectBatch(contractorId);
-    console.log(cards)
+    const response = await getProjectBatch(contractorId);
+    const cards = response.slice(0, 5);
     this.setState({ cards });
   }
 
@@ -72,7 +72,7 @@ class ProjectSwiper extends Component {
             renderCard={this.renderCard}
             onSwipedAll={this.onSwipedAllCards}
             stackSize={3}
-            infinite={true}
+            infinite={false}
             stackSeparation={15}
             overlayLabels={{
               bottom: {

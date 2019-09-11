@@ -29,7 +29,7 @@ export const getContractorProjects = async id => {
 
 export const getProjectBatch = async (id, suggestedQuery) => {
   let url;
-  if (suggestedQuery) {
+  if (suggestedQuery === "&limit=5") {
     url = `https://fixup-backend.herokuapp.com/api/v1/projects?contractor_id=${id}${suggestedQuery}`;
   } else {
     url = `https://fixup-backend.herokuapp.com/api/v1/projects?contractor_id=${id}`;
@@ -85,6 +85,7 @@ export const patchContractorProject = async (
 
 export const getContractor = async id => {
   const url = `https://fixup-backend.herokuapp.com/api/v1/contractors/${id}`;
+  console.log(url)
   try {
     const response = await fetch(url);
     const contractor = await response.json();
