@@ -61,11 +61,11 @@ const styles = StyleSheet.create({
     height: 35,
     marginRight: 10,
     borderRadius: 4,
-    borderColor: "#3C4F76",
+    borderColor: "black",
     borderWidth: 2
   },
   buttonText: {
-    color: "#3C4F76",
+    // color: "#3C4F76",
     fontSize: 14,
     fontWeight: "400",
     paddingHorizontal: 5
