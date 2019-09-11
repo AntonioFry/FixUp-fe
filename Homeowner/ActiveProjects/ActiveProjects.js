@@ -31,7 +31,7 @@ export default class ActiveProjects extends Component {
         contractors={project.contractors}
         id={project.id}
         title={project.title}
-        photo={project.photo}
+        photo={project.user_before_picture}
         description={project.description}
         key={project.id}
         navigation={this.props.navigation}
