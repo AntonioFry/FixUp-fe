@@ -3,7 +3,7 @@ import { View, Text, TouchableOpacity, Image, StyleSheet } from "react-native";
 
 export default class SuggestedProject extends React.Component {
   render() {
-    const { title, description, image, category } = this.props;
+    const { title, description, image, category, index } = this.props;
     return (
       <View style={styles.suggestedProjectWrapper} key={index}>
         <Text style={styles.projTitle}>{title}</Text>
