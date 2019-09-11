@@ -17,14 +17,14 @@ export default class ActiveProject extends Component {
     const { contractors } = this.props;
     try {
       contractors.forEach( async (contractor) => {
-        const contractorObj = await getContractor(contractor.contractor_id)
-        await this.setState({ projectContractors: [...this.state.projectContractors, contractorObj] });
+        const gottenContractor = await getContractor(contractor.contractor_id)
+        const { user_choice } = contractor;
+        const contractorObj = { user_choice, ...gottenContractor };
+        await this.setState({ projectContractors: [...this.state.projectContractors, contractorObj ] });
       });
     } catch (error) {
-      
+      return new Error(error);
     }
-    // when component mounts fetch all contractors for this project
-    // then set the state with the contractors
   }
 
   goToProject = () => {
@@ -33,13 +33,19 @@ export default class ActiveProject extends Component {
   };
 
   render() {
-    const { title, navigation } = this.props;
-    const formattedContractors = this.state.projectContractors.map((contractor, index) => {
+    const { title, navigation, id } = this.props;
+    const formattedContractors = this.state.projectContractors.map((contractor) => {
       return (
         <ProjectContractor
-          id={index + 1}
-          contractor={contractor}
-          key={index + 1}
+          projectId={id}
+          contractorId={contractor.id}
+          name={contractor.name}
+          email={contractor.email}
+          phone_number={contractor.phone_number}
+          zip={contractor.zip}
+          category={contractor.zip}
+          user_choice={contractor.user_choice}
+          key={contractor.id}
           navigation={navigation}
         />
       )
