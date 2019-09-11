@@ -7,50 +7,86 @@ import {
   TouchableOpacity
 } from "react-native";
 import ProfileCategory from "./ProfileCategory";
+import { getContractor } from "../contractorApiCalls";
+import { NavigationEvents } from "react-navigation";
 
 export default class ContractorProfile extends React.Component {
   state = {
-    name: "Steve's Tools",
-    email: "fake@gmail.com",
-    zipCode: "80202",
-    phone: "7813465555",
-    specialty: "Electric",
-    logo: { uri: undefined }
+    name: "",
+    email: "",
+    zip: null,
+    phone_number: null,
+    category: "",
+    logo: null,
+    loading: false
   };
 
-  componentDidMount() {}
+  onRender = async () => {
+    this.setState({ loading: true });
+    const contractorId = this.props.navigation.getParam("contractorId");
+    const contractor = await getContractor(contractorId);
+    const { name, email, zip, phone_number, category, logo } = contractor;
+    const base64image = `data:image/jpg;base64,${logo}`;
+    this.setState({ name, email, zip, phone_number, logo: base64image, category, loading: false });
+  }
 
   logout = () => {
-    // set currentUser in App state to null
     this.props.navigation.navigate("Login");
   };
+
+  displayInfo = () => {
+    return (
+      <View style={styles.infoWrapper}>
+        <ProfileCategory
+          category={"Name"}
+          value={this.state.name}
+          keyboardType={"default"}
+        />
+        <ProfileCategory
+          category={"Email"}
+          value={this.state.email}
+          keyboardType={"email-address"}
+        />
+        <ProfileCategory
+          category={"Zip Code"}
+          value={this.state.zip}
+          keyboardType={"numeric"}
+        />
+        <ProfileCategory
+          category={"Phone Number"}
+          value={this.state.phone_number}
+          keyboardType={"numeric"}
+        />
+        <ProfileCategory
+          category={"Specialty"}
+          value={this.state.category}
+          keyboardType={"default"}
+        />
+        {this.state.logo && (
+          <View style={styles.logoWrapper}>
+            <Text style={styles.leftText}>Logo</Text>
+            <Image source={{ uri: this.state.logo }} />
+            <Image
+              style={styles.editIcon}
+              source={require("../assets/whiteEdit.png")}
+            />
+          </View>
+        )}
+      </View>
+    );
+  }
 
   render() {
     return (
       <View style={styles.container}>
+        <NavigationEvents onDidFocus={() => this.onRender()} />
         <View style={styles.header}>
           <Text style={styles.title}>Edit Profile</Text>
           <TouchableOpacity onPress={this.logout}>
             <Text style={styles.logoutButton}>Logout</Text>
           </TouchableOpacity>
         </View>
-        <View style={styles.infoWrapper}>
-          <ProfileCategory category={"Name"} value={this.state.name} keyboardType={"default"} />
-          <ProfileCategory category={"Email"} value={this.state.email} keyboardType={"email-address"} />
-          <ProfileCategory category={"Zip Code"} value={this.state.zipCode} keyboardType={"numeric"} />
-          <ProfileCategory category={"Phone Number"} value={this.state.phone} keyboardType={"numeric"} />
-          <ProfileCategory category={"Specialty"} value={this.state.specialty} keyboardType={"default"} />
-          {this.state.logo.uri && (
-            <View style={styles.logoWrapper}>
-              <Text style={styles.leftText}>Logo</Text>
-              <Image source={{ uri: this.state.logo.uri }} />
-              <Image
-                style={styles.editIcon}
-                source={require("../assets/whiteEdit.png")}
-              />
-            </View>
-          )}
-        </View>
+        {!this.state.loading && this.displayInfo()}
       </View>
     );
   }

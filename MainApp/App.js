@@ -61,6 +61,7 @@ const ContractorTabStack = createMaterialBottomTabNavigator(
     },
     Profile: {
       screen: ContractorProfile,
+      params: { contractorId: 1 },
       navigationOptions: {
         tabBarLabel: "Profile",
         tabBarIcon: (

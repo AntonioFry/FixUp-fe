@@ -3,18 +3,21 @@ import { View, Text, StyleSheet, ScrollView, Image } from "react-native";
 import ConnectedProject from "./ConnectedProject";
 import { getContractorProjects, getProjectBatch } from "../contractorApiCalls";
 import SuggestedProject from "./SuggestedProject";
+import { NavigationEvents } from "react-navigation";
 
 export default class ContractorHome extends React.Component {
   state = {
     connectedProjects: [],
-    suggestedProjects: []
+    suggestedProjects: [],
+    loading: false
   };
 
-  async componentDidMount() {
+  onRender = async () => {
+    this.setState({ loading: true })
     const contractorId = this.props.navigation.getParam("contractorId");
     const connectedProjects = await getContractorProjects(contractorId);
     const suggestedProjects = await getProjectBatch(contractorId, "&limit=5");
-    this.setState({ connectedProjects, suggestedProjects });
+    this.setState({ connectedProjects, suggestedProjects, loading: false });
   }
 
   displayConnectedProjects = () => {
@@ -63,6 +66,7 @@ export default class ContractorHome extends React.Component {
           </Text>
         </View>
         <View style={styles.notificationsSection}>
+          <NavigationEvents onDidFocus={() => this.onRender()} />
           <Text style={styles.notificationsTitle}>Project Leads</Text>
           <ScrollView style={styles.notificationsWrapper}>
             {this.state.connectedProjects.length > 0 &&

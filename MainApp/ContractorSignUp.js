@@ -31,7 +31,7 @@ export default class ContractorSignUp extends React.Component {
   postData = async () => {
     const { name, email, phone_number, zip, category, logo } = this.state.data;
     const base64Image = await ImageManipulator.manipulateAsync(logo.uri, [], {
-      base64: true, compress: .5
+      base64: true
     });
     const newContractor = {
       name,
@@ -39,7 +39,7 @@ export default class ContractorSignUp extends React.Component {
       phone_number,
       zip,
       category,
-      logo: base64Image
+      logo: base64Image.base64
     };
     await postContractor(newContractor);
   };
