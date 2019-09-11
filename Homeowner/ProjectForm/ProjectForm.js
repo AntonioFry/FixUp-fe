@@ -40,7 +40,7 @@ export default class ProjectForm extends Component {
       title,
       category,
       description,
-      user_before_picture: base64Image
+      user_before_picture: base64Image.base64
     };
     await postProject(newProject);
   };
