@@ -6,8 +6,12 @@ export default class ProjectContractor extends Component {
   constructor() {
     super();
     this.state = {
-      connected: this.props.contractor.user_choice
+      connected: null
     }
+  }
+
+  componentDidMount = () => {
+    this.setState({ connected: this.props.user_choice })
   }
 
   connectWithContractor = async () => {
@@ -21,15 +25,15 @@ export default class ProjectContractor extends Component {
   }
 
   goToContractorPage = () => {
-    const { name, zip, phone_number, email, category } = this.props.contractor;
+    const { name, zip, phone_number, email, category } = this.props;
     this.props.navigation.navigate("ContractorPage", { name, email, zip, phone_number, category });
   }
 
   render() {
-    const { name } = this.props.contractor;
-    const connectedStyle = `${this.state.connected}Connected`;
+    const { name } = this.props;
+    let connectedStyle = styles[`${this.state.connected}Connected`];
     return (
-      <View style={styles.container}>
+      <View style={connectedStyle}>
         <TouchableOpacity onPress={this.goToContractorPage} style={styles.textContainer}>
           <Text style={styles.name}>{name}</Text>
         </TouchableOpacity>
