@@ -12,9 +12,20 @@ Back-End:
 
 [Back-End Repo](https://github.com/james-cape/fixup_backend)
 
-## Summary
+## Installation
 
-FixUp is an interactive mobile app that deals with the issue of general property damage/problems. If a homeowner were to have a water leak, they could sign up with our app and then post that problem to a database of ongoing projects. As a contractor on our app you would be able to then go and swipe on the posted projects deciding on whether to take up or decline them.
+1. Clone down FixUp-fe repo
+2. `npm install`
+3. Login to Expo or sign up if you don't have an account
+4. `npm start`
+5. Run a mobile simulator or use Expo within your web browser
+
+## [Production url](https://expo.io/@rumizen/FixUp)
+
+## Summary
+Many homeowners are lost when it comes to identifying the cause of a leak or knowing who to call for an electrical issue. It could take hours of emails, Google searches, and phone calls to even know what type of professional to hire. 
+
+FixUp is an iOS and Android mobile app designed to help homeowners connect with contractors more easily. The app matches home projects with contractors of the right specialty to get everyone on the same page without any hassle.
 
 ## Homeowner
 
