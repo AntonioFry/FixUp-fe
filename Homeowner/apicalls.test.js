@@ -1,4 +1,4 @@
-import { patchUserChoice, patchHomeowner, postProject, postUser, getHomeownerProjects } from './apicalls';
+import { patchUserChoice, patchHomeowner, postProject, postUser, getHomeownerProjects, getHomeowner } from './apicalls';
 
 describe('apicalls', () => {
 
@@ -265,6 +265,47 @@ describe('apicalls', () => {
       });
       expect(patchUserChoice()).resolves.toBe(String);
     })
+  })
+
+  describe('getHomeowner', () => {
+    let mockResponse;
+    let id;
+    
+    beforeEach(() => {
+      id = 1
+      mockResponse = {
+        full_name: "Mario Mario",
+        email: "jumpman@gmail.com",
+        phone_number: "3035555555",
+        zip: "80555"
+      }
+      global.fetch = jest.fn().mockImplementation(() => {
+        return Promise.resolve({
+          ok: true,
+          json: () => Promise.resolve(mockResponse)
+        })
+      })
+    })
+
+    it('should fetch given the correct url', async () => {
+      const url = `https://fixup-backend.herokuapp.com/api/v1/users/${id}`;
+      getHomeowner(id);
+      expect(global.fetch).toHaveBeenCalledWith(url);
+    })
+
+    it('should return a parsed response of status is ok', () => {
+      expect(getHomeowner(id)).resolves.toEqual(mockResponse)
+    })
+
+    it('should throw an error if response is not ok', () => {
+      global.fetch = jest.fn().mockImplementation(() => {
+        return Promise.resolve({
+          ok: false
+        });
+      });
+      expect(getHomeowner(id)).resolves.toBe(String);
+    })
+
   })
 
 })
