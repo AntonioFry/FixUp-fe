@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, Image, StyleSheet, TouchableOpacity } from "react-native";
+import { View, Text, Image, StyleSheet, TouchableOpacity, ScrollView } from "react-native";
 import ProfileCategory from "./ProfileCategory";
 import { getContractor } from "../contractorApiCalls";
 import { NavigationEvents } from "react-navigation";
@@ -66,7 +66,6 @@ export default class ContractorProfile extends React.Component {
         />
         {this.state.logo && (
           <View style={styles.logoWrapper}>
-            <Text style={styles.leftText}>Logo</Text>
             <Image style={styles.logo} source={{ uri: this.state.logo }} />
             <Image
               style={styles.editIcon}
@@ -80,7 +79,7 @@ export default class ContractorProfile extends React.Component {
 
   render() {
     return (
-      <View style={styles.container}>
+      <ScrollView contentContainerStyle={styles.container}>
         <NavigationEvents onDidFocus={() => this.onRender()} />
         <View style={styles.header}>
           <Text style={styles.title}>Edit Profile</Text>
@@ -89,7 +88,7 @@ export default class ContractorProfile extends React.Component {
           </TouchableOpacity>
         </View>
         {!this.state.loading && this.displayInfo()}
-      </View>
+      </ScrollView>
     );
   }
 }
@@ -99,11 +98,11 @@ const styles = StyleSheet.create({
     height: "100%"
   },
   header: {
-    height: 100,
+    height: 60,
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    paddingTop: "5%",
+    marginTop: 40,
     paddingHorizontal: 15
   },
   title: {
@@ -124,7 +123,7 @@ const styles = StyleSheet.create({
     paddingVertical: 10
   },
   logo: {
-    height: 200,
+    height: "100%",
     width: "90%",
     borderRadius: 4
   }
