@@ -76,7 +76,7 @@ export const patchContractorProject = async (
   };
   try {
     const response = await fetch(url, options);
-    const patchedContractor = response.json();
+    const patchedContractor = await response.json();
     return patchedContractor;
   } catch (error) {
     return new Error(error);

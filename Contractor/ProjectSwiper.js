@@ -15,6 +15,7 @@ class ProjectSwiper extends Component {
     this.setState({ loading: true });
     const contractorId = this.props.navigation.getParam("contractorId");
     const cards = await getProjectBatch(contractorId);
+    cards.reverse();
     this.setState({ cards, loading: false });
   }
 
