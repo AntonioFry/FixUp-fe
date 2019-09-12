@@ -13,7 +13,6 @@ class ProjectSwiper extends Component {
   async componentDidMount() {
     const contractorId = this.props.navigation.getParam("contractorId");
     const cards = await getProjectBatch(contractorId);
-    // const cards = response.slice(0, 5);
     this.setState({ cards });
   }
 
@@ -151,13 +150,13 @@ class ProjectSwiper extends Component {
         )}
         <View style={styles.swiperButtonsWrapper}>
           <TouchableOpacity
-            onPress={left => this.onSwiped("left")}
+            // onPress={() => this.onSwiped("left")}
             style={styles.swiperButtonOutline}
           >
             <Image source={require("../assets/reject.png")} />
           </TouchableOpacity>
           <TouchableOpacity
-            onPress={right => this.onSwiped("right")}
+            // onPress={() => this.onSwiped("right")}
             style={styles.swiperButtonOutline}
           >
             <Image source={require("../assets/accept.png")} />
@@ -188,9 +187,10 @@ const styles = StyleSheet.create({
   },
   image: {
     width: "100%",
-    height: "50%",
+    height: "55%",
     marginTop: 10,
-    marginBottom: 20
+    marginBottom: 20,
+    borderRadius: 4
   },
   button: {
     flexDirection: "row",
@@ -206,17 +206,18 @@ const styles = StyleSheet.create({
   description: {
     width: "100%",
     textAlign: "left",
-    fontSize: 20
+    fontSize: 16
   },
   tag: {
     width: "100%",
     textAlign: "left",
-    marginBottom: 20
+    marginBottom: 20,
+    color: "#7C9EB2"
   },
   title: {
     fontWeight: "bold",
-    fontSize: 30,
-    marginTop: 20
+    fontSize: 24,
+    marginTop: 10
   },
   swiperButtonsWrapper: {
     flexDirection: "row",
