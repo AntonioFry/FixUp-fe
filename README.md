@@ -27,24 +27,22 @@ Many homeowners are lost when it comes to identifying the cause of a leak or kno
 
 FixUp is an iOS and Android mobile app designed to help homeowners connect with contractors more easily. The app matches home projects with contractors of the right specialty to get everyone on the same page without any hassle.
 
-## Homeowner
+### Homeowner
 
-As a homeowner, one of the biggest features is being able to post new projects. In doing so a user is asked to provide an image, description, tag and title of the problem. Once the project is posted it will show up in the users home/active projects page.
+As a homeowner, FixUp provides a streamlined interface for posting projects and getting connected with an ideal contractor without having to spend time and effort. Simply take a photo of your issue, write a quick description of what you think is going on, and post your project in seconds. Then FixUp will show you all the contractors that have offered their services and you can choose the one you think is best. Once you hit "Connect", FixUp will automatically send your previously hidden contact info to that contractor to get the process started.
 
-![process of homeowner posting a new project](https://media.giphy.com/media/lTH6scZ8BkMlY22cxf/giphy.gif)
+![](assets/homeowner-homepage.png)
+![](assets/upload-photo.png)
+![](assets/homeowner-edit-profile.png)
+![](assets/category-select.png)
 
-As a homeowner, when in the home/active projects page a user is able to click on individual project as well as a contractor. Doing this will take the user to a new page which displays either the information on the contractor or project depending on which one they pressed on.
+### Contractor
 
-![process of homeowner looking at different screens](https://media.giphy.com/media/gkEtXwlYTw7HBoD5eU/giphy.gif)
-
-## Contractor
-
-As a contractor, you are able to see a batch of projects that you can swipe through. Swiping right means you're willng to take the job,while swiping left means you are declining the job. Every time a swpie happens, the app is posting to a database and creating a contractor_project object. This object is what ties the homeowner to the contractor.
-
-As a contractor, you are also able to see suggested projects based off your specialty, as well as projects where you swiped right and the homeowner has responded to you.
+As a contractor, FixUp is an ideal way to book new clients and get your name out there. Once you've signed up, you can quickly browse potential jobs that align with your specialty. If a project looks like it's up your alley, simply swipe right to let that homeowner know you're interested in working with them. Then, that homeowner can look at your profile and your previous work and choose to send you their contact info. This provides a platform for finding work on the fly.
 
 ## Technologies
 
 - React Native
+- Jest
 - Expo
 - TravisCI
