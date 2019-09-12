@@ -31,10 +31,11 @@ FixUp is an iOS and Android mobile app designed to help homeowners connect with 
 
 As a homeowner, FixUp provides a streamlined interface for posting projects and getting connected with an ideal contractor without having to spend time and effort. Simply take a photo of your issue, write a quick description of what you think is going on, and post your project in seconds. Then FixUp will show you all the contractors that have offered their services and you can choose the one you think is best. Once you hit "Connect", FixUp will automatically send your previously hidden contact info to that contractor to get the process started.
 
-![](assets/homeowner-homepage.png){:height="50%" width="50%"}
-![](assets/upload-photo.png){:height="50%" width="50%"}
-![](assets/homeowner-edit-profile.png){:height="50%" width="50%"}
-![](assets/category-select.png){:height="50%" width="50%"}
+<img src="assets/homeowner-homepage.png" width="40%">
+![](assets/homeowner-homepage.png)
+![](assets/upload-photo.png)
+![](assets/homeowner-edit-profile.png)
+![](assets/category-select.png)
 
 ### Contractor
 
