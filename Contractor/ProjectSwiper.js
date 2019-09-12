@@ -7,13 +7,15 @@ class ProjectSwiper extends Component {
   state = {
     cards: [],
     cardIndex: 0,
-    swipedAllCards: false
+    swipedAllCards: false,
+    loading: false
   };
 
   async componentDidMount() {
+    this.setState({ loading: true });
     const contractorId = this.props.navigation.getParam("contractorId");
     const cards = await getProjectBatch(contractorId);
-    this.setState({ cards });
+    this.setState({ cards, loading: false });
   }
 
   onChange(e) {
@@ -52,125 +54,125 @@ class ProjectSwiper extends Component {
 
   render() {
     return (
-      <View style={styles.screen}>
-        {this.state.cards.length > 0 && (
-          <Swiper
-            paddingBottom={100}
-            backgroundColor="#white"
-            ref={swiper => {
-              this.swiper = swiper;
-            }}
-            onSwipedLeft={index => this.onSwiped("left", index)}
-            onSwipedRight={index => this.onSwiped("right", index)}
-            onSwipedTop={index => this.onSwiped("top", index)}
-            onSwipedBottom={index => this.onSwiped("bottom", index)}
-            onTapCard={this.swipeLeft}
-            cards={this.state.cards}
-            cardIndex={this.state.cardIndex}
-            cardVerticalMargin={10}
-            renderCard={this.renderCard}
-            onSwipedAll={this.onSwipedAllCards}
-            stackSize={3}
-            infinite={false}
-            stackSeparation={15}
-            overlayLabels={{
-              bottom: {
-                title: "NOPE",
-                style: {
-                  label: {
-                    backgroundColor: "black",
-                    borderColor: "black",
-                    color: "white",
-                    borderWidth: 1
-                  },
-                  wrapper: {
-                    flexDirection: "column",
-                    alignItems: "center",
-                    justifyContent: "center"
-                  }
-                }
-              },
-              left: {
-                title: "NOPE",
-                style: {
-                  label: {
-                    backgroundColor: "black",
-                    borderColor: "black",
-                    color: "white",
-                    borderWidth: 1
-                  },
-                  wrapper: {
-                    flexDirection: "column",
-                    alignItems: "flex-end",
-                    justifyContent: "flex-start",
-                    marginTop: 30,
-                    marginLeft: -30
-                  }
-                }
-              },
-              right: {
-                title: "LIKE",
-                style: {
-                  label: {
-                    backgroundColor: "black",
-                    borderColor: "black",
-                    color: "white",
-                    borderWidth: 1
-                  },
-                  wrapper: {
-                    flexDirection: "column",
-                    alignItems: "flex-start",
-                    justifyContent: "flex-start",
-                    marginTop: 30,
-                    marginLeft: 30
-                  }
-                }
-              },
-              top: {
-                title: "LIKE",
-                style: {
-                  label: {
-                    backgroundColor: "black",
-                    borderColor: "black",
-                    color: "white",
-                    borderWidth: 1
-                  },
-                  wrapper: {
-                    flexDirection: "column",
-                    alignItems: "center",
-                    justifyContent: "center"
-                  }
-                }
-              }
-            }}
-            animateOverlayLabelsOpacity
-            animateCardOpacity
-            swipeBackCard
-          />
+      <View>
+        {this.state.loading && (
+          <View style={styles.loadingWrapper}>
+            <Image source={require("../assets/gears.gif")} />
+          </View>
         )}
-        <View style={styles.swiperButtonsWrapper}>
-          <TouchableOpacity
-            // onPress={() => this.onSwiped("left")}
-            style={styles.swiperButtonOutline}
-          >
-            <Image source={require("../assets/reject.png")} />
-          </TouchableOpacity>
-          <TouchableOpacity
-            // onPress={() => this.onSwiped("right")}
-            style={styles.swiperButtonOutline}
-          >
-            <Image source={require("../assets/accept.png")} />
-          </TouchableOpacity>
-        </View>
+        {!this.state.loading && (
+          <View style={styles.screen}>
+            {this.state.cards.length > 0 && (
+              <Swiper
+                paddingBottom={100}
+                backgroundColor="#white"
+                ref={swiper => {
+                  this.swiper = swiper;
+                }}
+                onSwipedLeft={index => this.onSwiped("left", index)}
+                onSwipedRight={index => this.onSwiped("right", index)}
+                onSwipedTop={index => this.onSwiped("top", index)}
+                onSwipedBottom={index => this.onSwiped("bottom", index)}
+                onTapCard={this.swipeLeft}
+                cards={this.state.cards}
+                cardIndex={this.state.cardIndex}
+                cardVerticalMargin={10}
+                renderCard={this.renderCard}
+                onSwipedAll={this.onSwipedAllCards}
+                stackSize={3}
+                infinite={false}
+                stackSeparation={15}
+                overlayLabels={{
+                  bottom: {
+                    title: "NOPE",
+                    style: {
+                      label: {
+                        backgroundColor: "black",
+                        borderColor: "black",
+                        color: "white",
+                        borderWidth: 1
+                      },
+                      wrapper: {
+                        flexDirection: "column",
+                        alignItems: "center",
+                        justifyContent: "center"
+                      }
+                    }
+                  },
+                  left: {
+                    title: "NOPE",
+                    style: {
+                      label: {
+                        backgroundColor: "black",
+                        borderColor: "black",
+                        color: "white",
+                        borderWidth: 1
+                      },
+                      wrapper: {
+                        flexDirection: "column",
+                        alignItems: "flex-end",
+                        justifyContent: "flex-start",
+                        marginTop: 30,
+                        marginLeft: -30
+                      }
+                    }
+                  },
+                  right: {
+                    title: "LIKE",
+                    style: {
+                      label: {
+                        backgroundColor: "black",
+                        borderColor: "black",
+                        color: "white",
+                        borderWidth: 1
+                      },
+                      wrapper: {
+                        flexDirection: "column",
+                        alignItems: "flex-start",
+                        justifyContent: "flex-start",
+                        marginTop: 30,
+                        marginLeft: 30
+                      }
+                    }
+                  },
+                  top: {
+                    title: "LIKE",
+                    style: {
+                      label: {
+                        backgroundColor: "black",
+                        borderColor: "black",
+                        color: "white",
+                        borderWidth: 1
+                      },
+                      wrapper: {
+                        flexDirection: "column",
+                        alignItems: "center",
+                        justifyContent: "center"
+                      }
+                    }
+                  }
+                }}
+                animateOverlayLabelsOpacity
+                animateCardOpacity
+                swipeBackCard
+              />
+            )}
+          </View>
+        )}
       </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
+  loadingWrapper: {
+    alignItems: "center",
+    justifyContent: "center",
+    height: "100%"
+  },
   screen: {
     flex: 1,
-    justifyContent: "flex-end",
+    justifyContent: "center",
     alignItems: "center"
   },
   card: {
@@ -180,9 +182,9 @@ const styles = StyleSheet.create({
     overflow: "hidden",
     width: "100%",
     margin: "auto",
-    height: "65%",
+    height: "70%",
     paddingHorizontal: 10,
-    marginTop: 50,
+    marginTop: 60,
     borderRadius: 20
   },
   image: {

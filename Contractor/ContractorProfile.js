@@ -1,5 +1,12 @@
 import React from "react";
-import { View, Text, Image, StyleSheet, TouchableOpacity, ScrollView } from "react-native";
+import {
+  View,
+  Text,
+  Image,
+  StyleSheet,
+  TouchableOpacity,
+  ScrollView
+} from "react-native";
 import ProfileCategory from "./ProfileCategory";
 import { getContractor } from "../contractorApiCalls";
 import { NavigationEvents } from "react-navigation";
@@ -67,10 +74,6 @@ export default class ContractorProfile extends React.Component {
         {this.state.logo && (
           <View style={styles.logoWrapper}>
             <Image style={styles.logo} source={{ uri: this.state.logo }} />
-            <Image
-              style={styles.editIcon}
-              source={require("../assets/whiteEdit.png")}
-            />
           </View>
         )}
       </View>
@@ -79,23 +82,34 @@ export default class ContractorProfile extends React.Component {
 
   render() {
     return (
-      <ScrollView contentContainerStyle={styles.container}>
-        <NavigationEvents onDidFocus={() => this.onRender()} />
-        <View style={styles.header}>
-          <Text style={styles.title}>Edit Profile</Text>
-          <TouchableOpacity onPress={this.logout}>
-            <Text style={styles.logoutButton}>Logout</Text>
-          </TouchableOpacity>
-        </View>
-        {!this.state.loading && this.displayInfo()}
-      </ScrollView>
+      <View>
+        {this.state.loading && (
+          <View style={styles.loadingWrapper}>
+            <Image source={require("../assets/gears.gif")} />
+          </View>
+        )}
+        {!this.state.loading && (
+          <View>
+            <View style={styles.header}>
+              <Text style={styles.title}>Edit Profile</Text>
+              <TouchableOpacity onPress={this.logout}>
+                <Text style={styles.logoutButton}>Logout</Text>
+              </TouchableOpacity>
+            </View>
+            <ScrollView contentContainerStyle={styles.container}>
+              <NavigationEvents onDidFocus={() => this.onRender()} />
+              {!this.state.loading && this.displayInfo()}
+            </ScrollView>
+          </View>
+        )}
+      </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
   container: {
-    height: "100%"
+    width: "100%"
   },
   header: {
     height: 60,
@@ -118,13 +132,23 @@ const styles = StyleSheet.create({
   },
   logoWrapper: {
     alignItems: "center",
-    height: 300,
+    justifyContent: "center",
+    height: 350,
     width: "100%",
-    paddingVertical: 10
+    paddingVertical: 10,
+    backgroundColor: "#7C9EB2",
+    borderColor: "lightgray",
+    borderWidth: 1,
+    borderStyle: "solid"
   },
   logo: {
-    height: "100%",
+    height: "90%",
     width: "90%",
     borderRadius: 4
+  },
+  loadingWrapper: {
+    alignItems: "center",
+    justifyContent: "center",
+    height: "100%"
   }
 });
