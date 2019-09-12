@@ -29,7 +29,7 @@ FixUp is an iOS and Android mobile app designed to help homeowners connect with 
 
 <p float="left">
   <img src="assets/login-screen.png" width="22%">
-  <img src="assets/signup-choose-project.png" width="22%">
+  <img src="assets/signup-choose.png" width="22%">
 </p>
 
 ### Homeowner
