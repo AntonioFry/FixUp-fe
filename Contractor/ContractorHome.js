@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text, StyleSheet, ScrollView, Image } from "react-native";
 import ConnectedProject from "./ConnectedProject";
-import { getContractorProjects, getProjectBatch } from "../contractorApiCalls";
+import { getContractorProjects, getProjectBatch, getContractor } from "../contractorApiCalls";
 import SuggestedProject from "./SuggestedProject";
 import { NavigationEvents } from "react-navigation";
 
@@ -9,15 +9,17 @@ export default class ContractorHome extends React.Component {
   state = {
     connectedProjects: [],
     suggestedProjects: [],
+    contractor: {},
     loading: false
   };
 
   onRender = async () => {
     this.setState({ loading: true });
     const contractorId = this.props.navigation.getParam("contractorId");
+    const contractor = await getContractor(contractorId);
     const connectedProjects = await getContractorProjects(contractorId);
     const suggestedProjects = await getProjectBatch(contractorId, "&limit=5");
-    this.setState({ connectedProjects, suggestedProjects, loading: false });
+    this.setState({ connectedProjects, suggestedProjects, contractor, loading: false });
   };
 
   displayConnectedProjects = () => {
@@ -70,18 +72,22 @@ export default class ContractorHome extends React.Component {
           <View style={styles.wrapper}>
             <View style={styles.header}>
               <Text style={styles.contractorName}>
-                {this.props.contractorName}Steve's Tools
+                {this.state.contractor.name}
               </Text>
             </View>
             <View style={styles.notificationsSection}>
               <NavigationEvents onDidFocus={() => this.onRender()} />
-              <Text style={styles.notificationsTitle}>Project Leads</Text>
+              {this.state.connectedProjects.length > 0 && (
+                <Text style={styles.notificationsTitle}>Project Leads</Text>
+              )}
               <ScrollView style={styles.notificationsWrapper}>
                 {this.state.connectedProjects.length > 0 &&
                   this.displayConnectedProjects()}
               </ScrollView>
             </View>
-            <Text style={styles.suggestionsTitle}>Suggested Projects</Text>
+            {this.state.connectedProjects.length > 0 && (
+              <Text style={styles.suggestionsTitle}>Suggested Projects</Text>
+            )}
             <ScrollView
               horizontal={true}
               contentContainerStyle={styles.suggestionsWrapper}
