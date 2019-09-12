@@ -19,6 +19,8 @@ export default class ContractorHome extends React.Component {
     const contractor = await getContractor(contractorId);
     const connectedProjects = await getContractorProjects(contractorId);
     const suggestedProjects = await getProjectBatch(contractorId, "&limit=5");
+    connectedProjects.reverse();
+    suggestedProjects.reverse();
     this.setState({ connectedProjects, suggestedProjects, contractor, loading: false });
   };
 
