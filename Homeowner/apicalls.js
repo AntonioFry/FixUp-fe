@@ -46,7 +46,7 @@ export const getHomeownerProjects = async id => {
 };
 
 export const patchHomeowner = async (updatedHomeowner, id) => {
-  const url = `https://fixup-backend.herokuapp.com/api/v1/contractors/${id}`;
+  const url = `https://fixup-backend.herokuapp.com/api/v1/users/${id}`;
   const options = {
     method: "PATCH",
     headers: {
