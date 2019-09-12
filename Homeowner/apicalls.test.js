@@ -562,7 +562,96 @@ describe('apicalls', () => {
       expect(patchContractorProject(contractorId, projectId, choice)).resolves.toBe(String);
     });
 
-  })
+  });
 
+  describe('getContractor', () => {
+    let mockResponse;
+    let id;
+
+    beforeEach(() => {
+      id = 1
+      mockResponse = {
+        "name": "new_name_1",
+        "email": "new_plumbing@gmail.com",
+        "phone_number": "7205555555",
+        "zip": "80555",
+        "category": "plumbing",
+        "logo": "plumbinglogo.png"
+      }
+      global.fetch = jest.fn().mockImplementation(() => {
+        return Promise.resolve({
+          ok: true,
+          json: () => Promise.resolve(mockResponse)
+        })
+      })
+    })
+
+    it('should fetch given the correct url', async () => {
+      const url = `https://fixup-backend.herokuapp.com/api/v1/contractors/${id}`;
+      await getContractor(id);
+      expect(global.fetch).toHaveBeenCalledWith(url);
+    })
+
+    it('should return a parsed response if status is ok', async () => {
+      await expect(getContractor(id)).resolves.toEqual(mockResponse);
+    });
+
+    it('should throw an error if response is not ok', () => {
+      global.fetch = jest.fn().mockImplementation(() => {
+        return Promise.resolve({
+          ok: false
+        });
+      });
+      expect(getContractor(id)).resolves.toBe(String);
+    });
+
+  });
+
+  describe('patchContractorProjectSeen', () => {
+    let mockResponse;
+    let contractorId;
+    let projectId;
+
+    beforeEach(() => {
+      contractorId = 1;
+      projectId = 1;
+      mockResponse = {
+        "message": "Contractor's project marked as 'seen'"
+      }
+      global.fetch = jest.fn().mockImplementation(() => {
+        return Promise.resolve({
+          ok: true,
+          json: () => Promise.resolve(mockResponse)
+        })
+      })
+    })
+
+    it('should fetch given the correct url', async () => {
+      const url = `https://fixup-backend.herokuapp.com/api/v1/contractors/${contractorId}/projects/${projectId}`;
+      const options = {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ seen: "True" })
+      };
+      await patchContractorProjectSeen(contractorId, projectId);
+      expect(global.fetch).toHaveBeenCalledWith(url, options);
+    });
+
+    it('should return a parsed response if status is ok', async () => {
+      await expect(patchContractorProjectSeen(contractorId, projectId)).resolves.toEqual(mockResponse);
+    });
+
+    it('should throw an error if response is not ok', () => {
+      global.fetch = jest.fn().mockImplementation(() => {
+        return Promise.resolve({
+          ok: false
+        });
+      });
+      expect(patchContractorProjectSeen(contractorId, projectId)).resolves.toBe(String);
+    });
+
+  })
 
 })
